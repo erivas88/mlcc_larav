@@ -28,52 +28,45 @@
          .accordion-button::after {
          filter: brightness(0) invert(1);
          }
-
          .contenedor-revista {
-    max-width: 100%; /* Ancho de lectura óptimo */
-    margin: 40px auto;
-    padding: 40px;
-    background-color: rgba(255, 255, 255, 0.85); /* Fondo muy suave */
-    border-radius: 12px;
-}
-
-.separador-sutil {
-    width: 40px;
-    height: 2px;
-    background-color: transparent;
-    margin: 0 auto 20px auto; /* Centrado */
-    opacity: 0.4;
-}
-
-.texto-editorial {
-    color: #525b65; /* Gris equilibrado, no negro */
-    font-size: 1rem; /* Tamaño natural (16px aprox) */
-    line-height: 1.8; /* Espaciado de revista */
-    text-align: justify;
-    font-weight: 300;
-    margin-bottom: 10px;
-}
-
-.texto-nota {
-    color: #6b7280; /* Un tono más claro para la nota técnica */
-    font-size: 0.95rem; /* Ligeramente más pequeño */
-    line-height: 1.7;
-    text-align: justify;
-    font-weight: 300;
-    font-style: italic; /* Da ese toque de "nota de pie" elegante */
-}
-
-/* Detalles de énfasis */
-.destaque {
-    color: #2a8b98;
-    font-weight: 500;
-}
-
-.numero-enfasis {
-    color: #374151;
-    font-weight: 600;
-}
-
+         max-width: 100%; /* Ancho de lectura óptimo */
+         margin: 40px auto;
+         padding: 40px;
+         background-color: rgba(255, 255, 255, 0.85); /* Fondo muy suave */
+         border-radius: 12px;
+         }
+         .separador-sutil {
+         width: 40px;
+         height: 2px;
+         background-color: transparent;
+         margin: 0 auto 20px auto; /* Centrado */
+         opacity: 0.4;
+         }
+         .texto-editorial {
+         color: #525b65; /* Gris equilibrado, no negro */
+         font-size: 1rem; /* Tamaño natural (16px aprox) */
+         line-height: 1.8; /* Espaciado de revista */
+         text-align: justify;
+         font-weight: 300;
+         margin-bottom: 10px;
+         }
+         .texto-nota {
+         color: #6b7280; /* Un tono más claro para la nota técnica */
+         font-size: 0.95rem; /* Ligeramente más pequeño */
+         line-height: 1.7;
+         text-align: justify;
+         font-weight: 300;
+         font-style: italic; /* Da ese toque de "nota de pie" elegante */
+         }
+         /* Detalles de énfasis */
+         .destaque {
+         color: #2a8b98;
+         font-weight: 500;
+         }
+         .numero-enfasis {
+         color: #374151;
+         font-weight: 600;
+         }
       </style>
    </head>
    <body>
@@ -97,17 +90,13 @@
                <div class="col-md-3">
                   <div class="accordion" id="accordionExample">
                      <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading1" id-sector="1">
-                           <button class="accordion-button collapsed" 
-                              type="button" 
-                              id-sector="1" 
-                              data-bs-toggle="collapse" 
-                              data-bs-target="#collapse1" 
-                              aria-expanded="false" 
-                              aria-controls="collapse1">
-                           <i class="fas fa-layer-group" style="color: #865b74!important;" ></i> 
+                        <h2 class="accordion-header" id="heading1">
+                           <a href="{{ route('sector.ver', 1) }}" 
+                              class="accordion-button collapsed" 
+                              style="text-decoration: none;">
+                           <i class="fas fa-layer-group" style="color: #865b74 !important;"></i> 
                            &nbsp;&nbsp; Deposito de Lamas La Brea
-                           </button>
+                           </a>
                         </h2>
                      </div>
                      <div class="accordion-item">
@@ -119,27 +108,11 @@
                               data-bs-target="#collapse1" 
                               aria-expanded="false" 
                               aria-controls="collapse1">
-                            <i class="fas fa-layer-group" style="color: #ed8e24!important;" ></i> 
+                           <i class="fas fa-layer-group" style="color: #ed8e24!important;" ></i> 
                            &nbsp;&nbsp;Deposito de Arenas
                            </button>
                         </h2>
                      </div>
-
-                      <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading1" id-sector="1">
-                           <button class="accordion-button collapsed" 
-                              type="button" 
-                              id-sector="1" 
-                              data-bs-toggle="collapse" 
-                              data-bs-target="#collapse1" 
-                              aria-expanded="false" 
-                              aria-controls="collapse1">
-                            <i class="fas fa-layer-group" style="color: #ffc107!important;" ></i> 
-                           &nbsp;&nbsp;Deposito Lastre
-                           </button>
-                        </h2>
-                     </div>
-
                      <div class="accordion-item">
                         <h2 class="accordion-header" id="heading1" id-sector="1">
                            <button class="accordion-button collapsed" 
@@ -149,12 +122,25 @@
                               data-bs-target="#collapse1" 
                               aria-expanded="false" 
                               aria-controls="collapse1">
-                            <i class="fas fa-layer-group" style="color: #59d01b!important;" ></i> 
+                           <i class="fas fa-layer-group" style="color: #ffc107!important;" ></i> 
+                           &nbsp;&nbsp;Deposito Lastre
+                           </button>
+                        </h2>
+                     </div>
+                     <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading1" id-sector="1">
+                           <button class="accordion-button collapsed" 
+                              type="button" 
+                              id-sector="1" 
+                              data-bs-toggle="collapse" 
+                              data-bs-target="#collapse1" 
+                              aria-expanded="false" 
+                              aria-controls="collapse1">
+                           <i class="fas fa-layer-group" style="color: #59d01b!important;" ></i> 
                            &nbsp;&nbsp;Sistema Río Ramadillas
                            </button>
                         </h2>
                      </div>
-                    
                   </div>
                </div>
                <div class="col-md-9">
@@ -164,26 +150,17 @@
                            <label class="me-2"><input type="radio" name="map-style" value="mapa"> Mapa</label> 
                            <label><input type="radio" name="map-style" value="satelite" checked> Satélite</label>
                         </div>
-                     </div>
-                     <!--<p class="mt-3 text-muted">
-                        <br>
-                        <i class="fas fa-exclamation-triangle" style="color: #ce7d27" aria-hidden="true"></i> 
-                        <span class="title_pop"  style="color: #555555; font-size: 12px" >En su mayoría, los datos se entregan cada 1 hora y pueden sufrir modificaciones.</span>
-                     </p>-->                   
-
+                     </div>                                     
                      <div class="contenedor-revista">
-    <div class="separador-sutil"></div>
-
-    <p class="texto-editorial">
-        Como parte del <span class="destaque">Programa de Cumplimiento (PdC)</span> presentado por Caserones de Minera Lumina Copper Chile, que fue aprobado por la Superintendencia del Medioambiente (SMA), la Compañía asumió el compromiso de generar un sistema de medición en línea abierto a la comunidad, que contempla <span class="numero-enfasis">56 puntos de monitoreo</span> hidrogeológicos e hidrológicos, con el objetivo de tener un seguimiento de las variables ambientales relacionadas aguas abajo de la faena, para estudiar su comportamiento y evitar potenciales efectos de la operación o algunos fenómenos naturales como el cambio climático en el sector. 
-    </p>
-
-    <p class="texto-nota">
-        Se presenta las mediciones a distancia efectuadas con sondas multiparamétricas instaladas en los puntos de medición; por tanto, se trata de datos crudos sin un proceso de revisión.
-    </p>
-</div>
-                
-                    </div>
+                        <div class="separador-sutil"></div>
+                        <p class="texto-editorial">
+                           Como parte del <span class="destaque">Programa de Cumplimiento (PdC)</span> presentado por Caserones de Minera Lumina Copper Chile, que fue aprobado por la Superintendencia del Medioambiente (SMA), la Compañía asumió el compromiso de generar un sistema de medición en línea abierto a la comunidad, que contempla <span class="numero-enfasis">56 puntos de monitoreo</span> hidrogeológicos e hidrológicos, con el objetivo de tener un seguimiento de las variables ambientales relacionadas aguas abajo de la faena, para estudiar su comportamiento y evitar potenciales efectos de la operación o algunos fenómenos naturales como el cambio climático en el sector. 
+                        </p>
+                        <p class="texto-nota">
+                           Se presenta las mediciones a distancia efectuadas con sondas multiparamétricas instaladas en los puntos de medición; por tanto, se trata de datos crudos sin un proceso de revisión.
+                        </p>
+                     </div>
+                  </div>
                </div>
             </div>
          </div>

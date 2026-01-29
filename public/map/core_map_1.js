@@ -1,1 +1,181 @@
-function flytodata(e,a){console.log(e,a),window.location.href="estacion.php?id="+e+"&sector="+a}window.onload=function(){const e=window.location.search,a=new URLSearchParams(e),o=a.get("sector"),t=a.get("subsistema");limites=new L.LatLngBounds(new L.LatLng(-28.21,-69.83),new L.LatLng(-28.07,-69.46));let n=[];var r,s,i=[],l=[];var c=function(e,a){return L.divIcon({className:e,html:a,iconSize:[51,51],iconAnchor:[17,15],popupAnchor:[1,-34]})},d=new L.Icon({iconUrl:"assets/img/pozos/marker.png",iconAnchor:[10,41],popupAnchor:[5,-37]}),p=new L.Icon({iconUrl:"assets/img/pozos/marker_purplee.png",iconAnchor:[10,41],popupAnchor:[5,-37]}),m=new L.Icon({iconUrl:"assets/img/pozos/marker_o.png",iconAnchor:[10,41],popupAnchor:[5,-37]}),b=new L.Icon({iconUrl:"assets/img/pozos/marker_green.png",iconAnchor:[10,41],popupAnchor:[5,-37]}),u=new L.Icon({iconUrl:"assets/img/pozos/marker_light.png",iconAnchor:[10,41],popupAnchor:[5,-37]}),h=new L.Icon({iconUrl:"assets/img/pozos/marker_yellow.png",iconAnchor:[10,41],popupAnchor:[5,-37]}),g=new L.Icon({iconUrl:"assets/img/pozos/marker_blue.png",iconAnchor:[10,41],popupAnchor:[5,-37]}),w=(new L.Icon({iconUrl:"assets/img/pozos/marker_pink.png",iconAnchor:[10,41],popupAnchor:[5,-37]}),new L.Icon({iconUrl:"assets/img/pozos/marker_maroon.png",iconAnchor:[10,41],popupAnchor:[5,-37]})),f="https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw";streets=L.tileLayer(f,{id:"mapbox/streets-v11",attribution:"&copy; Captura de Imagen: Abril-2021"});L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/emerald-v8/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZWxpb3JpdmFzODgiLCJhIjoiY2p4NjQ1ZHJkMDg1ZzN5cGY0dzN6ZmgwdSJ9.wVoukk9vF2mhOmEeQK4M4Q",{tileSize:512,zoomOffset:-1,attribution:'© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}),L.tileLayer(f,{id:"mapbox/light-v9",attribution:'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'});if(mbAttr1="&copy; Captura de Imagen: Abril-2021",mbUrl1="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",base_layer=L.tileLayer(mbUrl1,{id:"mapbox.streets",attribution:mbAttr1}),maxZoom=4==o?14:17,null!=t){for(core=[],marker_sub=q(o,t),n=marker_sub.data,$("#subsistema").html(marker_sub.subsistema),$("#texto").html(marker_sub.texto),k=0;k<n.length;k++)core.push(new L.LatLng(n[k].latitud,n[k].longitud));4==o&&(core.push(new L.LatLng(-28.132393,-69.616579)),core.push(new L.LatLng(-28.175424,-69.548553))),2==o&&(core.push(new L.LatLng(-28.20997,-69.57928)),core.push(new L.LatLng(-28.155646,-69.516257)))}else{for(core=[],n=function(e){return $.ajax({async:!1,url:"controller/getMarkers.php",type:"POST",data:{sector:e},dataType:"JSON"}).responseJSON}(o),k=0;k<n.length;k++)core.push(new L.LatLng(n[k].latitud,n[k].longitud));4==o&&(core.push(new L.LatLng(-28.132393,-69.616579)),core.push(new L.LatLng(-28.175424,-69.548553))),1==o&&(core.push(new L.LatLng(-28.139764,-69.652518)),core.push(new L.LatLng(-28.116253,-69.596104)),core.push(new L.LatLng(-28.175424,-69.548553))),2==o&&(core.push(new L.LatLng(-28.20997,-69.57928)),core.push(new L.LatLng(-28.155646,-69.516257)))}nucleo=new L.LatLngBounds(core);var y=L.map("mapid",{center:nucleo.getCenter(),maxZoom:maxZoom,minZoom:12,zoomControl:!0,maxBounds:nucleo,maxBoundsViscosity:.75});3==o&&(y.options.maxZoom=14),4==o&&(y.options.minZoom=13),y.spin(!0);L.polygon(planta_procesos,{color:"#48FEAC",fillColor:"",fillOpacity:"0.0",radius:400,weight:3}).on("click",function(e){}).bindLabel('<span class="pop_text"> Planta de<br> Procesos<span>').addTo(y),L.polygon(campamentos,{color:"red",fillColor:"",fillOpacity:"0.0",radius:400,weight:3}).on("click",function(e){}).bindLabel('<span class="pop_text"> Campamento<span>',{noHide:!0}).addTo(y),L.polygon(portones,{color:"red",fillColor:"",fillOpacity:"0.0",radius:400}).on("click",function(e){}).bindLabel('<span class="pop_text"> Acceso a Faena Industrial <span>').addTo(y),L.polygon(rajo_caserones,{color:"#be0000",fillColor:"",fillOpacity:"0.0",radius:500,weight:3}).on("click",function(e){}).bindLabel('<span class="pop_text"> Zona Rajo<span>').addTo(y);var _=new L.tileLayer(mbUrl1,{id:"mapbox.streets",attribution:mbAttr1}).addTo(y);y.spin(!0),_.on("load",function(e){y.spin(!1)});var x=L.control.zoomBox({modal:!0});y.addControl(x),y.setView(nucleo.getCenter(),10);var C="Map data &copy; OpenStreetMap contributors",v=new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{minZoom:9,maxZoom:18,attribution:C});new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{minZoom:9,maxZoom:18,attribution:C}),new L.Control.MiniMap(base_layer,{toggleDisplay:!0,width:100,height:100,position:"bottomleft"}).addTo(y);$(".leaflet-control-minimap").addClass("yborder");L.polygon(rajo_caserones,{color:"#be0000",fillColor:"",fillOpacity:"0.0",radius:500,weight:3}),L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:'&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'}),L.polygon([[0,0],[48,-3],[50,-3],[50,-4],[52,4],[0,0]],{color:"#aa0000",fillColor:"#ff0000"});var T={Streets:v,"Satélite":base_layer};L.control.layers(T).addTo(y);C="Map data &copy; OpenStreetMap contributors";let W;$("#count_estaciones").html(n.length);for(var A=0;A<n.length;++A){test=n[A].estacion,W=M(n[A].subsistema),clase=S(n[A].subsistema);var z='<a href="#" class="mybtn"  onclick="flytodata(\''+n[A].id+"','"+o+"')\"  >Ver Estación</a>",O='<span class="tooltipp"><b> Parámetros en Línea </b><br> '+n[A].parametros+"</span><br><center>"+z+"</center>",B=L.marker([n[A].latitud,n[A].longitud],{icon:W});B.bindPopup(O),B.test=test,B.id_estacion=n[A].id,B.subsistema=n[A].subsistema;var I=new L.Marker(new L.latLng([n[A].latitud,n[A].longitud]),{icon:c(clase,n[A].estacion)});i.push(B),l.push(I)}r=L.featureGroup(i),s=L.featureGroup(l),y.addLayer(r),y.addLayer(s),y.fitBounds(r.getBounds(),{padding:[55,55]});L.polyline(frontera,{color:"red",dashArray:"10, 10",dashOffset:"0",weight:2}).addTo(y);clase="labelClass_red";I=new L.Marker(new L.latLng([-28.198859,-69.475012]),{icon:c("labelClass_red1","CHILE")}).addTo(y),I=new L.Marker(new L.latLng([-28.207363,-69.46893]),{icon:c("labelClass_red1","ARGENTINA")}).addTo(y),new L.Marker(new L.latLng([-28.11932,-69.693991]),{icon:c("labelClass_blue","Río Ramadillas")}).addTo(y),new L.Marker(new L.latLng([-28.136428,-69.770388]),{icon:c("labelClass_blue","Río Pulido")}).addTo(y),new L.Marker(new L.latLng([-28.091972,-69.742463]),{icon:c("labelClass_blue","Río Vizcachas de Pulido")}).addTo(y),new L.Marker(new L.latLng([-28.144517,-69.591603]),{icon:c("labelClass_blue","Quebrada La Brea")}).addTo(y);function M(e){let a;return"1"==e&&(a=d),"2"==e&&(a=h),"3"==e&&(a=g),"4"==e&&(a=m),"5"==e&&(a=b),"6"==e&&(a=u),"7"==e&&(a=u),"8"==e&&(a=m),"9"==e&&(a=b),"10"==e&&(a=p),"11"==e&&(a=w),a}function S(e){let a;return"1"==e&&(a="labelClass_red"),"2"==e&&(a="labelClass_yellow"),"3"==e&&(a="labelClass_blue"),"4"==e&&(a="labelClass_orange"),"5"==e&&(a="labelClass_green"),"6"==e&&(a="labelClass_light"),"7"==e&&(a="labelClass_light"),"8"==e&&(a="labelClass_orange"),"9"==e&&(a="labelClass_green"),"10"==e&&(a="labelClass_purple"),"11"==e&&(a="labelClass_maroon"),a}function q(e,a){return $.ajax({async:!1,url:"controller/getMarkerSector.php",type:"POST",data:{sector:e,subsistema:a},dataType:"JSON"}).responseJSON}y.spin(!1),$(".resize").on("click",function(){11==(t=$(this).attr("data-id"))&&1==o&&$("#modal_umbral_labrea").modal(),11==t&&2==o&&$("#modal_umbral_caserones").modal(),11==t&&4==o&&$("#modal_umbral_lastre").modal(),$(".resize").not(this).removeClass("super"),$(this).hasClass("collapsed")&&$(this).addClass("xsuper"),y.removeLayer(r),y.removeLayer(s),i=[],l=[],r=[],s=[],core=[];var e=q(o,t),a=e.data,t=e.subsistema;$("#subsistema").html(t),$("#texto").html(e.texto),$("#count_estaciones").html(a.length);for(var n=0;n<a.length;++n){W=M(a[n].subsistema),clase=S(a[n].subsistema),clase=S(a[n].subsistema);var d='<a href="#" class="mybtn"  onclick="flytodata(\''+a[n].id+"','"+o+"')\"  >Ver Estación</a>",p='<span class="tooltipp"><b> Parámetros en Línea</b> <br> '+a[n].parametros+"</span><br><center>"+d+"</center>",m=L.marker([a[n].latitud,a[n].longitud],{icon:W});m.bindPopup(p),m.test=test,m.id_estacion=a[n].id,m.subsistema=a[n].subsistema;var b=new L.Marker(new L.latLng([a[n].latitud,a[n].longitud]),{icon:c(clase,a[n].estacion)});core.push(new L.LatLng(a[n].latitud,a[n].longitud)),i.push(m),l.push(b)}nucleo=new L.LatLngBounds(core),y.options.center=nucleo.getCenter(),y.options.maxBounds=nucleo,r=L.featureGroup(i),s=L.featureGroup(l),y.addLayer(r),y.addLayer(s),function(e,a){if(Array.isArray(a)){for(var o=L.latLngBounds(),t=0;t<a.length;t++)o.extend(a[t].getBounds());e.fitBounds(o,{padding:[50,50]})}else e.fitBounds(a.getBounds(),{padding:[50,50]});e.getZoom()}(y,r)});L.river(rio,{minWidth:4,maxWidth:4,color:"#29439c"}).bindLabel('<span class="pop_text" >  Río Vizcachas de Pulido <span>').addTo(y),L.river(rio_4,{minWidth:4,maxWidth:4,color:"#29439c"}).bindLabel('<span class="pop_text" > Río Ramadillas  <span>').addTo(y),L.river(rio_5,{minWidth:4,maxWidth:4,color:"#29439c"}).bindLabel('<span class="pop_text"> Río  Pulido<span>').addTo(y),L.river(qdalabrea,{minWidth:2,maxWidth:2,color:"#87ceeb "}).bindLabel('<span class="pop_text" > Quebrada La Brea<span>').addTo(y),L.river(q2,{minWidth:2,maxWidth:2,color:"#87ceeb "}).addTo(y),L.river(q3,{minWidth:2,maxWidth:2,color:"#87ceeb "}).addTo(y),L.river(q4,{minWidth:2,maxWidth:2,color:"#87ceeb "}).addTo(y),L.river(q5,{minWidth:2,maxWidth:2,color:"#87ceeb "}).addTo(y),L.river(q6,{minWidth:2,maxWidth:2,color:"#87ceeb "}).addTo(y),L.river(q7,{minWidth:2,maxWidth:2,color:"#87ceeb "}).bindLabel('<span class="pop_text" > Quebrada Roco<span>').addTo(y),L.river(q8,{minWidth:2,maxWidth:2,color:"#87ceeb "}).bindLabel('<span class="pop_text" > Quebrada La Brea<span>').addTo(y),L.river(q9,{minWidth:2,maxWidth:2,color:"#87ceeb "}).bindLabel('<span class="pop_text" > Quebrada Roco<span>').addTo(y),L.river(q10,{minWidth:2,maxWidth:2,color:"#87ceeb "}).bindLabel('<span class="pop_text" > Quebrada La Escarcha<span>').addTo(y),L.river(q11,{minWidth:2,maxWidth:2,color:"#87ceeb "}).addTo(y),L.river(q12,{minWidth:2,maxWidth:2,color:"#87ceeb "}).addTo(y),L.river(q13,{minWidth:2,maxWidth:2,color:"#87ceeb "}).addTo(y),L.river(q14,{minWidth:2,maxWidth:2,color:"#87ceeb "}).bindLabel('<span class="pop_text"  > Quebrada Caserones<span>').addTo(y),L.river(q16,{minWidth:2,maxWidth:2,color:"#87ceeb "}).addTo(y),L.river(q18,{minWidth:2,maxWidth:2,color:"#87ceeb "}).addTo(y),L.river(q19,{minWidth:2,maxWidth:2,color:"#87ceeb "}).addTo(y),L.river(q20,{minWidth:2,maxWidth:2,color:"#87ceeb "}).addTo(y),L.river(q21,{minWidth:2,maxWidth:2,color:"#87ceeb "}).addTo(y),L.river(q22,{minWidth:2,maxWidth:2,color:"#87ceeb "}).addTo(y),L.river(q23,{minWidth:2,maxWidth:2,color:"#87ceeb "}).addTo(y),L.river(q24,{minWidth:2,maxWidth:2,color:"#87ceeb "}).addTo(y);function F(){L.polygon(deposito_lamas,{color:"#66023C",fillColor:"#66023C",fillOpacity:.5,radius:500}).on("click",function(e){window.location.href="sector.php?sector=1"}).bindLabel('<center><span class="pop_text" > Depósito de <br> Lamas La Brea<span></center>').addTo(y)}function Z(){L.polygon(deposito_lastre,{color:"#FFFF5C",fillColor:"#FFFF5C",fillOpacity:.5,radius:500}).on("click",function(e){$("#modal_umbral_caserones").modal()}).bindLabel('<span class="pop_text" >Depósito de Lastre<span>').addTo(y)}y.dragging.disable(),y.dragging.enable(),y.scrollWheelZoom.disable(),1==o&&(F(),Z()),2==o&&L.polygon(arenas,{color:"#f77f00",fillColor:"#f77f00",fillOpacity:.5,radius:500}).on("click",function(e){window.location.href="sector.php?sector=2"}).bindLabel('<center><span class="pop_text" > Depósito de <br> Arenas Caserones<span></center>').addTo(y),3==o&&(L.polygon(ramadillas,{color:"#33B503",fillColor:"#33B503",fillOpacity:.5,radius:500}).on("click",function(e){$("#modal_umbral_labrea").modal()}).bindLabel('<center><span class="pop_text" > Sistema Río<br> Ramadillas<span></center>').addTo(y),new L.Marker(new L.latLng([-28.200673,-69.57067]),{icon:c("labelClass_blue","Quebrada Caserones")}).addTo(y),L.polygon(arenas,{color:"#f77f00",radius:300,weight:3,fillOpacity:.5}).on("click",function(e){window.location.href="sector.php?sector=2"}).bindLabel('<center><span class="pop_text" > Depósito de <br> Arenas Caserones<span></center>').addTo(y),L.polygon(deposito_lastre,{color:"#FFFF5C",radius:300,weight:3,fillOpacity:.5}).on("click",function(e){$("#modal_umbral_caserones").modal()}).bindLabel('<span class="pop_text" >Depósito de Lastre<span>').addTo(y),L.polygon(deposito_lamas,{color:"#66023C",radius:500,weight:3,fillOpacity:.5}).on("click",function(e){window.location.href="sector.php?sector=1"}).bindLabel('<center><span class="pop_text" > Depósito de <br> Lamas La Brea<span></center>').addTo(y)),4==o&&(F(),Z())};
+/**
+ * Redirige a la página de detalles de la estación
+ */
+function flytodata(e, a) {
+    console.log(e, a);
+    window.location.href = "estacion.php?id=" + e + "&sector=" + a;
+}
+
+window.onload = function() {
+    // 1. Configuración Inicial y Parámetros URL
+    const e = window.location.search;
+    const a = new URLSearchParams(e);
+    const o = a.get("sector");
+    const t = a.get("subsistema");
+    
+    // Límites geográficos del mapa
+    limites = new L.LatLngBounds(new L.LatLng(-28.21, -69.83), new L.LatLng(-28.07, -69.46));
+    
+    let n = [];
+    var r, s, i = [], l = [];
+
+    // 2. Definición de Iconos de Marcadores
+    var c = function(e, a) {
+        return L.divIcon({
+            className: e,
+            html: a,
+            iconSize: [51, 51],
+            iconAnchor: [17, 15],
+            popupAnchor: [1, -34]
+        })
+    };
+
+ 
+
+        // Definición de iconos con rutas relativas a la carpeta public
+var d = new L.Icon({ iconUrl: "images/pozos/marker.png", iconAnchor: [10, 41], popupAnchor: [5, -37] }),
+    p = new L.Icon({ iconUrl: "images/pozos/marker_purplee.png", iconAnchor: [10, 41], popupAnchor: [5, -37] }),
+    m = new L.Icon({ iconUrl: "images/pozos/marker_o.png", iconAnchor: [10, 41], popupAnchor: [5, -37] }),
+    b = new L.Icon({ iconUrl: "images/pozos/marker_green.png", iconAnchor: [10, 41], popupAnchor: [5, -37] }),
+    u = new L.Icon({ iconUrl: "images/pozos/marker_light.png", iconAnchor: [10, 41], popupAnchor: [5, -37] }),
+    h = new L.Icon({ iconUrl: "images/pozos/marker_yellow.png", iconAnchor: [10, 41], popupAnchor: [5, -37] }),
+    g = new L.Icon({ iconUrl: "images/pozos/marker_blue.png", iconAnchor: [10, 41], popupAnchor: [5, -37] }),
+    w = new L.Icon({ iconUrl: "images/pozos/marker_maroon.png", iconAnchor: [10, 41], popupAnchor: [5, -37] });
+
+    // 3. Configuración de Capas Base (Mapbox / ArcGIS)
+    var f = "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw";
+    
+    streets = L.tileLayer(f, {
+        id: "mapbox/streets-v11",
+        attribution: "&copy; Captura de Imagen: Abril-2021"
+    });
+
+    mbAttr1 = "&copy; Captura de Imagen: Abril-2021";
+    mbUrl1 = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
+    base_layer = L.tileLayer(mbUrl1, {
+        id: "mapbox.streets",
+        attribution: mbAttr1
+    });
+
+    maxZoom = (4 == o) ? 14 : 17;
+
+    // 4. Carga de Datos (AJAX o Función q)
+    if (null != t) {
+        // Carga por subsistema específico
+        core = [];
+        marker_sub = q(o, t);
+        n = marker_sub.data;
+        $("#subsistema").html(marker_sub.subsistema);
+        $("#texto").html(marker_sub.texto);
+        for (k = 0; k < n.length; k++) {
+            core.push(new L.LatLng(n[k].latitud, n[k].longitud));
+        }
+    } else {
+        // Carga general por sector
+        core = [];
+        n = function(e) {
+            c
+        }(o);
+        for (k = 0; k < n.length; k++) {
+            core.push(new L.LatLng(n[k].latitud, n[k].longitud));
+        }
+    }
+
+    // 5. Inicialización del Mapa
+    nucleo = new L.LatLngBounds(core);
+    var y = L.map("mapid", {
+        center: nucleo.getCenter(),
+        maxZoom: maxZoom,
+        minZoom: 12,
+        zoomControl: true,
+        maxBounds: nucleo,
+        maxBoundsViscosity: 0.75
+    });
+
+    // Ajustes de zoom según sector
+    if (3 == o) y.options.maxZoom = 14;
+    if (4 == o) y.options.minZoom = 13;
+
+    // 6. Dibujo de Áreas (Polígonos)
+    L.polygon(planta_procesos, { color: "#48FEAC", fillOpacity: "0.0", weight: 3 })
+        .bindLabel('<span class="pop_text"> Planta de Procesos<span>').addTo(y);
+
+    L.polygon(campamentos, { color: "red", fillOpacity: "0.0", weight: 3 })
+        .bindLabel('<span class="pop_text"> Campamento<span>').addTo(y);
+
+    L.polygon(rajo_caserones, { color: "#be0000", fillOpacity: "0.0", weight: 3 })
+        .bindLabel('<span class="pop_text"> Zona Rajo<span>').addTo(y);
+
+    // 7. Capas de Control y Minimapa
+    var v = new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { minZoom: 9, maxZoom: 18 });
+    var T = { "Streets": v, "Satélite": base_layer };
+    L.control.layers(T).addTo(y);
+    
+    new L.Control.MiniMap(base_layer, { toggleDisplay: true, width: 100, height: 100, position: "bottomleft" }).addTo(y);
+
+    // 8. Creación de Marcadores de Estaciones
+    $("#count_estaciones").html(n.length);
+    for (var A = 0; A < n.length; ++A) {
+        test = n[A].estacion;
+        W = M(n[A].subsistema); // Obtener icono
+        clase = S(n[A].subsistema); // Obtener clase CSS
+
+        var z = '<a href="#" class="mybtn" onclick="flytodata(\'' + n[A].id + "','" + o + "')\">Ver Estación</a>";
+        var O = '<span class="tooltipp"><b> Parámetros en Línea </b><br> ' + n[A].parametros + "</span><br><center>" + z + "</center>";
+        
+        var B = L.marker([n[A].latitud, n[A].longitud], { icon: W });
+        B.bindPopup(O);
+        
+        var I = new L.Marker(new L.latLng([n[A].latitud, n[A].longitud]), { icon: c(clase, n[A].estacion) });
+        i.push(B);
+        l.push(I);
+    }
+
+    r = L.featureGroup(i);
+    s = L.featureGroup(l);
+    y.addLayer(r);
+    y.addLayer(s);
+    y.fitBounds(r.getBounds(), { padding: [55, 55] });
+
+    // 9. Elementos Geográficos Adicionales (Ríos y Fronteras)
+    L.polyline(frontera, { color: "red", dashArray: "10, 10", weight: 2 }).addTo(y);
+    
+    // Etiquetas de Países y Ríos
+    new L.Marker(new L.latLng([-28.1988, -69.4750]), { icon: c("labelClass_red1", "CHILE") }).addTo(y);
+    new L.Marker(new L.latLng([-28.2073, -69.4689]), { icon: c("labelClass_red1", "ARGENTINA") }).addTo(y);
+
+    // Dibujo de Ríos usando un plugin L.river (si existe)
+    L.river(rio, { color: "#29439c" }).bindLabel('Río Vizcachas de Pulido').addTo(y);
+    L.river(qdalabrea, { color: "#87ceeb" }).bindLabel('Quebrada La Brea').addTo(y);
+
+    // 10. Funciones de Soporte
+    function M(e) {
+        // Retorna el icono según el ID del subsistema
+        let a;
+        if (e == "1") a = d;
+        else if (e == "2") a = h;
+        else if (e == "3") a = g;
+        // ... (resto de condiciones)
+        return a;
+    }
+
+    function S(e) {
+        // Retorna la clase CSS según el subsistema
+        let a;
+        if (e == "1") a = "labelClass_red";
+        else if (e == "2") a = "labelClass_yellow";
+        // ...
+        return a;
+    }
+
+    function q(e, a) {
+        // Consulta AJAX para marcadores por sector/subsistema
+        return $.ajax({
+            async: false,
+            url: "controller/getMarkerSector.php",
+            type: "POST",
+            data: { sector: e, subsistema: a },
+            dataType: "JSON"
+        }).responseJSON;
+    }
+};

@@ -1,0 +1,58 @@
+ /* 1. Flecha hacia ABAJO cuando está CERRADO (estándar de Bootstrap) */
+            .accordion-button.collapsed::after {
+            transform: rotate(0deg); /* Aseguramos que no esté rotada hacia la derecha */
+            transition: transform 0.3s ease;
+            }
+            /* 2. Flecha que GIRA al abrirse (opcional, si quieres que se mueva) */
+            .accordion-button:not(.collapsed)::after {
+            transform: rotate(180deg); /* Gira hacia arriba cuando se expande */
+            }
+            /* Asegura que la flecha sea blanca para que resalte en tu botón azul */
+            .accordion-button::after {
+            filter: brightness(0) invert(1);
+            }
+            /* Botón de Sub-sistema (Nivel 2) */
+            .sub-btn {
+            width: 100%;
+            padding: 10px 20px 10px 40px; /* Más indentado */
+            background-color: rgba(255, 255, 255, 0.03);
+            color: #a1a1aa !important;
+            border: none;
+            text-align: left;
+            font-size: 13.5px;
+            font-weight: 500;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            }
+            .sub-btn:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            color: white !important;
+            }
+            /* Enlace de Estación (Nivel 3) */
+            .estacion-link {
+            padding: 8px 20px 8px 65px; /* Máxima indentación */
+            font-size: 12.5px;
+            color: #71717a !important;
+            text-decoration: none;
+            display: block;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-left: 2px solid transparent;
+            }
+            .estacion-link:hover {
+            color: #4ade80 !important; /* Verde claro al pasar el mouse */
+            border-left: 2px solid #4ade80;
+            background-color: rgba(0, 0, 0, 0.2);
+            }
+            /* Flechas de los sub-sistemas más pequeñas */
+            .sub-btn::after {
+            content: '\f078'; /* FontAwesome chevron down */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            margin-left: auto;
+            font-size: 10px;
+            transition: transform 0.3s;
+            }
+            .sub-btn:not(.collapsed)::after {
+            transform: rotate(180deg);
+            }
