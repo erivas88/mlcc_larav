@@ -2,15 +2,22 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectorController;
+use App\Http\Controllers\EstacionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/sector/{id}', [SectorController::class, 'verSector'])->name('sector.ver');
-// Cambiamos 'verSector' por 'verSectorConEstado'
-Route::get('/sector/{id}', [SectorController::class, 'verSectorConEstado'])->name('sector.ver');
+//Route::get('/sector/{id}', [SectorController::class, 'verSectorConEstado'])->name('sector.ver');
+
+
+// El {id_subsistema?} con signo de interrogación indica que puede o no estar presente
+Route::get('/sector/{id}/{id_subsistema?}', [SectorController::class, 'verSectorConEstado'])->name('sector.detalle');
+
+Route::get('/estacion/{id}', [EstacionController::class, 'verEstacion'])->name('estacion.detalle');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

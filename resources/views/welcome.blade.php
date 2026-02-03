@@ -91,7 +91,7 @@
                   <div class="accordion" id="accordionExample">
                      <div class="accordion-item">
                         <h2 class="accordion-header" id="heading1">
-                           <a href="{{ route('sector.ver', 1) }}" 
+                           <a href="" 
                               class="accordion-button collapsed" 
                               style="text-decoration: none;">
                            <i class="fas fa-layer-group" style="color: #865b74 !important;"></i> 
