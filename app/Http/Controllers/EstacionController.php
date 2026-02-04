@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\UtmHelper;
 
 class EstacionController extends Controller
 {
@@ -58,8 +59,38 @@ public function verEstacion($id)
     ]);
 }
 
+public function obtenerDataFicha($id)
+{
+    // 1. Ejecutamos el SP
+    $resultado = DB::select('CALL sp_get_estacion_by_id(?)', [$id]);
+
+    if (empty($resultado)) {
+        return [];
+    }
+
+    $dataArreglo = (array) $resultado[0];
+
+    // 2. Uso del Helper con tu método específico ToLL($north, $east, $utmZone)
+    if (isset($dataArreglo['utm_norte']) && isset($dataArreglo['utm_este'])) {
+        
+        // Llamamos al método estático ToLL pasando Norte, Este y la Zona 19
+        $coordenadas = \App\Helpers\UtmHelper::ToLL(
+            (float) $dataArreglo['utm_norte'], 
+            (float) $dataArreglo['utm_este'], 
+            19
+        );
+
+        // 3. Inyectamos los resultados al arreglo
+        $dataArreglo['latitud']  = $coordenadas['lat'];
+        $dataArreglo['longitud'] = $coordenadas['lon'];
+    }
+
+    return $dataArreglo;
+}
+
+
     // NUEVA FUNCIÓN: Conecta al nuevo SP y devuelve un arreglo puro
-    public function obtenerDataFicha($id)
+    public function obtenerDataFicha_ex($id)
     {
         // 1. Ejecutamos el nuevo SP que creamos
         $resultado = DB::select('CALL sp_get_estacion_by_id(?)', [$id]);

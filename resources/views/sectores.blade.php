@@ -57,66 +57,55 @@
                         <div id="collapse{{ $idSistema }}" class="accordion-collapse collapse {{ $sistemaOpen ? 'show' : '' }}" data-bs-parent="#accordionExample">
                            <div class="accordion-body p-0">
                               <div class="list-group list-group-flush" id="subAccordion{{ $idSistema }}">
-
-
-                              @foreach($registrosSistema->groupBy('id_subsistema') as $idSub => $estaciones)
-    @php 
-        $primerSub = $estaciones->first(); 
-        
-        /** * LÓGICA DE APERTURA:
-         * Se abre si el ID que estamos recorriendo ($idSub) 
-         * es igual al que recibimos desde el controlador ($idSubActivo).
-         */
-        $subOpen = ($idSub == $idSubActivo);
-    @endphp
-
-    <div class="accordion-item border-0 bg-transparent position-relative">
-        <a href="{{ url('/sector/' . $idSistema . '/' . $idSub) }}" class="text-decoration-none">
-            <button class="sub-btn border-0 d-flex align-items-center w-100 py-2 ps-4 bg-white {{ $subOpen ? '' : 'collapsed' }}" 
-                    type="button" 
-                    data-bs-toggle="collapse" 
-                    data-bs-target="#sub{{ $idSub }}">
-                
-                <i class="fas fa-caret-right me-2 icon-transition"></i>
-                
-                <i class="fas fa-map-marker-alt me-2" 
-                   style="color: {{ $primerSub->color_subsistema }}; font-size: 12px;"></i>
-                
-                <span style="font-size: 12px; color: #555; font-weight: 500;">
-                    {{ $primerSub->nombre_subsistema }}
-                </span>
-
-                @if($subOpen)
-                    <div class="indicador-lateral"></div>
-                @endif
-            </button>
-        </a>
-
-        <div id="sub{{ $idSub }}" 
-             class="accordion-collapse collapse {{ $subOpen ? 'show' : '' }}" 
-             data-bs-parent="#subAccordion{{ $idSistema }}">
-            <div class="accordion-body p-0">
-                <div class="list-group list-group-flush">
-                     @foreach($estaciones as $estacion)
-                                          <a href="{{ url('/estacion/' . $estacion->id_estacion) }}" 
-                                             class="estacion-link d-flex align-items-center text-decoration-none py-2 ps-5 {{ ($estacion->estado_seleccion ?? '') == 'open' ? 'active-estacion' : '' }}">
-                                          <i class="fas fa-map-marker-alt me-3" 
-                                             style="font-size: 11px; 
-                                             color: {{ ($estacion->estado_seleccion ?? '') == 'open' ? '#2ecc71' : $estacion->color_subsistema }};">
-                                          </i>
-                                          <span class="nombre-estacion" 
-                                             style="font-weight: 500;font-size: 12px; color: {{ ($estacion->estado_seleccion ?? '') == 'open' ? '#2ecc71' : '#666' }};">
-                                          {{ $estacion->nombre_estacion }}
+                                 @foreach($registrosSistema->groupBy('id_subsistema') as $idSub => $estaciones)
+                                 @php 
+                                 $primerSub = $estaciones->first(); 
+                                 /** * LÓGICA DE APERTURA:
+                                 * Se abre si el ID que estamos recorriendo ($idSub) 
+                                 * es igual al que recibimos desde el controlador ($idSubActivo).
+                                 */
+                                 $subOpen = ($idSub == $idSubActivo);
+                                 @endphp
+                                 <div class="accordion-item border-0 bg-transparent position-relative">
+                                    <a href="{{ url('/sector/' . $idSistema . '/' . $idSub) }}" class="text-decoration-none">
+                                       <button class="sub-btn border-0 d-flex align-items-center w-100 py-2 ps-4 bg-white {{ $subOpen ? '' : 'collapsed' }}" 
+                                          type="button" 
+                                          data-bs-toggle="collapse" 
+                                          data-bs-target="#sub{{ $idSub }}">
+                                          <i class="fas fa-caret-right me-2 icon-transition"></i>
+                                          <i class="fas fa-map-marker-alt me-2" 
+                                             style="color: {{ $primerSub->color_subsistema }}; font-size: 12px;"></i>
+                                          <span style="font-size: 12px; color: #555; font-weight: 500;">
+                                          {{ $primerSub->nombre_subsistema }}
                                           </span>
-                                          </a>
-                                          @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-@endforeach
-                               
-
+                                          @if($subOpen)
+                                          <div class="indicador-lateral"></div>
+                                          @endif
+                                       </button>
+                                    </a>
+                                    <div id="sub{{ $idSub }}" 
+                                       class="accordion-collapse collapse {{ $subOpen ? 'show' : '' }}" 
+                                       data-bs-parent="#subAccordion{{ $idSistema }}">
+                                       <div class="accordion-body p-0">
+                                          <div class="list-group list-group-flush">
+                                             @foreach($estaciones as $estacion)
+                                             <a href="{{ url('/estacion/' . $estacion->id_estacion) }}" 
+                                                class="estacion-link d-flex align-items-center text-decoration-none py-2 ps-5 {{ ($estacion->estado_seleccion ?? '') == 'open' ? 'active-estacion' : '' }}">
+                                             <i class="fas fa-map-marker-alt me-3" 
+                                                style="font-size: 11px; 
+                                                color: {{ ($estacion->estado_seleccion ?? '') == 'open' ? '#2ecc71' : $estacion->color_subsistema }};">
+                                             </i>
+                                             <span class="nombre-estacion" 
+                                                style="font-weight: 500;font-size: 12px; color: {{ ($estacion->estado_seleccion ?? '') == 'open' ? '#2ecc71' : '#666' }};">
+                                             {{ $estacion->nombre_estacion }}
+                                             </span>
+                                             </a>
+                                             @endforeach
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 @endforeach
                               </div>
                            </div>
                         </div>
@@ -127,11 +116,19 @@
                <div class="col-md-9">
                   <div class="panel">
                      <div class="tope"> 
-                        <span id="sistema"> 
-                        <i class="fas fa-layer-group" style="color: #1abc9c;"></i> &nbsp;
-                        {{ $sistemaActivo->nombre_sistema ?? 'Sistema' }}
-                        </span> 
-                        <span id="subsistema" style="color: #bdc3c7; font-weight: 400; font-size: 15px;"></span>
+ <span id="sistema"> 
+    <i class="fas fa-layer-group" style="color: {{ $sistemaActivo->color_sistema ?? '#1abc9c' }};"></i> &nbsp;
+    <span class="text-normal">
+        {{ $sistemaActivo->nombre_sistema ?? 'Sistema...' }}
+    </span>
+</span>
+
+@if($nombreSubActivo)
+    <span id="subsistema-breadcrumb" style="color: #bdc3c7; font-weight: 400; font-size: 15px; text-transform: none !important;">
+        &nbsp; <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.5;"></i> &nbsp; 
+        {{ $nombreSubActivo }}
+    </span>
+@endif
                      </div>
                      <div id="mapid" style="height: 600px; position: relative;" class="rounded shadow-sm border border-gray-200">
                         <div class="layer-control" style="position: absolute; top: 10px; right: 10px; z-index: 1000; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
@@ -139,6 +136,15 @@
                            <label><input type="radio" name="map-style" value="satelite" checked> Satélite</label>
                         </div>
                      </div>
+
+                     @if($nombreSubActivo)
+                     <hr>
+    <span id="subsistema-breadcrumb" style="color: #bdc3c7; font-weight: 400; font-size: 14px; text-transform: none !important;">
+        &nbsp; <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.5;"></i> &nbsp; 
+        {{-- Aquí puedes decidir si mostrar el nombre o el campo 'texto' --}}
+        {{ $textoSubActivo ?? $nombreSubActivo }}
+    </span>
+@endif
                   </div>
                </div>
             </div>
@@ -186,7 +192,7 @@
       <script type="text/javascript" src="{{ asset('map/sectores.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/rios.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/quebradas.js') }}"></script>
-      <script type="text/javascript" src="{{ asset('map/coreleaflet.js') }}"></script>
+      <script type="text/javascript" src="{{ asset('map/coreleaflet_1.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/spin.min.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/leaflet.spin.min.js') }}"></script>
       </script>
