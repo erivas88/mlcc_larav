@@ -116,35 +116,68 @@
                <div class="col-md-9">
                   <div class="panel">
                      <div class="tope"> 
- <span id="sistema"> 
-    <i class="fas fa-layer-group" style="color: {{ $sistemaActivo->color_sistema ?? '#1abc9c' }};"></i> &nbsp;
-    <span class="text-normal">
-        {{ $sistemaActivo->nombre_sistema ?? 'Sistema...' }}
-    </span>
-</span>
-
-@if($nombreSubActivo)
-    <span id="subsistema-breadcrumb" style="color: #bdc3c7; font-weight: 400; font-size: 15px; text-transform: none !important;">
-        &nbsp; <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.5;"></i> &nbsp; 
-        {{ $nombreSubActivo }}
-    </span>
-@endif
+                        <span id="sistema"> 
+                        <i class="fas fa-layer-group" style="color: {{ $sistemaActivo->color_sistema ?? '#1abc9c' }};"></i> &nbsp;
+                        <span class="text-normal">
+                        {{ $sistemaActivo->nombre_sistema ?? 'Sistema...' }}
+                        </span>
+                        </span>
+                        @if($nombreSubActivo)
+                        <span id="subsistema-breadcrumb" style="color: #bdc3c7; font-weight: 400; font-size: 15px; text-transform: none !important;">
+                        &nbsp; <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.5;"></i> &nbsp; 
+                        <span id="nombre-sub-sistema" style="color: {{ $colorSubActivo }}; font-weight: 600;">
+                        {{ $nombreSubActivo }}
+                        </span>
+                        </span>
+                        @endif
                      </div>
-                     <div id="mapid" style="height: 600px; position: relative;" class="rounded shadow-sm border border-gray-200">
+                     <hr>
+                     <!--<div id="mapid" style="height: 600px; position: relative;" class="rounded shadow-sm border border-gray-200">
                         <div class="layer-control" style="position: absolute; top: 10px; right: 10px; z-index: 1000; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
                            <label class="me-2"><input type="radio" name="map-style" value="mapa"> Mapa</label> 
                            <label><input type="radio" name="map-style" value="satelite" checked> Satélite</label>
                         </div>
-                     </div>
+                        @if($nombreSubActivo)
+                        <div id="cintillo-subsistema" class="map-overlay-info">
+                         
+                           <i class="fas fa-map-marker-alt" 
+                              style="color: {{ $colorSubActivo }}; 
+                              font-weight: 600; 
+                              text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">
+                           </i>
+                           <span class="divider"></span>
+                           <span class="text-content">
+                           {{ $textoSubActivo ?? $nombreSubActivo }}
+                           </span>
+                        </div>
+                        @endif
+                     </div>-->
 
-                     @if($nombreSubActivo)
-                     <hr>
-    <span id="subsistema-breadcrumb" style="color: #bdc3c7; font-weight: 400; font-size: 14px; text-transform: none !important;">
-        &nbsp; <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.5;"></i> &nbsp; 
-        {{-- Aquí puedes decidir si mostrar el nombre o el campo 'texto' --}}
-        {{ $textoSubActivo ?? $nombreSubActivo }}
-    </span>
-@endif
+                     <style>
+
+
+                     </style>
+
+
+ <div id="mapid" style="height: 600px; position: relative;" class="rounded shadow-sm border-0">
+    
+    <div class="layer-control-floating">
+        <label class="layer-opt"><input type="radio" name="map-style" value="mapa"><span>MAPA</span></label>
+        <label class="layer-opt"><input type="radio" name="map-style" value="satelite" checked><span>SATÉLITE</span></label>
+    </div>
+
+    @if($nombreSubActivo)
+    <div class="glass-compact-box">
+        <div class="legend-indicator" style="background-color: {{ $colorSubActivo }};"></div>
+        <div class="legend-body-slim">
+            <i class="fas fa-map-marker-alt" style="color: {{ $colorSubActivo }}; font-size: 12px;"></i>
+            <span class="legend-text-slim">{{ $textoSubActivo ?? $nombreSubActivo }}</span>
+        </div>
+    </div>
+    @endif
+</div>
+
+                     
                   </div>
                </div>
             </div>

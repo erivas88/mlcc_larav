@@ -425,3 +425,469 @@
     font-weight: 600;
     letter-spacing: normal; /* Quita el espaciado ancho de estilo "título" */
 }
+
+#subsistema-breadcrumb {
+    letter-spacing: 0.2px; /* Mejora la legibilidad técnica */
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    opacity: 0.9;
+   color: #576574; /* Gris oscuro azulado nítido */
+}
+
+#subsistema-breadcrumb i {
+    margin-top: 1px; /* Alineación óptica del icono con el texto */
+}
+
+.map-overlay-info {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    background: rgba(42, 125, 129, 0.85); /* El turquesa de tu web con transparencia */
+    backdrop-filter: blur(8px);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border-left: 4px solid #f17316; /* Detalle naranja para resaltar */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    font-family: "Poppins", sans-serif !important;
+    transition: all 0.3s ease;
+}
+
+.map-overlay-info i {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.map-overlay-info .divider {
+    width: 1px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 0 12px;
+}
+
+.map-overlay-info .text-content {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: none !important; /* Respetamos minúsculas */
+}
+
+
+
+/* Contenedor padre para evitar desbordes */
+.map-wrapper {
+    overflow: hidden; /* Corta cualquier cosa que intente salir */
+    border-radius: 8px;
+}
+.utm-cintillo-fijo {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Reducimos un poco el gap para ganar espacio */
+    background: rgba(44, 62, 80, 0.95);
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.1);
+    /* No fijamos min-width para que sea flexible al contenido */
+}
+
+.utm-unit {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+}
+
+/* Contenedor para número + unidad */
+.utm-values-wrapper {
+    display: flex;
+    align-items: baseline; /* Alinea la 'm' a la base del número */
+    gap: 3px;
+    white-space: nowrap; /* EVITA EL SALTO DE LÍNEA */
+}
+
+.badge-n, .badge-e {
+    font-size: 10px;
+    font-weight: 900;
+    padding: 2px 4px;
+    border-radius: 3px;
+    color: white;
+    flex-shrink: 0; /* Impide que el badge se deforme */
+}
+
+.badge-n { background-color: #f17316; }
+.badge-e { background-color: #2980b9; }
+
+.val {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px; /* Reducimos 1px para asegurar que quepa en mapas de 300px */
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.unit-m {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.6); /* Grisáceo para no distraer del número */
+    font-weight: 400;
+}
+
+.utm-line {
+    width: 1px;
+    height: 14px;
+    background: rgba(255,255,255,0.2);
+}
+
+
+
+/*******************************/
+
+
+.utm-cintillo-sharp-glass {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+    background: rgba(15, 23, 42, 0.15); /* Un toque azulado muy leve para profundidad */
+    backdrop-filter: blur(6px) saturate(160%);
+    -webkit-backdrop-filter: blur(6px) saturate(160%);
+    
+    padding: 14px 0;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    /* Sombra exterior mínima para separar del mapa sin ensuciar */
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.1); 
+}
+
+.utm-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Indicadores: Barras ultra-finas */
+.indicator-n, .indicator-e {
+    width: 2px;
+    height: 22px;
+    border-radius: 1px;
+}
+.indicator-n { background: #f17316; box-shadow: 0 0 10px rgba(241, 115, 22, 0.4); }
+.indicator-e { background: #3498db; box-shadow: 0 0 10px rgba(52, 152, 219, 0.4); }
+
+.utm-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.utm-data .label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 8px;
+    font-weight: 800; /* Extra Bold para el contraste */
+    color: #ffffff;
+    letter-spacing: 2.5px;
+    line-height: 1;
+    margin-bottom: 3px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    opacity: 0.9;
+}
+
+.utm-data .value {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600; /* Semi Bold */
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+.utm-data .value small {
+    font-size: 11px;
+    font-weight: 300;
+    margin-left: 2px;
+    opacity: 0.8;
+}
+
+.utm-divider-glass {
+    width: 1px;
+    height: 28px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3), transparent);
+}
+
+
+/* --- LEYENDA COMPACTA PREMIUM --- */
+.glass-compact-box {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    min-width: 180px;
+    max-width: 300px;
+    
+    /* Cristal más claro y menos gris */
+    background: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(8px) saturate(140%);
+    -webkit-backdrop-filter: blur(8px) saturate(140%);
+    
+    /* Bordes rectos y finos */
+    border-radius: 4px; 
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    
+    display: flex;
+    overflow: hidden;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Indicador lateral de color */
+.legend-indicator {
+    width: 4px;
+    flex-shrink: 0;
+}
+
+.legend-body-slim {
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.legend-text-slim {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px; /* Fuente más pequeña y elegante */
+    font-weight: 500;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Animación sutil */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Re-ajuste del Selector de Capas para que combine */
+.layer-control-floating {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2px;
+}
+
+
+
+/***********************/
+
+
+    .img-cintillo-sharp-glass {
+                     position: absolute;
+                     bottom: 0;
+                     left: 0;
+                     right: 0;
+                     z-index: 10;
+                     display: flex;
+                     justify-content: space-around;
+                     align-items: center;
+                     /* Efecto Ultra Glass: Un poco más de blur para legibilidad sobre fotos */
+                     background: rgba(15, 23, 42, 0.3); 
+                     backdrop-filter: blur(10px) saturate(150%);
+                     -webkit-backdrop-filter: blur(10px) saturate(150%);
+                     padding: 12px 0;
+                     border-top: 1px solid rgba(255, 255, 255, 0.2);
+                     }
+                     .img-item {
+                     display: flex;
+                     align-items: center;
+                     }
+                     .img-data {
+                     display: flex;
+                     flex-direction: column;
+                     align-items: center;
+                     }
+                     .img-label {
+                     font-family: 'Poppins', sans-serif;
+                     font-size: 8px;
+                     font-weight: 800;
+                     color: rgba(255, 255, 255, 0.7);
+                     letter-spacing: 1.5px;
+                     line-height: 1;
+                     margin-bottom: 3px;
+                     text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+                     }
+                     .img-value {
+                     font-family: 'Poppins', sans-serif;
+                     font-size: 15px;
+                     font-weight: 600;
+                     color: #ffffff;
+                     line-height: 1;
+                     text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+                     }
+                     .img-value small {
+                     font-size: 10px;
+                     font-weight: 300;
+                     margin-left: 2px;
+                     }
+                     .img-divider-glass {
+                     width: 1px;
+                     height: 25px;
+                     background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3), transparent);
+                     }
+                     /* Ajuste para los controles del carrusel para que no choquen con el glass */
+                     .carousel-control-prev, .carousel-control-next {
+                     height: 70%; /* Los acortamos para que no pisen el cintillo inferior */
+                     }
+
+
+/* --- ESTILO BASE UNIFICADO (SHARP GLASS) --- */
+.utm-cintillo-sharp-glass, 
+.img-cintillo-sharp-glass {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+    /* Altura forzada y Padding idéntico */
+    height: 50px; 
+    padding: 0; 
+    
+    background: rgba(15, 23, 42, 0.25); 
+    backdrop-filter: blur(8px) saturate(160%);
+    -webkit-backdrop-filter: blur(8px) saturate(160%);
+    
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+}
+
+/* --- ÍTEMS Y DATOS --- */
+.utm-item, .img-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.utm-data, .img-data {
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- ETIQUETAS (NORTE, ESTE, ESTACIÓN, PROFUNDIDAD) --- */
+.utm-data .label, .img-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 8px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 2.5px;
+    line-height: 1;
+    margin-bottom: 3px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    opacity: 0.9;
+    text-transform: uppercase;
+}
+
+/* --- VALORES NUMÉRICOS --- */
+.utm-data .value, .img-value {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+.utm-data .value small, .img-value small {
+    font-size: 11px;
+    font-weight: 300;
+    margin-left: 2px;
+    opacity: 0.8;
+}
+
+/* --- DIVISORES (IGUALADOS EN ALTURA) --- */
+.utm-divider-glass, .img-divider-glass {
+    width: 1px;
+    height: 28px; /* Altura idéntica en ambos cards */
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3), transparent);
+}
+
+/* --- INDICADORES (BARRAS DE COLOR) --- */
+.indicator-n, .indicator-e, .indicator-v {
+    width: 2px;
+    height: 22px;
+    border-radius: 1px;
+}
+.indicator-n { background: #f17316; box-shadow: 0 0 10px rgba(241, 115, 22, 0.4); }
+.indicator-e { background: #3498db; box-shadow: 0 0 10px rgba(52, 152, 219, 0.4); }
+.indicator-v { background: #1abc9c; box-shadow: 0 0 10px rgba(26, 188, 156, 0.4); }
+
+
+
+.technical-sheet {
+    font-family: 'Poppins', sans-serif;
+}
+
+.technical-sheet .label-cell {
+    padding: 12px 0 12px 10px !important;
+    color: #7f8c8d;
+    font-size: 11px;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+.technical-sheet .value-cell {
+    padding: 12px 10px 12px 0 !important;
+    text-align: right;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.technical-sheet .bg-row {
+    background-color: #f8f9fa;
+    border-radius: 8px; /* Crea un efecto de cápsula en las filas pares */
+}
+
+/* Iconos de la tabla */
+.technical-sheet i {
+    opacity: 0.6;
+    font-size: 13px;
+}
+
+/* Footer de la ficha estilo Apple */
+.ficha-footer-glass {
+    background: rgba(17, 117, 136, 0.05);
+    border: 1px solid rgba(17, 117, 136, 0.1);
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+    color: #117588;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
