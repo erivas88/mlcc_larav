@@ -19,19 +19,8 @@
    </head>
    <body>
       <div class="main-container">
-      <div class="header d-flex justify-content-between align-items-center px-3" style="background-color: white; padding: 10px 0;">
-         <img src="{{ asset('images/logo.png') }}" 
-            style="max-width: 150px; height: auto; float: left; margin-right: 15px; padding: 10px 0;" 
-            alt="Logo Los Pelambres" class="logo">
-         <nav class="d-flex">
-            <a href="#" class="text-dark text-decoration-none mx-2">Inicio</a>                
-            <a href="#" class="text-dark text-decoration-none mx-2">Glosario</a>
-            <a href="#" class="text-dark text-decoration-none mx-2">Contáctenos</a>               
-         </nav>
-      </div>
-      <nav class="d-flex align-items-center px-4 py-3" style="background: linear-gradient(to right, #02697e, #3e98a6);">
-         <a href="#" class="text-white text-decoration-none mx-1 fw-bold">Sistema de Mediciones en Línea </a>
-      </nav>
+      @include('partials.navbar')
+      
       <style>
       </style>
       <div class="container-fluid mt-4">
@@ -351,34 +340,7 @@
             </div>
          </div>
          <!-- Footer -->
-         <div class="footer text-center mt-4 color_mlp">
-            <div class="row align-items-center pdd">
-               <div class="col-lg-3 d-flex justify-content-center">
-                  <img src="{{ asset('images/antofagasta-mineralsWT.png') }}" style="max-width: 70%; height: auto; padding-top: 10px;" alt="Logo Los Pelambres" class="logo">
-               </div>
-               <div class="col-lg-3 d-flex flex-column align-items-start">
-                  <span class="text-line txt small-text pdd">
-                  <span style="font-weight: bold; "><i class="fas fa-mobile-alt"></i> &nbsp; Teléfono:</span> +56 2 3456 7890
-                  </span>
-                  <span class="text-line txt small-text pdd">
-                  <span style="font-weight: bold;"><i class="fas fa-envelope"></i>&nbsp; Email:</span> comunicacionesexternas@pelambres.cl
-                  </span>
-                  <span class="text-line txt small-text pdd">
-                  <span style="font-weight: bold;"><i class="fas fa-globe"></i>&nbsp; Web:</span> www.aminerals.com
-                  </span>
-               </div>
-               <div class="col-lg-3">
-                  <div class="section">
-                     <p class="small-text jjtxt">Este desarrollo ha sido implementado por <span style="font-weight: bold">GP Consultores</span>, a través de su equipo especializado en soluciones de monitoreo web.
-                        gp@gpconsultores.cl
-                     <p>
-                  </div>
-               </div>
-               <div class="col-lg-3">
-                  <img src="{{ asset('images/gp-blanco.png') }}" style="max-width: 65%; height: auto; padding-top: 10px;" alt="Logo Los Pelambres" class="logo">
-               </div>
-            </div>
-         </div>
+          @include('partials.footer')
       </div>
       <!-- Bootstrap JS -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

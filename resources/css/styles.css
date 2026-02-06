@@ -418,3 +418,47 @@ padding: 0;
 .ultima-nota {
   margin-top: -30px; /* Reduce la separación */
 }
+.tope {
+    background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+    height: 45px;
+    line-height: 50px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+
+/* Separación entre iconos y texto sin usar &nbsp; */
+.fa-layer-group { margin-right: 10px; }
+.fa-chevron-right { margin: 0 12px; }
+
+/* Espaciado entre elementos sin usar &nbsp; */
+.fa-layer-group { margin-right: 10px; }
+.fa-chevron-right { margin: 0 12px; }
+
+/* Clase para corregir el desfase visual del texto */
+.text-normal, #nombre-sub-sistema {
+    display: inline-block;
+    padding-bottom: 1px; /* Ajuste fino: la mayoría de las fuentes Poppins necesitan 1px abajo para verse centradas respecto a un icono */
+}
+
+
+.logo-blanco {
+    /* Convierte a blanco puro sin importar el color original */
+    filter: brightness(0) invert(1) !important;
+    
+    /* Si el logo es muy oscuro, a veces necesita contraste extra */
+    -webkit-filter: brightness(0) invert(1) !important;
+    
+    /* Garantiza que no haya opacidad heredada */
+    opacity: 1 !important;
+}
+
+.logo-blanco:hover {
+    opacity: 1;
+}

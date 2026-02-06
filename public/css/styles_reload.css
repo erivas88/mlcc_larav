@@ -891,3 +891,103 @@
     letter-spacing: 1px;
     text-transform: uppercase;
 }
+
+
+
+
+/* --- TOOLTIP ESTILO CRISTAL PREMIUM (FROSTED GLASS) --- */
+.leaflet-label.custom-tooltip-master {
+    /* Fondo más claro y vibrante para el efecto cristal */
+    background: rgba(255, 255, 255, 0.15) !important; 
+    
+    /* Desenfoque profundo (Crucial para el efecto pro) */
+    backdrop-filter: blur(12px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+    
+    /* Borde de "luz" sutil */
+    border: 1px solid rgba(255, 255, 255, 0.4) !important; 
+    border-radius: 1px !important;
+    
+    /* Sombra suave y amplia para elevar el elemento */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+    
+    padding: 6px 14px !important;
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Mejora la lectura sobre el mapa */
+}
+
+/* Ajuste de la flecha del tooltip para que sea translúcida también */
+.leaflet-label.custom-tooltip-master:before {
+    border-right-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* --- TIPOGRAFÍA TÉCNICA REFINADA --- */
+.label-master {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px; /* Un punto más grande para balancear el blur */
+   
+    letter-spacing: 0.8px;
+   
+}
+
+/* Variación para que el azul del agua no se pierda en el cristal */
+.text-agua { 
+    color: #a5f3fc !important; /* Un celeste más brillante/neon */
+    font-style: italic;
+    font-weight: 700;
+}
+
+/* --- ESTILO PREMIUM PARA EL MINIMAPA --- */
+.leaflet-control-minimap {
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+    background: rgba(15, 23, 42, 0.4) !important;
+    backdrop-filter: blur(4px);
+    margin-bottom: 25px !important; /* Separación del borde inferior */
+    margin-left: 20px !important;
+}
+
+.leaflet-control-minimap-toggle-display {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 4px !important;
+}
+
+
+
+/* --- BORDE BLANCO PREMIUM PARA EL MINIMAPA --- */
+.leaflet-control-minimap.leaflet-container {
+    /* Forzamos el borde blanco con !important */
+    border: 2px solid rgba(255, 255, 255, 0.8) !important;
+    
+    /* Sombra externa e interna para resaltar sobre el satélite */
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.2), 
+                0 8px 25px rgba(0,0,0,0.5), 
+                inset 0 0 10px rgba(255,255,255,0.1) !important;
+    
+    /* Efecto cristal (Blur) */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    
+    border-radius: 12px !important;
+    overflow: hidden;
+    margin-bottom: 25px !important;
+    margin-left: 20px !important;
+}
+
+/* El rectángulo de enfoque dentro del minimapa */
+.leaflet-control-minimap-aiming-rect {
+    stroke: #ffffff !important;
+    stroke-width: 2px !important;
+    stroke-dasharray: 4, 3; /* Estilo técnico discontinuo */
+    fill: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Botón para minimizar/maximizar */
+.leaflet-control-minimap-toggle-display {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid white !important;
+    border-radius: 4px 0 0 0 !important;
+    filter: invert(1); /* Hace que el icono de la flecha sea oscuro sobre el botón blanco */
+}

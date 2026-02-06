@@ -11,6 +11,7 @@
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
       <script src="https://kit.fontawesome.com/e5291bc371.js" crossorigin="anonymous"></script>
       <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+       <link rel="stylesheet" href="{{ asset('css/styles_reload.css') }}">
       <link rel="stylesheet" href="{{ asset('map/leaflet.css') }}">
       <link rel="stylesheet" href="{{ asset('map/leaflet-label.css') }}">
       <link rel="stylesheet" href="{{ asset('map/L.Control.ZoomBox.css')}}">
@@ -67,132 +68,23 @@
          color: #374151;
          font-weight: 600;
          }
+
+         /* --- ESTILO GLASS PARA TOOLTIPS --- */
+
       </style>
    </head>
    <body>
       <div class="main-container">
          <!-- Header -->
-         <div class="header d-flex justify-content-between align-items-center px-3" style="background-color: white; padding: 10px 0;">
-            <img src="{{ asset('images/logo.png') }}" 
-               style="max-width: 150px; height: auto; float: left; margin-right: 15px; padding: 10px 0;" 
-               alt="Logo Los Pelambres" class="logo">
-            <nav class="d-flex">
-               <a href="#" class="text-dark text-decoration-none mx-2">Inicio</a>                
-               <a href="#" class="text-dark text-decoration-none mx-2">Glosario</a>
-               <a href="#" class="text-dark text-decoration-none mx-2">Contáctenos</a>               
-            </nav>
-         </div>
-         <nav class="d-flex align-items-center px-4 py-3" style="background: linear-gradient(to right, #02697e, #3e98a6);">
-            <a href="#" class="text-white text-decoration-none mx-1 fw-bold">Sistema de Mediciones en Línea </a>
-         </nav>
+         @include('partials.navbar')
          <div class="container-fluid mt-4">
             <div class="row" >
-               <div class="col-md-3">
-                  <div class="accordion" id="accordionExample">
-                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading1">
-                           <a href="" 
-                              class="accordion-button collapsed" 
-                              style="text-decoration: none;">
-                           <i class="fas fa-layer-group" style="color: #865b74 !important;"></i> 
-                           &nbsp;&nbsp; Deposito de Lamas La Brea
-                           </a>
-                        </h2>
-                     </div>
-                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading1" id-sector="1">
-                           <button class="accordion-button collapsed" 
-                              type="button" 
-                              id-sector="1" 
-                              data-bs-toggle="collapse" 
-                              data-bs-target="#collapse1" 
-                              aria-expanded="false" 
-                              aria-controls="collapse1">
-                           <i class="fas fa-layer-group" style="color: #ed8e24!important;" ></i> 
-                           &nbsp;&nbsp;Deposito de Arenas
-                           </button>
-                        </h2>
-                     </div>
-                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading1" id-sector="1">
-                           <button class="accordion-button collapsed" 
-                              type="button" 
-                              id-sector="1" 
-                              data-bs-toggle="collapse" 
-                              data-bs-target="#collapse1" 
-                              aria-expanded="false" 
-                              aria-controls="collapse1">
-                           <i class="fas fa-layer-group" style="color: #ffc107!important;" ></i> 
-                           &nbsp;&nbsp;Deposito Lastre
-                           </button>
-                        </h2>
-                     </div>
-                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading1" id-sector="1">
-                           <button class="accordion-button collapsed" 
-                              type="button" 
-                              id-sector="1" 
-                              data-bs-toggle="collapse" 
-                              data-bs-target="#collapse1" 
-                              aria-expanded="false" 
-                              aria-controls="collapse1">
-                           <i class="fas fa-layer-group" style="color: #59d01b!important;" ></i> 
-                           &nbsp;&nbsp;Sistema Río Ramadillas
-                           </button>
-                        </h2>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-9">
-                  <div class="panel">
-                     <div id="mapid" style="height: 550px; position: relative;" class="rounded shadow-sm border border-gray-200">
-                        <div class="layer-control" style="position: absolute; top: 10px; right: 10px; z-index: 1000; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
-                           <label class="me-2"><input type="radio" name="map-style" value="mapa"> Mapa</label> 
-                           <label><input type="radio" name="map-style" value="satelite" checked> Satélite</label>
-                        </div>
-                     </div>                                     
-                     <div class="contenedor-revista">
-                        <div class="separador-sutil"></div>
-                        <p class="texto-editorial">
-                           Como parte del <span class="destaque">Programa de Cumplimiento (PdC)</span> presentado por Caserones de Minera Lumina Copper Chile, que fue aprobado por la Superintendencia del Medioambiente (SMA), la Compañía asumió el compromiso de generar un sistema de medición en línea abierto a la comunidad, que contempla <span class="numero-enfasis">56 puntos de monitoreo</span> hidrogeológicos e hidrológicos, con el objetivo de tener un seguimiento de las variables ambientales relacionadas aguas abajo de la faena, para estudiar su comportamiento y evitar potenciales efectos de la operación o algunos fenómenos naturales como el cambio climático en el sector. 
-                        </p>
-                        <p class="texto-nota">
-                           Se presenta las mediciones a distancia efectuadas con sondas multiparamétricas instaladas en los puntos de medición; por tanto, se trata de datos crudos sin un proceso de revisión.
-                        </p>
-                     </div>
-                  </div>
-               </div>
+                @include('partials.menu_n')
+                @include('partials.mapa')
             </div>
          </div>
          <!-- Footer -->
-         <div class="footer text-center mt-4 color_mlp">
-            <div class="row align-items-center pdd">
-               <div class="col-lg-3 d-flex justify-content-center">
-                  <img src="{{ asset('images/antofagasta-mineralsWT.png') }}" style="max-width: 70%; height: auto; padding-top: 10px;" alt="Logo Los Pelambres" class="logo">
-               </div>
-               <div class="col-lg-3 d-flex flex-column align-items-start">
-                  <span class="text-line txt small-text pdd">
-                  <span style="font-weight: bold; "><i class="fas fa-mobile-alt"></i> &nbsp; Teléfono:</span> +56 2 3456 7890
-                  </span>
-                  <span class="text-line txt small-text pdd">
-                  <span style="font-weight: bold;"><i class="fas fa-envelope"></i>&nbsp; Email:</span> comunicacionesexternas@pelambres.cl
-                  </span>
-                  <span class="text-line txt small-text pdd">
-                  <span style="font-weight: bold;"><i class="fas fa-globe"></i>&nbsp; Web:</span> www.aminerals.com
-                  </span>
-               </div>
-               <div class="col-lg-3">
-                  <div class="section">
-                     <p class="small-text jjtxt">Este desarrollo ha sido implementado por <span style="font-weight: bold">GP Consultores</span>, a través de su equipo especializado en soluciones de monitoreo web.
-                        gp@gpconsultores.cl
-                     <p>
-                  </div>
-               </div>
-               <div class="col-lg-3">
-                  <img src="{{ asset('images/gp-blanco.png') }}" style="max-width: 65%; height: auto; padding-top: 10px;" alt="Logo Los Pelambres" class="logo">
-               </div>
-            </div>
-         </div>
+          @include('partials.footer')
       </div>
       <!-- Bootstrap JS -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -206,7 +98,12 @@
       <script type="text/javascript" src="{{ asset('map/sectores.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/rios.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/quebradas.js') }}"></script>
-      <script type="text/javascript" src="{{ asset('map/core_map_index.js') }}"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.min.js"></script>
+      <script>
+    // Definimos la ruta base globalmente
+    window.baseSectorUrl = "{{ url('/sector') }}"; 
+</script>
+      <script type="text/javascript" src="{{ asset('map/start.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/spin.min.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/leaflet.spin.min.js') }}"></script>
       </script>

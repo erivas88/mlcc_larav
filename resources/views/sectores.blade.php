@@ -19,19 +19,7 @@
    </head>
    <body>
       <div class="main-container">
-         <div class="header d-flex justify-content-between align-items-center px-3" style="background-color: white; padding: 10px 0;">
-            <img src="{{ asset('images/logo.png') }}" 
-               style="max-width: 150px; height: auto; float: left; margin-right: 15px; padding: 10px 0;" 
-               alt="Logo Los Pelambres" class="logo">
-            <nav class="d-flex">
-               <a href="#" class="text-dark text-decoration-none mx-2">Inicio</a>                
-               <a href="#" class="text-dark text-decoration-none mx-2">Glosario</a>
-               <a href="#" class="text-dark text-decoration-none mx-2">Contáctenos</a>               
-            </nav>
-         </div>
-         <nav class="d-flex align-items-center px-4 py-3" style="background: linear-gradient(to right, #02697e, #3e98a6);">
-            <a href="#" class="text-white text-decoration-none mx-1 fw-bold">Sistema de Mediciones en Línea </a>
-         </nav>
+         @include('partials.navbar')      
          <style>
          </style>
          <div class="container-fluid mt-4">
@@ -132,85 +120,77 @@
                         @endif
                      </div>
                      <hr>
-                     <!--<div id="mapid" style="height: 600px; position: relative;" class="rounded shadow-sm border border-gray-200">
-                        <div class="layer-control" style="position: absolute; top: 10px; right: 10px; z-index: 1000; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
-                           <label class="me-2"><input type="radio" name="map-style" value="mapa"> Mapa</label> 
-                           <label><input type="radio" name="map-style" value="satelite" checked> Satélite</label>
+                     <style>
+                        /* --- SELECTOR DE CAPAS PREMIUM --- */
+                        .layer-control-floating {
+                        position: absolute;
+                        top: 20px;
+                        right: 20px;
+                        z-index: 1000;
+                        display: flex;
+                        gap: 2px;
+                        /* Fondo translúcido tipo iOS */
+                        background: rgba(15, 23, 42, 0.2); 
+                        backdrop-filter: blur(10px) saturate(160%);
+                        -webkit-backdrop-filter: blur(10px) saturate(160%);
+                        padding: 4px;
+                        border-radius: 8px; /* Bordes rectos elegantes */
+                        border: 1px solid rgba(255, 255, 255, 0.2);
+                        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                        }
+                        .layer-opt {
+                        margin: 0;
+                        cursor: pointer;
+                        }
+                        /* Ocultamos el radio button real */
+                        .layer-opt input {
+                        display: none;
+                        }
+                        /* Estilo del texto/botón */
+                        .layer-opt span {
+                        display: block;
+                        padding: 6px 14px;
+                        font-family: 'Poppins', sans-serif;
+                        font-size: 10px;
+                        font-weight: 700;
+                        color: rgba(255, 255, 255, 0.9);
+                        letter-spacing: 1px;
+                        border-radius: 6px;
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                        }
+                        /* ESTADO ACTIVO: El efecto de "botón seleccionado" */
+                        .layer-opt input:checked + span {
+                        background: #ffffff;
+                        color: #1e293b;
+                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+                        transform: scale(1.02);
+                        }
+                        /* Efecto hover suave */
+                        .layer-opt:hover span:not(input:checked + span) {
+                        background: rgba(255, 255, 255, 0.1);
+                        }
+                     </style>
+                     <div id="mapid" style="height: 600px; position: relative;" class="rounded shadow-sm border-0">
+                        <div class="layer-control-floating">
+                           <label class="layer-opt"><input type="radio" name="map-style" value="mapa"><span>MAPA</span></label>
+                           <label class="layer-opt"><input type="radio" name="map-style" value="satelite" checked><span>SATÉLITE</span></label>
                         </div>
                         @if($nombreSubActivo)
-                        <div id="cintillo-subsistema" class="map-overlay-info">
-                         
-                           <i class="fas fa-map-marker-alt" 
-                              style="color: {{ $colorSubActivo }}; 
-                              font-weight: 600; 
-                              text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">
-                           </i>
-                           <span class="divider"></span>
-                           <span class="text-content">
-                           {{ $textoSubActivo ?? $nombreSubActivo }}
-                           </span>
+                        <div class="glass-compact-box">
+                           <div class="legend-indicator" style="background-color: {{ $colorSubActivo }};"></div>
+                           <div class="legend-body-slim">
+                              <i class="fas fa-map-marker-alt" style="color: {{ $colorSubActivo }}; font-size: 12px;"></i>
+                              <span class="legend-text-slim">{{ $textoSubActivo ?? $nombreSubActivo }}</span>
+                           </div>
                         </div>
                         @endif
-                     </div>-->
-
-                     <style>
-
-
-                     </style>
-
-
- <div id="mapid" style="height: 600px; position: relative;" class="rounded shadow-sm border-0">
-    
-    <div class="layer-control-floating">
-        <label class="layer-opt"><input type="radio" name="map-style" value="mapa"><span>MAPA</span></label>
-        <label class="layer-opt"><input type="radio" name="map-style" value="satelite" checked><span>SATÉLITE</span></label>
-    </div>
-
-    @if($nombreSubActivo)
-    <div class="glass-compact-box">
-        <div class="legend-indicator" style="background-color: {{ $colorSubActivo }};"></div>
-        <div class="legend-body-slim">
-            <i class="fas fa-map-marker-alt" style="color: {{ $colorSubActivo }}; font-size: 12px;"></i>
-            <span class="legend-text-slim">{{ $textoSubActivo ?? $nombreSubActivo }}</span>
-        </div>
-    </div>
-    @endif
-</div>
-
-                     
+                     </div>
                   </div>
                </div>
             </div>
          </div>
          <!-- Footer -->
-         <div class="footer text-center mt-4 color_mlp">
-            <div class="row align-items-center pdd">
-               <div class="col-lg-3 d-flex justify-content-center">
-                  <img src="{{ asset('images/antofagasta-mineralsWT.png') }}" style="max-width: 70%; height: auto; padding-top: 10px;" alt="Logo Los Pelambres" class="logo">
-               </div>
-               <div class="col-lg-3 d-flex flex-column align-items-start">
-                  <span class="text-line txt small-text pdd">
-                  <span style="font-weight: bold; "><i class="fas fa-mobile-alt"></i> &nbsp; Teléfono:</span> +56 2 3456 7890
-                  </span>
-                  <span class="text-line txt small-text pdd">
-                  <span style="font-weight: bold;"><i class="fas fa-envelope"></i>&nbsp; Email:</span> comunicacionesexternas@pelambres.cl
-                  </span>
-                  <span class="text-line txt small-text pdd">
-                  <span style="font-weight: bold;"><i class="fas fa-globe"></i>&nbsp; Web:</span> www.aminerals.com
-                  </span>
-               </div>
-               <div class="col-lg-3">
-                  <div class="section">
-                     <p class="small-text jjtxt">Este desarrollo ha sido implementado por <span style="font-weight: bold">GP Consultores</span>, a través de su equipo especializado en soluciones de monitoreo web.
-                        gp@gpconsultores.cl
-                     <p>
-                  </div>
-               </div>
-               <div class="col-lg-3">
-                  <img src="{{ asset('images/gp-blanco.png') }}" style="max-width: 65%; height: auto; padding-top: 10px;" alt="Logo Los Pelambres" class="logo">
-               </div>
-            </div>
-         </div>
+           @include('partials.footer')
       </div>
       <!-- Bootstrap JS -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
