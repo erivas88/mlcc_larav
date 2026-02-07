@@ -85,7 +85,7 @@ function createFullMarker(latlng, color, nombre, id) {
     const popupContent = `
         <div class="popup-action-container">
             <a href="/caserones/public/estacion/${id}" class="btn-pro-detalles">
-                <i class="fas fa-satellite-dish"></i> Ficha Estación
+                <i class="fas fa-satellite-dish"></i> Ver Estación
             </a>
         </div>
     `;

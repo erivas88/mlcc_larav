@@ -991,3 +991,38 @@
     border-radius: 4px 0 0 0 !important;
     filter: invert(1); /* Hace que el icono de la flecha sea oscuro sobre el botón blanco */
 }
+
+/* Estilo para los bloques de información */
+.info-block {
+    display: flex;
+    flex-direction: column; /* Apila el título sobre el texto */
+    gap: 0px;
+}
+
+/* Título de la categoría (Arriba) */
+.info-title {
+    font-size: 11px;
+    color: #657786; /* Gris tipo tendencia */
+    margin-bottom: 0;
+    text-transform: none;
+    font-weight: 400;
+}
+
+/* Texto del valor (Debajo) */
+.info-text {
+    font-size: 12px;
+    color: #14171a;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+/* Fondo sutil para filas alternas */
+.bg-light-subtle {
+    background-color: #f7f9f9 !important;
+}
+
+/* Ajuste del Card para que se vea premium */
+.card {
+    border: 1px solid #e1e8ed !important;
+    background: #ffffff;
+}

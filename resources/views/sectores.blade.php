@@ -45,13 +45,10 @@
                         <div id="collapse{{ $idSistema }}" class="accordion-collapse collapse {{ $sistemaOpen ? 'show' : '' }}" data-bs-parent="#accordionExample">
                            <div class="accordion-body p-0">
                               <div class="list-group list-group-flush" id="subAccordion{{ $idSistema }}">
-                                 @foreach($registrosSistema->groupBy('id_subsistema') as $idSub => $estaciones)
+                                 {{-- 1. Agrupamos y luego ordenamos la colección por el campo 'order' del primer elemento de cada grupo --}}
+                                 @foreach($registrosSistema->groupBy('id_subsistema')->sortBy(fn($grupo) => $grupo->first()->order) as $idSub => $estaciones)
                                  @php 
                                  $primerSub = $estaciones->first(); 
-                                 /** * LÓGICA DE APERTURA:
-                                 * Se abre si el ID que estamos recorriendo ($idSub) 
-                                 * es igual al que recibimos desde el controlador ($idSubActivo).
-                                 */
                                  $subOpen = ($idSub == $idSubActivo);
                                  @endphp
                                  <div class="accordion-item border-0 bg-transparent position-relative">
@@ -64,6 +61,7 @@
                                           <i class="fas fa-map-marker-alt me-2" 
                                              style="color: {{ $primerSub->color_subsistema }}; font-size: 12px;"></i>
                                           <span style="font-size: 12px; color: #555; font-weight: 500;">
+                                          {{-- Ahora el orden será consecutivo según tu base de datos --}}
                                           {{ $primerSub->nombre_subsistema }}
                                           </span>
                                           @if($subOpen)
@@ -76,7 +74,8 @@
                                        data-bs-parent="#subAccordion{{ $idSistema }}">
                                        <div class="accordion-body p-0">
                                           <div class="list-group list-group-flush">
-                                             @foreach($estaciones as $estacion)
+                                             {{-- Opcional: También puedes ordenar las estaciones internamente si tienen un campo 'nombre' o 'orden_estacion' --}}
+                                             @foreach($estaciones->sortBy('nombre_estacion') as $estacion)
                                              <a href="{{ url('/estacion/' . $estacion->id_estacion) }}" 
                                                 class="estacion-link d-flex align-items-center text-decoration-none py-2 ps-5 {{ ($estacion->estado_seleccion ?? '') == 'open' ? 'active-estacion' : '' }}">
                                              <i class="fas fa-map-marker-alt me-3" 
@@ -84,7 +83,7 @@
                                                 color: {{ ($estacion->estado_seleccion ?? '') == 'open' ? '#2ecc71' : $estacion->color_subsistema }};">
                                              </i>
                                              <span class="nombre-estacion" 
-                                                style="font-weight: 500;font-size: 12px; color: {{ ($estacion->estado_seleccion ?? '') == 'open' ? '#2ecc71' : '#666' }};">
+                                                style="font-weight: 500; font-size: 12px; color: {{ ($estacion->estado_seleccion ?? '') == 'open' ? '#2ecc71' : '#666' }};">
                                              {{ $estacion->nombre_estacion }}
                                              </span>
                                              </a>
@@ -190,7 +189,7 @@
             </div>
          </div>
          <!-- Footer -->
-           @include('partials.footer')
+         @include('partials.footer')
       </div>
       <!-- Bootstrap JS -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

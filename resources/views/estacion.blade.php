@@ -20,7 +20,6 @@
    <body>
       <div class="main-container">
       @include('partials.navbar')
-      
       <style>
       </style>
       <div class="container-fluid mt-4">
@@ -46,7 +45,7 @@
                   <div id="collapse{{ $idSistema }}" class="accordion-collapse collapse {{ $sistemaOpen ? 'show' : '' }}" data-bs-parent="#accordionExample">
                      <div class="accordion-body p-0">
                         <div class="list-group list-group-flush" id="subAccordion{{ $idSistema }}">
-                           @foreach($registrosSistema->groupBy('id_subsistema') as $idSub => $estaciones)
+                            @foreach($registrosSistema->groupBy('id_subsistema')->sortBy(fn($grupo) => $grupo->first()->order) as $idSub => $estaciones)
                            @php 
                            $primerSub = $estaciones->first();                                
                            $subOpen = $estaciones->contains('estado_seleccion', 'open');
@@ -60,7 +59,8 @@
                               </button></a>
                               <div id="sub{{ $idSub }}" class="collapse {{ $subOpen ? 'show' : '' }}" data-bs-parent="#subAccordion{{ $idSistema }}">
                                  <div class="list-group list-group-flush">
-                                    @foreach($estaciones as $estacion)
+                                    {{-- Ordenamos la colección alfabéticamente por el campo nombre_estacion --}}
+                                    @foreach($estaciones->sortBy('nombre_estacion') as $estacion)
                                     <a href="{{ url('/estacion/' . $estacion->id_estacion) }}" 
                                        class="estacion-link d-flex align-items-center text-decoration-none py-2 ps-5 position-relative {{ $estacion->estado_seleccion == 'open' ? 'active-estacion' : '' }}">
                                     <i class="fas fa-map-marker-alt me-3" 
@@ -97,242 +97,8 @@
                </div>
                <hr>
                <div class="row g-4">
-                  <div class="col-md-4">
-                     <div class="card h-100 border-0 shadow-sm rounded-3">
-                        <div class="card-header border-0 py-3 d-flex align-items-center text-dark bg-white" style="border-radius: 8px 8px 0 0; border-bottom: 1px solid #f0f0f0 !important;">
-                           <i class="fas fa-file-invoice me-2 opacity-75" style="color:#117588 !important;"></i>
-                           <h6 class="mb-0 fw-bold" style="letter-spacing: 0.5px; font-size: 12px; color: #2c3e50;">Ficha Técnica</h6>
-                        </div>
-                        <div class="card-body p-3">
-                           <div class="table-responsive">
-                              <table class="table table-borderless mb-0">
-                                 <tbody class="technical-sheet">
-                                    <tr>
-                                       <td class="label-cell">
-                                          Identificador
-                                       </td>
-                                       <td class="value-cell" style="color: {{ $colorSubActivo ?? '#2c3e50' }};">
-                                          @if(isset($ficha['multinivel']) && $ficha['multinivel'] == 1 && isset($ficha['datosMultinivel']))
-                                          {{ collect($ficha['datosMultinivel'])->pluck('nombre_estacion')->implode(' ; ') }}
-                                          @else
-                                          {{ $ficha['nombre_estacion_unificado'] ?? 'Nombre no definido' }}
-                                          @endif
-                                       </td>
-                                    </tr>
-                                    <tr class="bg-row">
-                                       <td class="label-cell">
-                                          Profundidad
-                                       </td>
-                                       <td class="value-cell">
-                                          @if(isset($ficha['multinivel']) && $ficha['multinivel'] == 1 && isset($ficha['datosMultinivel']))
-                                          {{ collect($ficha['datosMultinivel'])->pluck('profundidad_sma')->implode(' m; ') }} m
-                                          @else
-                                          {{ $ficha['profundidad_sma'] ?? 'No definida' }} {{ isset($ficha['profundidad_sma']) ? 'm' : '' }}
-                                          @endif
-                                       </td>
-                                    </tr>
-                                    <tr>
-                                       <td class="label-cell">
-                                          Tipo de Agua
-                                       </td>
-                                       <td class="value-cell text-uppercase">
-                                          {{ (isset($ficha['profundidad_sma']) && is_numeric($ficha['profundidad_sma'])) ? 'Subterráneas' : 'Superficial' }}
-                                       </td>
-                                    </tr>
-                                    <tr class="bg-row">
-                                       <td class="label-cell">
-                                          Monitoreo
-                                       </td>
-                                       <td class="value-cell ">60 min</td>
-                                    </tr>
-                                    <tr>
-                                       <td class="label-cell">
-                                          Inicio Mediciones
-                                       </td>
-                                       <td class="value-cell">30-12-2021</td>
-                                    </tr>
-                                 </tbody>
-                              </table>
-                           </div>
-                           <div class="ficha-footer-glass mt-3">
-                              <i class="fas fa-check-circle me-2"></i> Estación Operativa
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <!--<div class="col-md-4">
-                     <div class="card h-100 border-0 shadow-sm" style="border-radius: 8px;">
-                        <div class="card-header border-0 py-3 d-flex align-items-center" style="background-color: #2c3e50; color: #ffffff; border-radius: 8px 8px 0 0;">
-                           <i class="fas fa-file me-2 opacity-75"></i>
-                           <h6 class="mb-0 fw-bold " style="letter-spacing: 1px; font-size: 12px;">Ficha Técnica</h6>
-                        </div>
-                        <div class="card-body p-0">
-                           <table class="table mb-0">
-                              <tbody style="font-size: 13px;">
-                                 <tr>
-                                    <td class="ps-4 py-3 text-muted border-bottom-0">Identificador:</td>
-                                    <td class="pe-4 py-3 text-end fw-bold border-bottom-0">
-                                       @if(isset($ficha['multinivel']) && $ficha['multinivel'] == 1 && isset($ficha['datosMultinivel']))
-                                       {{-- Extraemos los nombres de todas las estaciones del grupo y los unimos --}}
-                                       {{ collect($ficha['datosMultinivel'])->pluck('nombre_estacion')->implode(' ; ') }}
-                                       @else
-                                       {{-- Caso estándar o unificación por PDC --}}
-                                       {{ $ficha['nombre_estacion_unificado'] ?? 'Nombre no definido' }}
-                                       @endif
-                                    </td>
-                                 </tr>
-                                 <tr class="bg-light">
-                                    <td class="ps-4 py-3 text-muted border-bottom-0">Profundidad:</td>
-                                    <td class="pe-4 py-3 text-end fw-bold border-bottom-0">
-                                       @if(isset($ficha['multinivel']) && $ficha['multinivel'] == 1 && isset($ficha['datosMultinivel']))
-                                       {{-- Extraemos las profundidades, las unimos con ';' y agregamos la unidad --}}
-                                       {{ collect($ficha['datosMultinivel'])->pluck('profundidad_sma')->implode(' m; ') }} m
-                                       @else
-                                       {{-- Caso estándar o multinivel 0 --}}
-                                       {{ $ficha['profundidad_sma'] ?? 'No definida' }} {{ isset($ficha['profundidad_sma']) ? 'm' : '' }}
-                                       @endif
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td class="ps-4 py-3 text-muted border-bottom-0">Tipo de Agua:</td>
-                                    <td class="pe-4 py-3 text-end fw-bold border-bottom-0">
-                                       @if(isset($ficha['profundidad_sma']) && is_numeric($ficha['profundidad_sma']))
-                                       SUBTERRÁNEAS
-                                       @else
-                                       SUPERFICIAL
-                                       @endif
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td class="ps-4 py-3 text-muted border-bottom-0">Frecuencia/Monitoreo:</td>
-                                    <td class="pe-4 py-3 text-end fw-bold border-bottom-0 text-uppercase">60 min</td>
-                                 </tr>
-                                 <tr>
-                                    <td class="ps-4 py-3 text-muted border-bottom-0">Inicio Mediciones</td>
-                                    <td class="pe-4 py-3 text-end fw-bold border-bottom-0 text-uppercase">30-12-2021</td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </div>
-                     </div>
-                     </div>-->
-                  <div class="col-md-4">
-                     <div class="card h-100 border-0 shadow-sm rounded-3">
-                        <div class="card-header border-0 py-3 d-flex align-items-center text-dark bg-white" style="border-radius: 8px 8px 0 0; border-bottom: 1px solid #f0f0f0 !important;">
-                           <i class="fas fa-camera me-2 opacity-75" style="color:#117588 !important;"></i>
-                           <h6 class="mb-0 fw-bold" style="letter-spacing: 0.5px; font-size: 12px; color: #2c3e50;">Registro Visual</h6>
-                        </div>
-                        <div class="card-body p-2">
-                           <div class="rounded-2 overflow-hidden border bg-light d-flex align-items-center justify-content-center" style="height: 300px; position: relative; border-radius: 12px !important;">
-                              @if( (isset($ficha['multinivel']) && $ficha['multinivel'] == 1 && isset($ficha['datosMultinivel']) && count($ficha['datosMultinivel']) > 0) || ($ficha['es_grupo'] && count($ficha['miembros_grupo']) > 1) )
-                              @php
-                              $itemsCarrusel = (isset($ficha['multinivel']) && $ficha['multinivel'] == 1) ? $ficha['datosMultinivel'] : $ficha['miembros_grupo'];
-                              @endphp
-                              <div id="carouselEstacion" class="carousel slide w-100 h-100" data-bs-ride="carousel">
-                                 <div class="carousel-inner h-100">
-                                    @foreach($itemsCarrusel as $index => $miembro)
-                                    <div class="carousel-item h-100 {{ $index == 0 ? 'active' : '' }}">
-                                       <img src="{{ asset('storage/img_estaciones/estaciones/' . $miembro->img . '.jpg') }}" 
-                                          class="d-block w-100 h-100" 
-                                          style="object-fit: cover;" 
-                                          alt="{{ $miembro->nombre_estacion }}">
-                                       <div class="img-cintillo-sharp-glass">
-                                          <div class="img-item">
-                                             <div class="img-data">
-                                                <span class="img-label">ESTACIÓN</span>
-                                                <span class="img-value">{{ $miembro->nombre_estacion }}</span>
-                                             </div>
-                                          </div>
-                                          @if(isset($miembro->profundidad_sma))
-                                          <div class="img-divider-glass"></div>
-                                          <div class="img-item">
-                                             <div class="img-data">
-                                                <span class="img-label">PROFUNDIDAD</span>
-                                                <span class="img-value">{{ $miembro->profundidad_sma }}<small>m</small></span>
-                                             </div>
-                                          </div>
-                                          @endif
-                                       </div>
-                                    </div>
-                                    @endforeach
-                                 </div>
-                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselEstacion" data-bs-slide="prev">
-                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                 </button>
-                                 <button class="carousel-control-next" type="button" data-bs-target="#carouselEstacion" data-bs-slide="next">
-                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                 </button>
-                              </div>
-                              @else
-                              <img src="{{ asset('storage/img_estaciones/estaciones/' . ($ficha['img'] ?? 'default') . '.jpg') }}" 
-                                 class="w-100 h-100" 
-                                 style="object-fit: cover;" 
-                                 alt="{{ $ficha['nombre_estacion'] }}">
-                              <div class="img-cintillo-sharp-glass">
-                                 <div class="img-item">
-                                    <div class="img-data">
-                                       <span class="img-label">ESTACIÓN</span>
-                                       <span class="img-value">{{ $ficha['nombre_estacion'] }}</span>
-                                    </div>
-                                 </div>
-                                 @if(isset($ficha['profundidad_sma']))
-                                 <div class="img-divider-glass"></div>
-                                 <div class="img-item">
-                                    <div class="img-data">
-                                       <span class="img-label">PROFUNDIDAD</span>
-                                       <span class="img-value">{{ $ficha['profundidad_sma'] }}<small>m</small></span>
-                                    </div>
-                                 </div>
-                                 @endif
-                              </div>
-                              @endif
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-md-4">
-                     <div class="card h-100 border-0 shadow-sm rounded-3">
-                        <div class="card-header border-0 py-3 d-flex align-items-center text-dark bg-white" style="border-radius: 8px 8px 0 0; border-bottom: 1px solid #f0f0f0 !important;">
-                           <i class="fas fa-map-marked-alt me-2 text-primary opacity-75" style="color:#117588 !important;"></i>
-                           <h6 class="mb-0 fw-bold" style="letter-spacing: 0.5px; font-size: 12px; color: #2c3e50;">Localización UTM</h6>
-                        </div>
-                        <div class="card-body p-2">
-                           <div class="map-wrapper" style="position: relative; height: 300px; overflow: hidden; border-radius: 12px;">
-                              <div class="utm-cintillo-sharp-glass">
-                                 <div class="utm-item">
-                                    <span class="indicator-n"></span>
-                                    <div class="utm-data">
-                                       <span class="label">NORTE</span>
-                                       <span class="value">{{ number_format($ficha['utm_norte'], 0, ',', '.') }}<small>m</small></span>
-                                    </div>
-                                 </div>
-                                 <div class="utm-divider-glass"></div>
-                                 <div class="utm-item">
-                                    <span class="indicator-e"></span>
-                                    <div class="utm-data">
-                                       <span class="label">ESTE</span>
-                                       <span class="value">{{ number_format($ficha['utm_este'], 0, ',', '.') }}<small>m</small></span>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div id="map-detail" class="w-100 h-100 border-0"></div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-md-12">
-                     <div class="card h-100 border-0 shadow-sm rounded-3">
-                        <div class="card-header border-0 py-3 d-flex align-items-center text-white" style="background-color: #2c3e50; border-radius: 8px 8px 0 0;">
-                           <i class="fas fa-chart-line me-2 opacity-75"></i>
-                           <h6 class="mb-0 fw-bold  small" style="letter-spacing: 1px;">Monitoreo en Línea</h6>
-                        </div>
-                        <div class="card-body p-2">
-                           <div class="map-wrapper" style="position: relative; height: 300px; overflow: hidden; border-radius: 8px;">
-                              <div id="map-detail" class="w-100 h-100 rounded-2 border"></div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+                  @include('partials.info')
+                  @include('partials.chart')
                   <!--<h6 class="fw-bold">Datos de la Ficha (Array):</h6>
                      {{-- Imprime solo el arreglo de la ficha --}}
                      @dump($ficha)-->
@@ -340,7 +106,7 @@
             </div>
          </div>
          <!-- Footer -->
-          @include('partials.footer')
+         @include('partials.footer')
       </div>
       <!-- Bootstrap JS -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
