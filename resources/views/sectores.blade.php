@@ -16,6 +16,7 @@
       <link rel="stylesheet" href="{{ asset('map/L.Control.ZoomBox.css')}}">
       <link rel="stylesheet" href="{{ asset('css/styles_reload.css') }}">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.min.css" />
+      <link rel="stylesheet" href="https://unpkg.com/leaflet-search@3.0.2/dist/leaflet-search.min.css" />
    </head>
    <body>
       <div class="main-container">
@@ -204,6 +205,7 @@
       <script type="text/javascript" src="{{ asset('map/sectores.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/rios.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/quebradas.js') }}"></script>
+      <script src="https://unpkg.com/leaflet-search@3.0.2/dist/leaflet-search.min.js"></script>
       <script type="text/javascript" src="{{ asset('map/coreleaflet_1.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/spin.min.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/leaflet.spin.min.js') }}"></script>

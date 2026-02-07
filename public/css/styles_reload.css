@@ -1026,3 +1026,60 @@
     border: 1px solid #e1e8ed !important;
     background: #ffffff;
 }
+
+/* Contenedor principal: Ajustamos sin romper el layout del plugin */
+.leaflet-control-search {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 2px solid rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    border-radius: 8px !important;
+    /* Quitamos el overflow:hidden temporalmente para ver si es lo que traba el dropdown */
+}
+
+/* Input: Aseguramos que sea visible y clickeable */
+.leaflet-control-search .search-input {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 13px !important;
+    height: 30px !important;
+    padding: 0 10px !important;
+    border: none !important;
+    outline: none !important;
+}
+
+/* El botón: Usamos el icono por defecto pero le damos color industrial */
+.leaflet-control-search .search-button {
+    width: 30px !important;
+    height: 30px !important;
+    background-color: #fff !important; /* El azul oscuro de tu barra lateral */
+    border-radius: 0 6px 6px 0 !important;
+}
+
+/* Arreglo para el icono de la lupa si desaparece */
+.leaflet-control-search .search-button:before {
+    filter: brightness(0) invert(1); /* Pone la lupa blanca */
+}
+
+/* Dropdown de resultados (Donde suele trabarse) */
+.leaflet-control-search .search-tooltip {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: #ffffff !important;
+    border-radius: 0 0 8px 8px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+    z-index: 1000 !important;
+}
+
+.leaflet-control-search .search-tip {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 12px !important;
+    padding: 8px !important;
+    border-bottom: 1px solid #eee !important;
+    cursor: pointer !important;
+}
+
+.leaflet-control-search .search-tip:hover {
+    background-color: #f0f7f8 !important;
+    color: #117588 !important;
+}
