@@ -16,6 +16,8 @@
       <link rel="stylesheet" href="{{ asset('map/L.Control.ZoomBox.css')}}">
       <link rel="stylesheet" href="{{ asset('css/styles_reload.css') }}">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.min.css" />
+      <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
    </head>
    <body>
       <div class="main-container">
@@ -24,71 +26,12 @@
       </style>
       <div class="container-fluid mt-4">
       <div class="row" >
-         <div class="col-md-3 pr-0">
-            <div class="accordion custom-sidebar" id="accordionExample" style="font-family: 'Poppins', sans-serif !important;">
-               @foreach($sistemas as $idSistema => $registrosSistema)
-               @php 
-               $primerRegistro = $registrosSistema->first();
-               // El sistema se abre si su ID coincide con el activo O si algún registro interno es 'open'
-               $sistemaOpen = ($idSistema == $idActivo || $registrosSistema->contains('estado_seleccion', 'open'));
-               @endphp
-               <div class="accordion-item border-0 mb-1">
-                  <h2 class="accordion-header d-flex bg-white" style="border-left: 4px solid {{ $primerRegistro->color_sistema }};">
-                     <a href="{{ url('/sector/' . $idSistema) }}" class="flex-grow-1 text-decoration-none">
-                     <button class="accordion-button {{ $sistemaOpen ? '' : 'collapsed' }} py-2 px-3 bg-transparent shadow-none" 
-                        type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $idSistema }}">
-                     <i class="fas fa-layer-group me-2" style="color: {{ $primerRegistro->color_sistema }};"></i>
-                     <span class="fw-bold" style="color: white; font-size: 13px;">{{ $primerRegistro->nombre_sistema }}</span>
-                     </button>
-                     </a>
-                  </h2>
-                  <div id="collapse{{ $idSistema }}" class="accordion-collapse collapse {{ $sistemaOpen ? 'show' : '' }}" data-bs-parent="#accordionExample">
-                     <div class="accordion-body p-0">
-                        <div class="list-group list-group-flush" id="subAccordion{{ $idSistema }}">
-                            @foreach($registrosSistema->groupBy('id_subsistema')->sortBy(fn($grupo) => $grupo->first()->order) as $idSub => $estaciones)
-                           @php 
-                           $primerSub = $estaciones->first();                                
-                           $subOpen = $estaciones->contains('estado_seleccion', 'open');
-                           @endphp
-                           <div class="accordion-item border-0 bg-transparent">
-                              <a style="text-decoration: none" href="{{ url('/sector/' . $idSistema . '/' . $idSub) }}"><button class="sub-btn border-0 d-flex align-items-center w-100 py-2 ps-4 bg-white {{ $subOpen ? '' : 'collapsed' }}" 
-                                 type="button" data-bs-toggle="collapse" data-bs-target="#sub{{ $idSub }}">
-                              <i class="fas fa-caret-right me-2 icon-transition"></i>
-                              <i class="fas fa-map-marker-alt me-2" style="color: {{ $primerSub->color_subsistema }}; font-size: 12px;"></i>
-                              <span style="font-size: 12px; color: #555; font-weight: 500;">{{ $primerSub->nombre_subsistema }}</span>
-                              </button></a>
-                              <div id="sub{{ $idSub }}" class="collapse {{ $subOpen ? 'show' : '' }}" data-bs-parent="#subAccordion{{ $idSistema }}">
-                                 <div class="list-group list-group-flush">
-                                    {{-- Ordenamos la colección alfabéticamente por el campo nombre_estacion --}}
-                                    @foreach($estaciones->sortBy('nombre_estacion') as $estacion)
-                                    <a href="{{ url('/estacion/' . $estacion->id_estacion) }}" 
-                                       class="estacion-link d-flex align-items-center text-decoration-none py-2 ps-5 position-relative {{ $estacion->estado_seleccion == 'open' ? 'active-estacion' : '' }}">
-                                    <i class="fas fa-map-marker-alt me-3" 
-                                       style="font-size: 11px; color: {{ $estacion->estado_seleccion == 'open' ? '#2ecc71' : $estacion->color_subsistema }};">
-                                    </i>
-                                    <span class="nombre-estacion" 
-                                       style="font-weight: 500; font-size: 12px; color: {{ $estacion->estado_seleccion == 'open' ? '#2ecc71' : '#555' }};">
-                                    {{ $estacion->nombre_estacion }}
-                                    </span>
-                                    </a>
-                                    @endforeach
-                                 </div>
-                              </div>
-                           </div>
-                           @endforeach
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               @endforeach
-            </div>
-         </div>
+         @include('partials.side_estacion')
          <div class="col-md-9">
             <div class="panel">
                <div class="tope">
                   <span id="sistema">
-                  <i class="fas fa-map-marker-alt" style="color : {{ $ficha['color'] ?? '#1abc9c' }}"></i> &nbsp;
-                  {{-- Accedemos a la clave 'nombre_estacion' del arreglo --}}
+                  <i class="fas fa-map-marker-alt" style="color : {{ $ficha['color'] ?? '#1abc9c' }}"></i> &nbsp;           
                   {{ $ficha['nombre_pdc'] ?? 'Nombre no definido' }}
                   </span>
                   <span id="subsistema-breadcrumb" style="color: #bdc3c7; font-weight: 400; font-size: 15px; text-transform: none !important;">
@@ -99,9 +42,9 @@
                <div class="row g-4">
                   @include('partials.info')
                   @include('partials.chart')
-                  <!--<h6 class="fw-bold">Datos de la Ficha (Array):</h6>
-                     {{-- Imprime solo el arreglo de la ficha --}}
-                     @dump($ficha)-->
+                  <h6 class="fw-bold">Datos de la Ficha (Array):</h6>
+                  <!--{{-- Imprime solo el arreglo de la ficha --}}
+                  @dump($ficha)-->
                </div>
             </div>
          </div>
@@ -112,6 +55,8 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+      
       <link rel="stylesheet" href="{{ asset('map/leaflet.css') }}">
       <script type="text/javascript" src="{{ asset('map/leaflet.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/leaflet-label.js') }}"></script>
@@ -135,6 +80,15 @@
       </script>
       <script type="text/javascript" src="{{ asset('map/spin.min.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/leaflet.spin.min.js') }}"></script>
+      <script>
+         // Definimos una variable global que el archivo JS pueda leer
+         window.estacionConfig = {
+             nombre: "{{ $ficha['nombre_estacion_unificado'] }}"
+         };
       </script>
+      <script src="https://code.highcharts.com/stock/highstock.js"></script>
+      <script src="https://code.highcharts.com/modules/exporting.js"></script>
+      <script src="https://code.highcharts.com/modules/export-data.js"></script>
+      <script type="text/javascript" src="{{ asset('plots/plot.js') }}"></script>
    </body>
 </html>

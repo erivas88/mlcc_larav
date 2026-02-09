@@ -1083,3 +1083,94 @@
     background-color: #f0f7f8 !important;
     color: #117588 !important;
 }
+
+
+/***************selector******************/
+/* 1. Forzamos que el menú SIEMPRE esté por encima de Leaflet */
+/* El z-index de Leaflet llega a 1000, nosotros usaremos el máximo nivel */
+.select2-container--open {
+    z-index: 9999999 !important;
+}
+
+/* 2. Estilizamos el dropdown para que no se vea extraño ni duplicado */
+.select2-container--bootstrap-5 .select2-dropdown {
+    margin-top: 5px !important;
+    border: none !important;
+    border-radius: 1px !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25) !important; /* Sombra Pro */
+    overflow: hidden !important;
+}
+
+/* 3. Limpiamos los ítems para que se vean como en la imagen de referencia */
+.select2-container--bootstrap-5 .select2-results__option {
+    padding: 10px 16px !important;
+    font-size: 13px !important;
+    color: #333 !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+/* 4. Color de selección (Tu color corporativo) */
+.select2-container--bootstrap-5 .select2-results__option--highlighted[aria-selected] {
+    background-color: color: !important; 
+    color: white !important;
+}
+
+/* 5. Evitamos que el texto se encime con los iconos del header */
+.filter-item {
+    position: relative;
+    z-index: 1060; /* Asegura que el botón esté sobre el mapa */
+}
+.select2-container--bootstrap-5 .select2-selection--single .select2-selection__rendered
+{
+    padding: 0;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    font-size: 13px !important;
+}
+
+
+/* Forzar centrado vertical en el área de selección */
+.select2-container--bootstrap-5 .select2-selection--single {
+    display: flex !important;
+    align-items: center !important; /* Centra verticalmente el contenido */
+    height: 38px !important; /* Ajusta a la altura que desees */
+    padding: 0 10px !important;
+}
+
+/* Ajustar el renderizado del texto seleccionado */
+.select2-container--bootstrap-5 .select2-selection--single .select2-selection__rendered {
+    line-height: normal !important; /* Elimina alturas de línea heredadas que desvían el texto */
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+}
+
+/* Centrar la flecha lateral */
+.select2-container--bootstrap-5 .select2-selection--single .select2-selection__arrow {
+    height: 100% !important;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 10px;
+}
+
+info-title {
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px !important;       /* Tamaño pequeño pero legible */
+    font-weight: 800 !important;      /* Peso extra-bold para quitar lo "endeble" */
+    text-transform: uppercase;         /* Mayúsculas para mayor autoridad visual */
+    letter-spacing: 1.2px;            /* Espaciado elegante */
+    color: #117588;                   /* Tu turquesa corporativo */
+    margin-bottom: 4px;
+    opacity: 0.9;                     /* Un toque de transparencia profesional */
+}
+
+.info-title i {
+    font-size: 14px;                  /* Icono ligeramente más grande que el texto */
+    margin-right: 6px;
+}

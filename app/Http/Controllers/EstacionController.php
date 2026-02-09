@@ -22,16 +22,24 @@ class EstacionController extends Controller
 
         $sistemas = $coleccion->groupBy('id_sistema');
 
-        // 2. Obtener data técnica detallada
+        // 2. Obtener data técnica detallada (Aquí viene 'set_parametros')
         $fichaExtra = $this->obtenerDataFicha($id);
 
-        // --- LÓGICA DE UNIFICACIÓN Y MULTINIVEL ---
+        // --- NUEVA LÓGICA DE PARÁMETROS DINÁMICOS ---
+        $parametrosOnline = [];
+        if (!empty($fichaExtra) && isset($fichaExtra['set_parametros'])) {
+            // Capturamos el valor (ej: 4) y llamamos al SP flexible
+            $idGrupo = $fichaExtra['set_parametros'];
+            $parametrosOnline = DB::select('CALL sp_get_parametros_online(?)', [$idGrupo]);
+        }
+        // Añadimos los parámetros al arreglo de la ficha para la vista
+        $fichaExtra['parametros'] = $parametrosOnline;
+
+        // --- LÓGICA DE UNIFICACIÓN Y MULTINIVEL (Existente) ---
         if (!empty($fichaExtra)) {
-            
-            // CASO A: Multinivel == 0 (Unificación por PDC - Estaciones hermanas)
+            // CASO A: Multinivel == 0
             if (isset($fichaExtra['multinivel']) && $fichaExtra['multinivel'] == 0) {
                 $nombrePdc = $fichaExtra['nombre_pdc'];
-
                 $estacionesGrupo = DB::table('estaciones')
                     ->where('nombre_pdc', $nombrePdc)
                     ->orderBy('nombre_estacion', 'asc')
@@ -41,29 +49,19 @@ class EstacionController extends Controller
                 $fichaExtra['es_grupo'] = true;
                 $fichaExtra['miembros_grupo'] = $estacionesGrupo;
             } 
-            
-            // CASO B: Multinivel == 1 (Capturar todas las profundidades de la torre)
+            // CASO B: Multinivel == 1
             elseif (isset($fichaExtra['multinivel']) && $fichaExtra['multinivel'] == 1) {
-                
-                /* USAMOS EL PDC COMO ANCLA: 
-                   Normalmente las estaciones multinivel comparten el mismo PDC o un prefijo. 
-                   Buscamos todos los registros del mismo PDC para no perder niveles.
-                */
                 $nombrePdc = $fichaExtra['nombre_pdc'];
-
                 $datosMultinivel = DB::table('estaciones')
                     ->where('nombre_pdc', $nombrePdc)
-                    // Seleccionamos las profundidades y el ID para los links
                     ->select('id_estacion', 'nombre_estacion', 'profundidad_sma','img')
-                    // Ordenamos de mayor a menor profundidad (Ej: 60, 40, 20)
                     ->orderBy(DB::raw('CAST(profundidad_sma AS UNSIGNED)'), 'desc')
                     ->get();
 
-                $fichaExtra['datosMultinivel'] = $datosMultinivel; // Enviamos la colección completa
+                $fichaExtra['datosMultinivel'] = $datosMultinivel;
                 $fichaExtra['nombre_estacion_unificado'] = $fichaExtra['nombre_estacion'];
                 $fichaExtra['es_grupo'] = false;
             } 
-            
             else {
                 $fichaExtra['nombre_estacion_unificado'] = $fichaExtra['nombre_estacion'];
                 $fichaExtra['es_grupo'] = false;
