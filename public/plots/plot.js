@@ -184,6 +184,15 @@ $(document).ready(function() {
                     lineWidth: 1,
                     fillOpacity: 0.2
                 },
+                yAxis: {
+            // Aquí aplicas tu lógica de límites
+            min: respuesta.limite_min !== null ? parseFloat(respuesta.limite_min) : null,
+            max: respuesta.limite_max !== null ? parseFloat(respuesta.limite_max) : null,
+            
+            // Opcional: Evita que el Navigator fuerce sus propios extremos
+            startOnTick: false,
+            endOnTick: false
+        },
                 xAxis: {
                     labels: {
 
