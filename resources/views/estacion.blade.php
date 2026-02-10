@@ -42,8 +42,8 @@
                <div class="row g-4">
                   @include('partials.info')
                   @include('partials.chart')
-                  <h6 class="fw-bold">Datos de la Ficha (Array):</h6>
-                  <!--{{-- Imprime solo el arreglo de la ficha --}}
+                  <!--<h6 class="fw-bold">Datos de la Ficha (Array):</h6>
+                  {{-- Imprime solo el arreglo de la ficha --}}
                   @dump($ficha)-->
                </div>
             </div>
@@ -89,6 +89,7 @@
       <script src="https://code.highcharts.com/stock/highstock.js"></script>
       <script src="https://code.highcharts.com/modules/exporting.js"></script>
       <script src="https://code.highcharts.com/modules/export-data.js"></script>
+      <script src="https://code.highcharts.com/modules/no-data-to-display.js"></script>
       <script type="text/javascript" src="{{ asset('plots/plot.js') }}"></script>
    </body>
 </html>

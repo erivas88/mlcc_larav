@@ -5,26 +5,27 @@
          <h6 class="mb-0 fw-bold small" style="letter-spacing: 1px;">Monitoreo en Línea</h6>
       </div>
       <div class="card-body p-2" style="background-color: white !important;">
-         <div class="filter-glass-container p-2">
+         <div class="filter-glass-container">
             <div class="row g-2 w-100 m-0">
                <div class="col-6">
                   <div class="filter-item">
                      <label class="info-title">
-                     <i class="fas fa-history" style="color:#117588 !important;"></i> 
-                     <span>Periodo</span>
+                        <!-- -->
+                        <span class="info-title" >Periodo</span>
                      </label>
                      <select id="sel-periodo" class="select2-pro" style="width: 100%;">
                         <option value="1">Últimas 24 Horas</option>
                         <option value="2">Últimos 7 Días</option>
                         <option value="3">Último Mes</option>
+                        <option value="7">Año</option>
                      </select>
                   </div>
                </div>
                <div class="col-6">
                   <div class="filter-item">
                      <label class="info-title">
-                     <i class="fas fa-leaf" style="color:#117588 !important;" ></i> 
-                     <span>Parámetro</span>
+                        <!--<i class="fas fa-leaf" style="color:#117588 !important;" ></i> -->
+                        <span>Parámetro</span>
                      </label>
                      <select id="sel-parametro" class="select2-pro" style="width: 100%;">
                         @foreach($ficha['parametros'] as $p)
@@ -35,28 +36,42 @@
                      </select>
                   </div>
                </div>
-               <hr>
                <div class="col-lg-12">
+                  <br>
                   <div id="chart-container" style="height: 450px; position: relative;">                      
                   </div>
-
                </div>
                <hr>
+               @if(!empty($ficha['nota']))
+               <div class="col-lg-12 mb-3">
+                  <div class="info-box-premium nota-blue">
+                     <div class="d-flex align-items-start">
+                        <div class="info-icon">
+                           <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="info-body">
+                           <h6>NOTA</h6>
+                           <p>{{ $ficha['nota'] }}</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               @endif
                <div class="col-lg-12">
-    <div class="alert alert-warning border-warning shadow-sm" style="background-color: #fffdf0; border-radius: 8px; padding: 15px;">
-        <div class="d-flex align-items-start">
-            <div class="me-3">
-                <i class="fas fa-exclamation-triangle" style="color: #0f7c91; font-size: 20px;"></i>
-            </div>
-            <div>
-                <h6 class="alert-heading fw-bold mb-1" style="color: #0f7c91; font-size: 14px;">Descargo de Responsabilidad</h6>
-                <p class="mb-0 text-muted" style="font-size: 11.5px; line-height: 1.5;">
-                    La Información presentada ha sido levantada por sondas multiparamétricas instaladas en los puntos de medición, se trata de datos crudos sin un proceso de revisión. Se hace presente que se mantiene una adecuada mantención de los equipos y control metrológico; sin embargo, ellos están sujetos a problemas propios de transmisión a distancia. Las Mediciones en línea de estos parámetros son solo referenciales.
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+                  <div class="info-box-premium warning-amber">
+                     <div class="d-flex align-items-start">
+                        <div class="info-icon">
+                           <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="info-body">
+                           <h6>DESCARGO DE RESPONSABILIDAD</h6>
+                           <p>
+                              La información presentada ha sido levantada por sondas multiparamétricas instaladas en los puntos de medición, se trata de <strong>datos crudos</strong> sin un proceso de revisión. Se hace presente que se mantiene una adecuada mantención de los equipos y control metrológico; sin embargo, están sujetos a problemas de transmisión a distancia. Las mediciones en línea son solo referenciales.
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
       </div>

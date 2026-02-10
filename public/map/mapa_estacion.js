@@ -75,12 +75,17 @@ function initMapEstacion(config) {
     if (config.sectorId == "1" || config.sectorId == "2") {
         drawVectorDetail(deposito_lamas, { color: '#66023C', fillColor: '#66023C', fillOpacity: 0.4, weight: 1 }, 'Depósito de Lamas');
         drawVectorDetail(deposito_lastre, { color: '#FFFF5C', fillColor: '#FFFF5C', fillOpacity: 0.4, weight: 1 }, 'Depósito de Lastre');
+        drawVectorDetail(arenas, { color: '#f77f00', fillColor: '#f77f00', fillOpacity: 0.4, weight: 1 }, 'Depósito de Arenas');
     }
     if (config.sectorId == "2") {
+         drawVectorDetail(deposito_lamas, { color: '#66023C', fillColor: '#66023C', fillOpacity: 0.4, weight: 1 }, 'Depósito de Lamas');
+        drawVectorDetail(deposito_lastre, { color: '#FFFF5C', fillColor: '#FFFF5C', fillOpacity: 0.4, weight: 1 }, 'Depósito de Lastre');
         drawVectorDetail(arenas, { color: '#f77f00', fillColor: '#f77f00', fillOpacity: 0.4, weight: 1 }, 'Depósito de Arenas');
     }
     if (config.sectorId == "3") {
-        drawVectorDetail(ramadillas, { color: '#33B503', fillColor: '#33B503', fillOpacity: 0.4, weight: 1 }, 'Sistema Ramadillas');
+        drawVectorDetail(deposito_lamas, { color: '#66023C', fillColor: '#66023C', fillOpacity: 0.4, weight: 1 }, 'Depósito de Lamas');
+        drawVectorDetail(deposito_lastre, { color: '#FFFF5C', fillColor: '#FFFF5C', fillOpacity: 0.4, weight: 1 }, 'Depósito de Lastre');
+        drawVectorDetail(arenas, { color: '#f77f00', fillColor: '#f77f00', fillOpacity: 0.4, weight: 1 }, 'Depósito de Arenas');
     }
 
     // --- 5. MARCADOR DE LA ESTACIÓN ---
