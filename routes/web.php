@@ -9,8 +9,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/sector/{id}', [SectorController::class, 'verSectorConEstado'])->name('sector.ver');
 
+Route::get('/glosario', function () {
+    return view('glosario');
+});
 
 // El {id_subsistema?} con signo de interrogación indica que puede o no estar presente
 Route::get('/sector/{id}/{id_subsistema?}', [SectorController::class, 'verSectorConEstado'])->name('sector.detalle');

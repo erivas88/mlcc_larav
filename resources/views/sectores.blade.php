@@ -39,7 +39,7 @@
                            <button class="accordion-button {{ $sistemaOpen ? '' : 'collapsed' }} py-2 px-3 bg-transparent shadow-none" 
                               type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $idSistema }}">
                            <i class="fas fa-layer-group me-2" style="color: {{ $primerRegistro->color_sistema }};"></i>
-                           <span class="fw-bold" style="color: white; font-size: 13px;">{{ $primerRegistro->nombre_sistema }}</span>
+                           <span class="fw-bold" style="color: white; font-size: 13px; font-weight: normal !important">{{ $primerRegistro->nombre_sistema }}</span>
                            </button>
                            </a>
                         </h2>
@@ -103,7 +103,7 @@
                </div>
                <div class="col-md-9">
                   <div class="panel">
-                     <div class="tope"> 
+                     <!--<div class="tope"> 
                         <span id="sistema"> 
                         <i class="fas fa-layer-group" style="color: {{ $sistemaActivo->color_sistema ?? '#1abc9c' }};"></i> &nbsp;
                         <span class="text-normal">
@@ -118,7 +118,114 @@
                         </span>
                         </span>
                         @endif
-                     </div>
+                     </div>-->
+
+     <style>
+    .tope-majestuoso {
+        background-color: #34495e; /* Azul pizarra profundo constante */
+        padding: 0 25px;           /* Padding lateral para aire visual */
+        display: flex;
+        align-items: center;       /* Centrado vertical perfecto */
+        min-height: 55px;          /* Altura estandarizada */
+        border-radius: 0 0 0 20px; /* Curva majestuosa inferior izquierda */
+        margin-bottom: 20px;
+        border: none;
+        overflow: hidden;
+    }
+
+    #sistema-header {
+        display: flex;
+        align-items: center;       /* Asegura que todos los elementos hijos se alineen al centro */
+        width: 100%;
+        flex-wrap: nowrap; 
+    }
+
+    .sistema-main {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .sistema-icon {
+        font-size: 18px;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    /* Título: Delgado, blanco y centrado verticalmente */
+    .sistema-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 17px;
+        font-weight: 300;
+        color: #FFFFFF;
+        letter-spacing: 2px;
+        margin: 0;
+        text-transform: none;
+        white-space: nowrap;
+        line-height: 1;            /* Elimina espacios extra de línea para centrado puro */
+    }
+
+    /* Separador dorado artístico */
+    .sistema-divider {
+        color: #b08506;
+        font-size: 22px;
+        font-weight: 200;
+        margin: 0 20px;
+        opacity: 0.5;
+        line-height: 1;
+    }
+
+    /* Bloque de Sub-sistema / Marca Corporativa */
+    .sistema-brand {
+        display: flex;
+        flex-direction: column; 
+        justify-content: center;   /* Centrado vertical del bloque de texto doble */
+        line-height: 1.1;
+    }
+
+    .brand-name {
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: none;
+    }
+
+    .brand-group {
+        font-size: 10px;
+        font-weight: 400;
+        color: #95a5a6;
+        letter-spacing: 3px;       /* Espaciado de lujo majestuoso */
+        margin-top: 2px;
+        text-transform: uppercase;
+    }
+
+    @media (max-width: 1200px) {
+        .sistema-title { font-size: 15px; letter-spacing: 1px; }
+        .sistema-divider { margin: 0 10px; }
+        .brand-group { letter-spacing: 1.5px; }
+    }
+</style>
+
+                     <div class="tope tope-majestuoso"> 
+    <div id="sistema-header"> 
+        <div class="sistema-main">
+            <i class="fas fa-layer-group sistema-icon" style="color: {{ $sistemaActivo->color_sistema ?? '#1abc9c' }};"></i>
+            <h1 class="sistema-title">
+                {{ $sistemaActivo->nombre_sistema ?? 'Sistema...' }}
+            </h1>
+        </div>
+
+        @if($nombreSubActivo)
+        <span class="sistema-divider"><i class="fas fa-chevron-right "></i></span>
+        
+        <div class="sistema-brand">
+            <span class="brand-name" style="color: {{ $colorSubActivo ?? '#0f7c91' }}; font-weight: normal">
+                {{ $nombreSubActivo }}
+            </span>
+           
+        </div>
+        @endif
+    </div>
+</div>
                      <hr>
                      <style>
                         /* --- SELECTOR DE CAPAS PREMIUM --- */

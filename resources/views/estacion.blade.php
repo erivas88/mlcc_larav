@@ -19,6 +19,8 @@
       <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
    </head>
+
+ 
    <body>
       <div class="main-container">
       @include('partials.navbar')
@@ -29,22 +31,31 @@
          @include('partials.side_estacion')
          <div class="col-md-9">
             <div class="panel">
-               <div class="tope">
-                  <span id="sistema">
-                  <i class="fas fa-map-marker-alt" style="color : {{ $ficha['color'] ?? '#1abc9c' }}"></i> &nbsp;           
-                  {{ $ficha['nombre_pdc'] ?? 'Nombre no definido' }}
-                  </span>
-                  <span id="subsistema-breadcrumb" style="color: #bdc3c7; font-weight: 400; font-size: 15px; text-transform: none !important;">
-                  &nbsp; <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.5;"></i> &nbsp; 
-                  {{ $ficha['objetivo'] ?? 'Nombre no definido' }}
-               </div>
+               <div class="tope-majestuoso"> 
+    <div id="sistema-header"> 
+        <div class="sistema-main">
+            <i class="fas fa-map-marker-alt sistema-icon" 
+               style="color: {{ $ficha['color'] ?? '#1abc9c' }}"></i>
+            <h1 class="sistema-title">
+                {{ $ficha['nombre_pdc'] ?? 'Punto de Control' }}
+            </h1>
+        </div>
+
+        <span class="sistema-divider"><i class="fas fa-chevron-right "></i></span>
+
+        <div class="sistema-brand">
+            <span class="brand-name" style="color: #FFFFFF; font-weight: normal">
+                {{ $ficha['objetivo'] ?? 'Monitoreo Ambiental' }}
+            </span>
+            
+        </div>
+    </div>
+</div>
                <hr>
                <div class="row g-4">
                   @include('partials.info')
                   @include('partials.chart')
-                  <!--<h6 class="fw-bold">Datos de la Ficha (Array):</h6>
-                  {{-- Imprime solo el arreglo de la ficha --}}
-                  @dump($ficha)-->
+                 
                </div>
             </div>
          </div>

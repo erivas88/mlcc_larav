@@ -71,8 +71,6 @@
 
          /* --- ESTILO GLASS PARA TOOLTIPS --- */
 
-         
-
       </style>
    </head>
    <body>
@@ -82,7 +80,7 @@
          <div class="container-fluid mt-4">
             <div class="row" >
                 @include('partials.menu_n')
-                @include('partials.mapa')
+                @include('partials.lista')
             </div>
          </div>
          <!-- Footer -->
@@ -108,22 +106,6 @@
       <script type="text/javascript" src="{{ asset('map/start.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/spin.min.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/leaflet.spin.min.js') }}"></script>
-
-     <script>
-    function scrollCarrusel(direction) {
-        const track = document.getElementById('carruselTrack');
-        const cardWidth = track.querySelector('.objetivo-card').offsetWidth;
-        const gap = 20; // El mismo gap definido en el CSS
-        
-        // Calculamos el avance de 2 tarjetas
-        const scrollAmount = (cardWidth + gap) * 2; 
-        
-        track.scrollBy({
-            left: direction * scrollAmount,
-            behavior: 'smooth'
-        });
-    }
-</script>
       </script>
    </body>
 </html>

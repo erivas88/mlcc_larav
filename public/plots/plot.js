@@ -70,13 +70,18 @@ $(document).ready(function() {
                 layout: 'horizontal', // Mantiene los elementos uno al lado del otro
                 y: -10, // Ajuste fino para separarla un poco del borde superior
                 itemStyle: {
-                    fontWeight: '400',
+                    fontWeight: '700',
                     color: '#7f8c8d', // Gris elegante
-                    fontSize: '10px'
+                    fontSize: '11px'
                 },
                 itemHoverStyle: {
                     color: '#34495e'
-                }
+                },
+                 style: {
+                        color: '#7f8c8d',
+                        fontWeight: '700',
+                        fontSize: '11px'
+                    }
             },
 
             xAxis: {
@@ -240,9 +245,8 @@ $(document).ready(function() {
         const urlSegments = window.location.pathname.split('/');
         const idEstacion = urlSegments.pop() || urlSegments.pop();
 
-        if (idEstacion && !isNaN(idEstacion) && idParametro && idPeriodo) {
-            /*$('#chart-container').html(`<div class="text-center p-5"><div class="spinner-border" style="color:${colorCaserones}" role="status"></div><p class="mt-2">Procesando datos...</p></div>`);
-             */
+        /*if (idEstacion && !isNaN(idEstacion) && idParametro && idPeriodo) {
+            
             $('#chart-container').html(`
     <div class="chart-loading-overlay">
         <div class="custom-loader"></div>
@@ -250,7 +254,23 @@ $(document).ready(function() {
             Sincronizando registros...
         </p>
     </div>
-`);
+`);*/
+
+if (idEstacion && !isNaN(idEstacion) && idParametro && idPeriodo) {
+    // Aplicamos el overlay con un contenedor de borde completo
+    $('#chart-container').html(`
+        <div class="chart-loading-wrapper">
+            <div class="chart-loading-overlay">
+                <div class="custom-loader"></div>
+                <p class="loading-text">
+                    Sincronizando registros...
+                </p>
+            </div>
+        </div>
+    `);
+
+    // Iniciar llamada AJAX...
+
             $.ajax({
                 url: "https://7j63yn4jf9.execute-api.us-east-1.amazonaws.com/Prod/obtener-datos-grafico",
                 method: "POST",

@@ -11,8 +11,8 @@
                      <a href="{{ url('/sector/' . $idSistema) }}" class="flex-grow-1 text-decoration-none">
                      <button class="accordion-button {{ $sistemaOpen ? '' : 'collapsed' }} py-2 px-3 bg-transparent shadow-none" 
                         type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $idSistema }}">
-                     <i class="fas fa-layer-group me-2" style="color: {{ $primerRegistro->color_sistema }};"></i>
-                     <span class="fw-bold" style="color: white; font-size: 13px;">{{ $primerRegistro->nombre_sistema }}</span>
+                     <i class="fas fa-layer-group me-2 fw-bold" style="color: {{ $primerRegistro->color_sistema }};"></i>
+                     <span class="fw-bold" style="color: white; font-size: 13px; font-weight: normal !important">{{ $primerRegistro->nombre_sistema }}</span>
                      </button>
                      </a>
                   </h2>

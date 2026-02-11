@@ -1352,3 +1352,130 @@ info-title {
         font-weight: 700;
         color: #333;
     }
+
+
+   
+    /* El contenedor que cubre toda el área del chart-container */
+    .chart-loading-wrapper {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fcfcfc; /* Fondo neutro muy claro */
+        border: 1px solid #eaeaea;  /* Borde fino similar a tus notas */
+        border-radius: 1px;       /* Radio elegante coincidente con el dashboard */
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.01); /* Sutil profundidad */
+        animation: pulseFade 2s infinite ease-in-out;
+    }
+
+    .chart-loading-overlay {
+        text-align: center;
+    }
+
+    .loading-text {
+        margin-top: 15px; 
+        color: #7f8c8d; /* Gris elegante de tus ejes */
+        font-family: 'Poppins', sans-serif; 
+        font-weight: 400; 
+        font-size: 13px;
+        letter-spacing: 0.5px;
+        text-transform: lowercase; /* Look minimalista moderno */
+    }
+
+    /* Animación de latido para el contenedor mientras carga */
+    @keyframes pulseFade {
+        0% { border-color: #eaeaea; }
+        50% { border-color: #0f7c91; opacity: 0.8; } /* Flash con tu color corporativo */
+        100% { border-color: #eaeaea; }
+    }
+
+    /* Tu custom-loader (asegúrate de tenerlo definido) */
+    .custom-loader {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #0f7c91; /* Color Caserones */
+        border-radius: 50%;
+        display: inline-block;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+
+     .tope-majestuoso {
+        background-color: #34495e; /* Azul pizarra coherente con el mapa */
+        padding: 0 25px;
+        display: flex;
+        align-items: center;       /* Centrado vertical de todos los elementos */
+        min-height: 55px;          /* Altura estandarizada para evitar saltos */
+        border-radius: 0 0 0 20px; /* Curva característica inferior izquierda */
+        margin-bottom: 20px;
+        border: none;
+        overflow: hidden;
+    }
+
+    #sistema-header {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        flex-wrap: nowrap;
+    }
+
+    .sistema-main {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .sistema-icon {
+        font-size: 18px;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    .sistema-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 17px;
+        font-weight: 300;
+        color: #FFFFFF;
+        letter-spacing: 1.5px;
+        margin: 0;
+        white-space: nowrap;
+        line-height: 1;            /* Centrado óptico mejorado */
+    }
+
+    .sistema-divider {
+        color: #b08506;            /* Dorado ocre de los divisores editoriales */
+        font-size: 22px;
+        font-weight: 200;
+        margin: 0 20px;
+        opacity: 0.5;
+        line-height: 1;
+    }
+
+    .sistema-brand {
+        display: flex;
+        flex-direction: column; 
+        justify-content: center;   /* Centrado vertical del bloque de texto */
+        line-height: 1.1;
+    }
+
+    .brand-name {
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: none;
+    }
+
+    .brand-group {
+        font-size: 10px;
+        font-weight: 400;
+        color: #95a5a6;            /* Gris suave para la marca secundaria */
+        letter-spacing: 3px;       /* Kerning premium majestuoso */
+        margin-top: 2px;
+        text-transform: uppercase;
+    }
