@@ -36,9 +36,9 @@
                      </select>
                   </div>
                </div>
-               <div class="col-lg-12">
-                  <br>
-                  <div id="chart-container" style="height: 450px; position: relative;">                      
+               <div class="col-lg-12" id="chart-container" style="height: 450px; position: relative;">
+                  
+                                     
                   </div>
                </div>
                <hr>
