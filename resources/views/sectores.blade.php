@@ -34,15 +34,34 @@
                      $sistemaOpen = ($idSistema == $idActivo || $registrosSistema->contains('estado_seleccion', 'open'));
                      @endphp
                      <div class="accordion-item border-0 mb-1">
-                        <h2 class="accordion-header d-flex bg-white" style="border-left: 4px solid {{ $primerRegistro->color_sistema }};">
+                       <!-- <h2 class="accordion-header d-flex bg-white" style="border-left: 4px solid {{ $primerRegistro->color_sistema }};">
                            <a href="{{ url('/sector/' . $idSistema) }}" class="flex-grow-1 text-decoration-none">
                            <button class="accordion-button {{ $sistemaOpen ? '' : 'collapsed' }} py-2 px-3 bg-transparent shadow-none" 
                               type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $idSistema }}">
-                           <i class="fas fa-layer-group me-2" style="color: {{ $primerRegistro->color_sistema }};"></i>
+                               <span class="icon-square" style="background: rgba(237, 142, 36, 0.1); border: 1px solid rgba(237, 142, 36, 0.2);">
+                           <i class="fas fa-layer-group me-2" style="color: {{ $primerRegistro->color_sistema }};"></i></span>
                            <span class="fw-bold" style="color: white; font-size: 13px; font-weight: normal !important">{{ $primerRegistro->nombre_sistema }}</span>
                            </button>
                            </a>
-                        </h2>
+                        </h2>-->
+
+                        <h2 class="accordion-header d-flex bg-white" style="border-left: 4px solid {{ $primerRegistro->color_sistema }};">
+    <a href="{{ url('/sector/' . $idSistema) }}" class="flex-grow-1 text-decoration-none">
+        <button class="accordion-button {{ $sistemaOpen ? '' : 'collapsed' }} py-2 px-3 bg-transparent shadow-none" 
+                type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $idSistema }}">
+            
+            <span class="icon-square" style="background-color: {{ $primerRegistro->color_sistema }}1A; border: 1px solid {{ $primerRegistro->color_sistema }}33;">
+                <i class="fas fa-layer-group" style="color: {{ $primerRegistro->color_sistema }}; font-size: 16px;"></i>
+            </span>
+
+            <span class="fw-bold" style="color: white; font-size: 13px; font-weight: normal !important">
+                {{ $primerRegistro->nombre_sistema }}
+            </span>
+            
+        </button>
+    </a>
+</h2>
+
                         <div id="collapse{{ $idSistema }}" class="accordion-collapse collapse {{ $sistemaOpen ? 'show' : '' }}" data-bs-parent="#accordionExample">
                            <div class="accordion-body p-0">
                               <div class="list-group list-group-flush" id="subAccordion{{ $idSistema }}">

@@ -83,6 +83,7 @@
             <div class="row" >
                 @include('partials.menu_n')
                 @include('partials.mapa')
+                @include('partials.modals')
             </div>
          </div>
          <!-- Footer -->
@@ -113,7 +114,7 @@
     function scrollCarrusel(direction) {
         const track = document.getElementById('carruselTrack');
         const cardWidth = track.querySelector('.objetivo-card').offsetWidth;
-        const gap = 20; // El mismo gap definido en el CSS
+        const gap = 30; // El mismo gap definido en el CSS
         
         // Calculamos el avance de 2 tarjetas
         const scrollAmount = (cardWidth + gap) * 2; 
@@ -124,6 +125,24 @@
         });
     }
 </script>
-      </script>
+     <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Seleccionamos el modal por su ID
+        const modalObjetivo = document.getElementById('modalObjetivo');
+
+        if (modalObjetivo) {
+            // Creamos la instancia de Bootstrap 5
+            const bsModal = new bootstrap.Modal(modalObjetivo, {
+                backdrop: 'static', // Evita que se cierre al hacer clic afuera (opcional)
+                keyboard: true      // Permite cerrar con la tecla Esc
+            });
+
+            // Pequeño delay de 500ms para que la carga visual sea más suave
+            setTimeout(() => {
+                bsModal.show();
+            }, 500);
+        }
+    });
+</script>
    </body>
 </html>

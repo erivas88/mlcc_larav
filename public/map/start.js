@@ -111,14 +111,14 @@ window.onload = function() {
     var miniMapLayer = L.tileLayer(mbUrl1);
     var miniMapGroup = L.layerGroup([miniMapLayer, overlaysMinimap]);
 
-    var miniMap = new L.Control.MiniMap(miniMapGroup, {
+    /*var miniMap = new L.Control.MiniMap(miniMapGroup, {
         position: 'bottomleft',
         width: 110, height: 110,
         zoomLevelOffset: -2,
         toggleDisplay: true,
         aimingRectOptions: {color: "#ffffff", weight: 1.5, opacity: 0.8, fillOpacity: 0.1},
         shadowRectOptions: {color: "#000", weight: 1, opacity: 0, fillOpacity: 0}
-    }).addTo(mymap);
+    }).addTo(mymap);*/
 
     // --- 8. ETIQUETAS GEOGRÁFICAS FIJAS ---
     const geoLabels = [
