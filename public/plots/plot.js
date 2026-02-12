@@ -123,14 +123,14 @@ $(document).ready(function() {
                 lineColor: '#cccccc', // Color de la línea (ajusta según tu eje X)
                 gridLineWidth: 1, // Las líneas horizontales de fondo (opcional)
                 tickWidth: 1,
-                title: {
+                /*title: {
                     text: respuesta.unidad,
                     style: {
                         color: '#7f8c8d',
                         fontWeight: '700',
                         fontSize: '11px'
                     }
-                },
+                },*/
                 labels: {
                     // Aplica los decimales dinámicos del API
                     format: '{value:.' + respuesta.decimales + 'f}',

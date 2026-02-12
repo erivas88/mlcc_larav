@@ -1,6 +1,6 @@
 body {
 	/* Cambia background-size de 100% a cover */
-	background: url("../images/background.jpg") no-repeat center center fixed;
+	background: url("../images/background_max.png") no-repeat center center fixed;
 	background-size: cover;
 	/* Esto obliga a la imagen a llenar todo el espacio disponible sin deformarse */
 	margin: 0;

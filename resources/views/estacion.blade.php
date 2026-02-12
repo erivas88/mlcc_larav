@@ -59,6 +59,7 @@
                </div>
             </div>
          </div>
+</div>
          <!-- Footer -->
          @include('partials.footer')
       </div>
