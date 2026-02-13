@@ -91,6 +91,7 @@ window.onload = function() {
     drawPremiumVector(planta_procesos, {color: '#48FEAC', fillColor: '#be0000', fillOpacity: 0.05, weight: 3}, "Planta de Procesos");
     drawPremiumVector(campamentos, {color: 'red', ...stInd}, "Campamento");
 
+
     const depositos = [
         {geo: deposito_lastre, col: '#FFFF5C', name: 'Depósito de Lastre', id: 4},
         {geo: ramadillas, col: '#33B503', name: 'Sistema Ramadillas', id: 3},
@@ -114,7 +115,6 @@ window.onload = function() {
     /*var miniMap = new L.Control.MiniMap(miniMapGroup, {
         position: 'bottomleft',
         width: 110, height: 110,
-        zoomLevelOffset: -2,
         toggleDisplay: true,
         aimingRectOptions: {color: "#ffffff", weight: 1.5, opacity: 0.8, fillOpacity: 0.1},
         shadowRectOptions: {color: "#000", weight: 1, opacity: 0, fillOpacity: 0}

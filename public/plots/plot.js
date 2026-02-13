@@ -122,15 +122,7 @@ $(document).ready(function() {
                 lineWidth: 1, // Esto hace visible la línea vertical del eje Y
                 lineColor: '#cccccc', // Color de la línea (ajusta según tu eje X)
                 gridLineWidth: 1, // Las líneas horizontales de fondo (opcional)
-                tickWidth: 1,
-                /*title: {
-                    text: respuesta.unidad,
-                    style: {
-                        color: '#7f8c8d',
-                        fontWeight: '700',
-                        fontSize: '11px'
-                    }
-                },*/
+                tickWidth: 1,              
                 labels: {
                     // Aplica los decimales dinámicos del API
                     format: '{value:.' + respuesta.decimales + 'f}',
