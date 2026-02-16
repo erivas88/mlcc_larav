@@ -134,7 +134,7 @@ function actualizarBuscador() {
 
 function loadMarkersBySubsistema(idSub) {
     $.ajax({
-        url: "/caserones/public/api/get-sector-markers",
+        url: "/api/get-sector-markers",
         type: "POST",
         data: { sector: SECTOR_ID, subsistema: idSub },
         dataType: "JSON",
@@ -155,7 +155,7 @@ function loadMarkersBySubsistema(idSub) {
 
 function loadMarkersGlobal(idSec) {
     $.ajax({
-        url: "/caserones/public/api/get-markers",
+        url: "/api/get-markers",
         type: "POST",
         data: { sector: idSec },
         dataType: "JSON",
