@@ -89,7 +89,7 @@ function createFullMarker(latlng, color, nombre, id) {
     
     const popupContent = `
         <div class="popup-action-container">
-            <a href="/caserones/public/estacion/${id}" class="btn-pro-detalles">
+            <a href="/estacion/${id}" class="btn-pro-detalles">
                 <i class="fas fa-satellite-dish"></i> Ver Estación
             </a>
         </div>
@@ -288,7 +288,7 @@ document.addEventListener('click', function(e) {
 });
 
 function cambiarSectorManual(nuevoId) {
-    const nuevaUrl = `/caserones/public/sector/${nuevoId}`;
+    const nuevaUrl = `/sector/${nuevoId}`;
     if (nuevoId !== SECTOR_ID) {
         window.location.href = nuevaUrl;
     } else {
