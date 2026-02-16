@@ -20,13 +20,21 @@
             </div>
             <div class="info-block px-4 py-3 border-bottom bg-light-subtle">
                <label class="info-title">Profundidad</label>
-               <div class="info-text">
-                  @if(isset($ficha['multinivel']) && $ficha['multinivel'] == 1 && isset($ficha['datosMultinivel']))
-                  {{ collect($ficha['datosMultinivel'])->pluck('profundidad_sma')->implode(' m; ') }} m
-                  @else
-                  {{ $ficha['profundidad_sma'] ?? 'No definida' }} {{ isset($ficha['profundidad_sma']) ? 'm' : '' }}
-                  @endif
-               </div>
+              <div class="info-text">
+    @if(isset($ficha['multinivel']) && $ficha['multinivel'] == 1 && isset($ficha['datosMultinivel']))
+        {{ collect($ficha['datosMultinivel'])
+            ->pluck('profundidad_sma')
+            ->filter(fn($v) => is_numeric($v))
+            ->implode(' m; ') }} m
+    @else
+        @if(isset($ficha['profundidad_sma']) && is_numeric($ficha['profundidad_sma']))
+            {{ $ficha['profundidad_sma'] }} m
+        @else
+            No Aplica
+        @endif
+    @endif
+</div>
+
             </div>
             <div class="info-block px-4 py-3 border-bottom">
                <label class="info-title">Tipo de Agua</label>
@@ -106,15 +114,26 @@
                      <span class="img-value">{{ $ficha['nombre_estacion'] }}</span>
                   </div>
                </div>
-               @if(isset($ficha['profundidad_sma']))
-               <div class="img-divider-glass"></div>
-               <div class="img-item">
-                  <div class="img-data">
-                     <span class="img-label">PROFUNDIDAD</span>
-                     <span class="img-value">{{ $ficha['profundidad_sma'] }}<small>m</small></span>
-                  </div>
-               </div>
-               @endif
+
+               @php
+    $prof = $ficha['profundidad_sma'] ?? null;
+@endphp
+
+<div class="img-divider-glass"></div>
+<div class="img-item">
+    <div class="img-data">
+        <span class="img-label">PROFUNDIDAD</span>
+        <span class="img-value">
+            @if(is_numeric($prof))
+                {{ $prof }}<small>m</small>
+            @else
+                —
+            @endif
+        </span>
+    </div>
+</div>
+
+
             </div>
             @endif
          </div>
