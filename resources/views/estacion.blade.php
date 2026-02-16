@@ -3,7 +3,8 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Sistema de Monitoreo</title>
+      <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/png">
+      <title>  {{ $ficha['nombre_pdc'] ?? 'Punto de Control' }}</title>
       <!-- Bootstrap CSS -->
       <link href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.min.css" rel="stylesheet">
       <link rel="stylesheet" href="https://unpkg.com/maplibre-gl-minimap/dist/maplibre-gl-minimap.css">
@@ -19,47 +20,41 @@
       <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
    </head>
-
- 
    <body>
       <div class="main-container">
       @include('partials.navbar')
       <style>
       </style>
       <div class="container-fluid mt-4">
-      <div class="row" >
-         @include('partials.side_estacion')
-         <div class="col-md-9">
-            <div class="panel">
-               <div class="tope-majestuoso"> 
-    <div id="sistema-header"> 
-        <div class="sistema-main">
-            <i class="fas fa-map-marker-alt sistema-icon" 
-               style="color: {{ $ficha['color'] ?? '#1abc9c' }}"></i>
-            <h1 class="sistema-title">
-                {{ $ficha['nombre_pdc'] ?? 'Punto de Control' }}
-            </h1>
-        </div>
-
-        <span class="sistema-divider"><i class="fas fa-chevron-right "></i></span>
-
-        <div class="sistema-brand">
-            <span class="brand-name" style="color: #FFFFFF; font-weight: normal">
-                {{ $ficha['objetivo'] ?? 'Monitoreo Ambiental' }}
-            </span>
-            
-        </div>
-    </div>
-</div>
-               <hr>
-               <div class="row g-4">
-                  @include('partials.info')
-                  @include('partials.chart')
-                 
+         <div class="row" >
+            @include('partials.side_estacion')
+            <div class="col-md-9">
+               <div class="panel">
+                  <div class="tope-majestuoso">
+                     <div id="sistema-header">
+                        <div class="sistema-main">
+                           <i class="fas fa-map-marker-alt sistema-icon" 
+                              style="color: {{ $ficha['color'] ?? '#1abc9c' }}"></i>
+                           <h1 class="sistema-title">
+                              {{ $ficha['nombre_pdc'] ?? 'Punto de Control' }}
+                           </h1>
+                        </div>
+                        <span class="sistema-divider"><i class="fas fa-chevron-right "></i></span>
+                        <div class="sistema-brand">
+                           <span class="brand-name" style="color: #FFFFFF; font-weight: normal">
+                           {{ $ficha['objetivo'] ?? 'Monitoreo Ambiental' }}
+                           </span>
+                        </div>
+                     </div>
+                  </div>
+                  <hr>
+                  <div class="row g-4">
+                     @include('partials.info')
+                     @include('partials.chart')
+                  </div>
                </div>
             </div>
          </div>
-</div>
          <!-- Footer -->
          @include('partials.footer')
       </div>
@@ -68,7 +63,6 @@
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-      
       <link rel="stylesheet" href="{{ asset('map/leaflet.css') }}">
       <script type="text/javascript" src="{{ asset('map/leaflet.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/leaflet-label.js') }}"></script>
