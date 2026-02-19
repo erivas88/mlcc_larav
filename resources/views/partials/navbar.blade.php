@@ -204,7 +204,7 @@
       <nav class="nav-links-artistic">
     <a href="{{ url('/') }}" class="{{ Request::is('/') ? 'active' : '' }}">Inicio</a>
     <a href="{{ url('glosario') }}" class="{{ Request::is('glosario') ? 'active' : '' }}">Glosario</a>
-    <a href="{{ url('contacto') }}" class="{{ Request::is('contacto') ? 'active' : '' }}">Contáctenos</a>
+    <a href="https://www.caserones.cl/contacto/" class="{{ Request::is('contacto') ? 'active' : '' }}">Contáctenos</a>
 </nav>
    </div>
 </header>

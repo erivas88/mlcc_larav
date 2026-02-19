@@ -114,10 +114,9 @@
                      <span class="img-value">{{ $ficha['nombre_estacion'] }}</span>
                   </div>
                </div>
-
                @php
-    $prof = $ficha['profundidad_sma'] ?? null;
-@endphp
+                $prof = $ficha['profundidad_sma'] ?? null;
+               @endphp0
 
 <div class="img-divider-glass"></div>
 <div class="img-item">

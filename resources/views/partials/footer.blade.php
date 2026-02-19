@@ -93,13 +93,10 @@
 
          <div class="col-lg-3 d-flex flex-column info-contact">
             <a href="tel:+56234567890" class="footer-link">
-                <span class="label">Teléfono</span> <span class="value">+56 2 3456 7890</span>
-            </a>
-            <a href="mailto:comunicaciones@caserones.cl" class="footer-link">
-                <span class="label">Email</span> <span class="value">comunicaciones@caserones.cl</span>
-            </a>
-            <a href="https://www.aminerals.com" target="_blank" class="footer-link">
-                <span class="label">Web</span> <span class="value">www.aminerals.com</span>
+                <span class="label">Teléfono</span> <span class="value"> +(56 52) 2485050</span>
+            </a>           
+            <a href="https://www.caserones.cl" target="_blank" class="footer-link">
+                <span class="label">Web</span> <span class="value">www.caserones.cl</span>
             </a>
          </div>
 
