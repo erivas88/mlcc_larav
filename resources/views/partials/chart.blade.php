@@ -17,6 +17,8 @@
                         <option value="1">Últimas 24 Horas</option>
                         <option value="2">Últimos 7 Días</option>
                         <option value="3">Último Mes</option>
+                        <option value="4">Último 3 Meses</option>
+                        <option value="6">Año</option>
                         <option value="7">Año</option>
                      </select>
                   </div>

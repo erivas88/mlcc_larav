@@ -21,18 +21,18 @@
             <div class="info-block px-4 py-3 border-bottom bg-light-subtle">
                <label class="info-title">Profundidad</label>
               <div class="info-text">
-    @if(isset($ficha['multinivel']) && $ficha['multinivel'] == 1 && isset($ficha['datosMultinivel']))
-        {{ collect($ficha['datosMultinivel'])
-            ->pluck('profundidad_sma')
-            ->filter(fn($v) => is_numeric($v))
-            ->implode(' m; ') }} m
-    @else
-        @if(isset($ficha['profundidad_sma']) && is_numeric($ficha['profundidad_sma']))
-            {{ $ficha['profundidad_sma'] }} m
-        @else
-            No Aplica
-        @endif
-    @endif
+               @if(isset($ficha['multinivel']) && $ficha['multinivel'] == 1 && isset($ficha['datosMultinivel']))
+                  {{ collect($ficha['datosMultinivel'])
+                        ->pluck('profundidad_sma')
+                        ->filter(fn($v) => is_numeric($v))
+                        ->implode(' m; ') }} m
+               @else
+                  @if(isset($ficha['profundidad_sma']) && is_numeric($ficha['profundidad_sma']))
+                        {{ $ficha['profundidad_sma'] }} m
+                  @else
+                        No Aplica
+                  @endif
+               @endif
 </div>
 
             </div>
