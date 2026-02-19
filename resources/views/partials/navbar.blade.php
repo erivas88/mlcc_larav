@@ -193,13 +193,25 @@
         transform: translateX(-50%);
         opacity: 0;
     }
+
+    
 </style>
 
 <header class="main-header-sublime">
    <div class="container-fluid d-flex justify-content-between align-items-center px-4">
       <a href="{{ url('/') }}" class="logo-wrapper">
-         <img src="{{ asset('images/logo.png') }}" alt="Logo Caserones" class="img-logo">
+    
+         <img 
+  src="{{ asset('images/logo.png') }}"
+  srcset="{{ asset('images/logo.png') }} 1x, {{ asset('images/logo@2x.png') }} 2x"
+  alt="Logo Caserones"
+  class="img-logo"
+>
+
       </a>
+
+
+      
       
       <nav class="nav-links-artistic">
     <a href="{{ url('/') }}" class="{{ Request::is('/') ? 'active' : '' }}">Inicio</a>

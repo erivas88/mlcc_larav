@@ -26,8 +26,7 @@
                </div>
                <div class="col-6">
                   <div class="filter-item">
-                     <label class="info-title">
-                        <!--<i class="fas fa-leaf" style="color:#117588 !important;" ></i> -->
+                     <label class="info-title">                        
                         <span>Parámetro</span>
                      </label>
                      <select id="sel-parametro" class="select2-pro" style="width: 100%;">

@@ -16,9 +16,9 @@
     }
 
     .footer-logo-partner {
-        max-width: 90px;
+        max-width: 120px;
         height: auto;
-        opacity: 0.6;
+        opacity: 0.;
         transition: opacity 0.3s;
     }
 
@@ -88,7 +88,9 @@
    <div class="container-fluid">
       <div class="row align-items-center py-5">
          <div class="col-lg-3 d-flex justify-content-center border-end-sublime">
-            <img src="{{ asset('images/logo_white.png') }}" class="footer-logo-main" alt="Caserones">
+            <a href="https://www.caserones.cl" target="_blank">
+               <img src="{{ asset('images/descarga_bw.png') }}" class="footer-logo-main" alt="Caserones">
+            </a>
          </div>
 
          <div class="col-lg-3 d-flex flex-column info-contact">
@@ -108,7 +110,9 @@
          </div>
 
          <div class="col-lg-3 d-flex justify-content-center">
-            <img src="{{ asset('images/gp-blanco.png') }}" class="footer-logo-partner" alt="GP Consultores">
+            <a href="https://www.gpconsultores.cl" target="_blank">
+                <img src="{{ asset('images/gp-blanco.png') }}" class="footer-logo-partner" alt="GP Consultores">
+            </a>
          </div>
       </div>
    </div>
