@@ -116,7 +116,7 @@
                </div>
                @php
                 $prof = $ficha['profundidad_sma'] ?? null;
-               @endphp0
+               @endphp
 
 <div class="img-divider-glass"></div>
 <div class="img-item">
