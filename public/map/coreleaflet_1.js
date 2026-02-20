@@ -3,6 +3,7 @@
  */
 var map, r, SECTOR_ID, SUBSISTEMA_ID;
 var searchControl; // Control para el buscador
+var currentBaseLayer; // Variable global para almacenar la capa base actual
 
 // --- 1. HERRAMIENTAS DE UNIFICACIÓN VISUAL ---
 
@@ -297,8 +298,39 @@ function cambiarSectorManual(nuevoId) {
     }
 }
 
-// --- 6. INICIALIZACIÓN ---
+// --- 6. INICIALIZACIÓN --- 
+var baseLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});
 
+var satelliteLayer = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+    attribution: '&copy; <a href="https://www.esri.com">ESRI</a>'
+});
+
+// Variable global para la capa base actual
+
+// Función para cambiar la capa base
+function cambiarCapaMapa() {
+    var mapaSeleccionado = document.querySelector('input[name="map-style"]:checked').value;
+
+    // Cambiar solo la capa base actual, sin eliminar las otras capas (marcadores, polígonos, etc.)
+    if (mapaSeleccionado === "mapa" && currentBaseLayer !== baseLayer) {
+        map.removeLayer(currentBaseLayer);  // Eliminar la capa base actual
+        map.addLayer(baseLayer);  // Añadir la capa estándar
+        currentBaseLayer = baseLayer;  // Actualizar la capa base actual
+    } else if (mapaSeleccionado === "satelite" && currentBaseLayer !== satelliteLayer) {
+        map.removeLayer(currentBaseLayer);  // Eliminar la capa base actual
+        map.addLayer(satelliteLayer);  // Añadir la capa satelital
+        currentBaseLayer = satelliteLayer;  // Actualizar la capa base actual
+    }
+}
+
+// Event listener para los cambios en los botones de radio
+document.querySelectorAll('input[name="map-style"]').forEach(function(radio) {
+    radio.addEventListener('change', cambiarCapaMapa);
+});
+
+// Inicialización del mapa y carga de capas
 window.onload = function() {
     const segments = window.location.pathname.split('/').filter(s => s !== "");
     const sIdx = segments.indexOf('sector');
@@ -307,15 +339,21 @@ window.onload = function() {
         SUBSISTEMA_ID = segments[sIdx + 2] || null;
     }
 
+    // Inicializa el mapa y define su vista
     map = L.map("mapid", { center: [-28.147151, -69.645], zoom: 12, zoomControl: false, attributionControl: false });
-    L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}").addTo(map);
+    
+    // Establecer la capa satelital como la capa base predeterminada
+    currentBaseLayer = satelliteLayer;  // Establecer la capa predeterminada
+    currentBaseLayer.addTo(map);  // Agregar la capa al mapa
 
+    // Agregar control de zoom
     L.control.zoom({
         position: 'bottomright' // Opciones: 'topleft', 'topright', 'bottomleft', 'bottomright'
     }).addTo(map);
 
-    renderizarCapasBase();
+    renderizarCapasBase();  // Función para dibujar las capas de objetos (polígonos, marcadores, etc.)
 
+    // Cargar los marcadores y capas correspondientes
     if (SECTOR_ID) {
         if (SUBSISTEMA_ID) loadMarkersBySubsistema(SUBSISTEMA_ID);
         else loadMarkersGlobal(SECTOR_ID);
