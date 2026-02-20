@@ -296,6 +296,17 @@
                         .layer-opt:hover span:not(input:checked + span) {
                         background: rgba(255, 255, 255, 0.1);
                         }
+                        
+                        /* Nota al pie técnica */
+                        .objetivo-nota {
+                           font-size: 11.5px;
+                           color: #999;
+                           font-style: italic;
+                           border-top: 1px solid #f0f0f0;
+                           padding-top: 20px;
+                           max-width: 80%; /* La nota sí se encajona un poco para elegancia */
+                           margin: 0 auto;
+                        }
                      </style>
                      <div id="mapid" style="height: 600px; position: relative;" class="rounded shadow-sm border-0">
                         <div class="layer-control-floating">
@@ -312,6 +323,20 @@
                         </div>
                         @endif
                      </div>
+                       @if($nombreSubActivo)
+    <center>
+        <p class="objetivo-nota">
+            <i class="fa fa-map-marker-alt"></i> Seleccione la  estación correspondiente al sector para visualizar la información detallada.
+        </p>
+    </center>
+@else
+    <center>
+        <p class="objetivo-nota">
+           <i class="fa fa-map-marker-alt"></i> Seleccione la estación correspondiente al sector para visualizar la información detallada.
+        </p>
+    </center>
+@endif
+                       
                   </div>
                </div>
             </div>

@@ -377,13 +377,6 @@
 
 </style>
 
-
-
-
-
-
-
-
 <div class="col-md-9">
    <div class="panel">
       <div class="tope-majestuoso-inicio">
@@ -399,40 +392,30 @@
          </div>
       </div>
       <hr>
-     
-
       <div id="mapid" style="height: 600px; position: relative; overflow: hidden;" class="rounded shadow-sm border border-gray-200">
-    
-    <div class="badge-caserones-floating" style="position: absolute; top: 20px; right: 20px; z-index: 1000;">
-        <i class="fas fa-map-marker-alt"></i>
-        <span> MLCC</span>
-    </div>
-
-    
-
-    <div class="map-legend-floating">
-    <div class="legend-item">
-        <i class="fas fa-circle indicator purple"></i>
-        <span class="label">Depósito  de Lamas La Brea</span>
-    </div>
-    
-    <div class="legend-item">
-        <i class="fas fa-circle indicator orange"></i>
-        <span class="label">Depósito de Arenas Caserones</span>
-    </div>
-    
-    <div class="legend-item">
-        <i class="fas fa-circle indicator yellow"></i>
-        <span class="label">Depósito de Lastre</span>
-    </div>
-    
-    <div class="legend-item">
-        <i class="fas fa-circle indicator green"></i>
-        <span class="label">Sector Río Ramadillas</span>
-    </div>
-</div>
-</div>
-
+         <div class="badge-caserones-floating" style="position: absolute; top: 20px; right: 20px; z-index: 1000;">
+            <i class="fas fa-map-marker-alt"></i>
+            <span> MLCC</span>
+         </div>
+         <div class="map-legend-floating">
+            <div class="legend-item">
+               <i class="fas fa-circle indicator purple"></i>
+               <span class="label">Depósito  de Lamas La Brea</span>
+            </div>
+            <div class="legend-item">
+               <i class="fas fa-circle indicator orange"></i>
+               <span class="label">Depósito de Arenas Caserones</span>
+            </div>
+            <div class="legend-item">
+               <i class="fas fa-circle indicator yellow"></i>
+               <span class="label">Depósito de Lastre</span>
+            </div>
+            <div class="legend-item">
+               <i class="fas fa-circle indicator green"></i>
+               <span class="label">Sector Río Ramadillas</span>
+            </div>
+         </div>
+      </div>
       <p class="objetivo-nota">
          Se presenta las mediciones a distancia efectuadas con sondas multiparamétricas instaladas en los puntos de medición; por tanto, se trata de datos crudos sin un proceso de revisión.
       </p>
