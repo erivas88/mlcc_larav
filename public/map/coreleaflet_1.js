@@ -295,7 +295,7 @@ function cambiarSectorManual(nuevoId) {
     } else {
         window.history.pushState({}, '', nuevaUrl);
         loadMarkersGlobal(nuevoId);
-    }
+    }  
 }
 
 // --- 6. INICIALIZACIÓN --- 

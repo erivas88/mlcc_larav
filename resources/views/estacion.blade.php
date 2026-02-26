@@ -72,17 +72,54 @@
       <script type="text/javascript" src="{{ asset('map/sectores.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/rios.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/quebradas.js') }}"></script>
-      <script type="text/javascript" src="{{ asset('map/mapa_estacion.js') }}"></script>
+      <script type="text/javascript" src="{{ asset('map/multi_mapa.js') }}"></script>
       <script>
-         document.addEventListener('DOMContentLoaded', function() {
+         /*document.addEventListener('DOMContentLoaded', function() {
             // Los datos provienen del controlador que usa UtmHelper::ToLL
-            initMapEstacion({
+           initMapEstacion({
                   lat: {{ $ficha['latitud'] }},
                   lon: {{ $ficha['longitud'] }},
                   nombre: "{{ $ficha['nombre_estacion_unificado'] }}",
                   color: "{{ $ficha['color'] ?? '#2ecc71' }}"
+            });*/
+
+            
+
+
+            </script>
+
+     <script>
+ document.addEventListener('DOMContentLoaded', function() {
+        // Verificamos si la estación es multinivel
+        if ({{ isset($ficha['multinivel']) && $ficha['multinivel'] == 1 ? 'true' : 'false' }}) {
+            // Inicializamos cada mapa en el carrusel
+            @foreach($ficha['datosMultinivel'] as $miembro)
+                initMapEstacion({
+                    lat: {{ $miembro->latitud }},
+                    lon: {{ $miembro->longitud }},
+                    nombre: "{{ $miembro->nombre_estacion }}",
+                    color: "{{ $miembro->color ?? '#2ecc71' }}",
+                    mapId: 'map-{{ $miembro->id_estacion }}'
+                });
+            @endforeach
+        } else {
+            // Si no es multinivel, inicializamos el mapa único
+            initMapEstacion({
+                lat: {{ $ficha['latitud'] }},
+                lon: {{ $ficha['longitud'] }},
+                nombre: "{{ $ficha['nombre_estacion_unificado'] }}",
+                color: "{{ $ficha['color'] ?? '#2ecc71' }}",
+                mapId: 'map-detail'
             });
-         });
+        }
+    });
+</script>
+
+
+         
+
+
+         
       </script>
       <script type="text/javascript" src="{{ asset('map/spin.min.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/leaflet.spin.min.js') }}"></script>
