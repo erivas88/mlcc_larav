@@ -20,13 +20,27 @@
                <label class="info-title">Profundidad</label>
                <div class="info-text">
                   @if(isset($ficha['multinivel']) && $ficha['multinivel'] == 1 && isset($ficha['datosMultinivel']))
-                  {{ collect($ficha['datosMultinivel'])
+                  {{
+                  collect($ficha['datosMultinivel'])
                   ->pluck('profundidad_sma')
                   ->filter(fn($v) => is_numeric($v))
-                  ->implode(' m; ') }} m
+                  ->map(function($v) {
+                  $v = (float) $v;
+                  return $v == intval($v)
+                  ? intval($v)
+                  : rtrim(rtrim(number_format($v, 2, ',', ''), '0'), ',');
+                  })
+                  ->implode(' m; ')
+                  }} m
                   @else
                   @if(isset($ficha['profundidad_sma']) && is_numeric($ficha['profundidad_sma']))
-                  {{ $ficha['profundidad_sma'] }} m
+                  @php
+                  $v = (float) $ficha['profundidad_sma'];
+                  @endphp
+                  {{ $v == intval($v)
+                  ? intval($v)
+                  : rtrim(rtrim(number_format($v, 2, ',', ''), '0'), ',')
+                  }} m
                   @else
                   No Aplica
                   @endif
@@ -45,7 +59,7 @@
             </div>
             <div class="info-block px-4 py-3">
                <label class="info-title">Inicio Mediciones</label>
-               <div class="info-text">30-12-2021</div>
+               <div class="info-text">{{ $ficha['fecha_mediciones'] }}</div>
             </div>
          </div>
       </div>
@@ -83,7 +97,22 @@
                         <div class="img-item">
                            <div class="img-data">
                               <span class="img-label">PROFUNDIDAD</span>
-                              <span class="img-value">{{ $miembro->profundidad_sma }}<small>m</small></span>
+                              <span class="img-value">
+                              @if(is_numeric($miembro->profundidad_sma))
+                              @php
+                              $valor = (float) $miembro->profundidad_sma;
+                              // Si es entero, no mostrar decimales
+                              if (floor($valor) == $valor) {
+                              $formateado = number_format($valor, 0, ',', '');
+                              } else {
+                              $formateado = rtrim(rtrim(number_format($valor, 2, ',', ''), '0'), ',');
+                              }
+                              @endphp
+                              {{ $formateado }}<small>m</small>
+                              @else
+                              {{ $miembro->profundidad_sma }}
+                              @endif
+                              </span>
                            </div>
                         </div>
                         @endif
@@ -119,7 +148,8 @@
                      <span class="img-label">PROFUNDIDAD</span>
                      <span class="img-value">
                      @if(is_numeric($prof))
-                     {{ $prof }}<small>m</small>
+                     {{ rtrim(rtrim(number_format($prof, 2, ',', ''), '0'), ',') }}
+                     <small>m</small>
                      @else
                      —
                      @endif
@@ -132,109 +162,4 @@
       </div>
    </div>
 </div>
-
-<div class="col-md-4">
-    <div class="card h-100 border-0 shadow-sm rounded-3">
-        <div class="card-header border-0 py-3 d-flex align-items-center text-dark bg-white"
-             style="border-radius: 8px 8px 0 0; border-bottom: 1px solid #f0f0f0 !important;">
-            <i class="fas fa-map me-2 opacity-75" style="color:#117588 !important;"></i>
-            <h6 class="mb-0 fw-bold" style="letter-spacing: 0.5px; font-size: 12px; color: #2c3e50;">
-                Localización Multinivel
-            </h6>
-        </div>
-
-        <div class="card-body p-2">
-            <div class="rounded-2 overflow-hidden border bg-light"
-                 style="height: 300px; position: relative; border-radius: 12px !important;">
-
-                @if(isset($ficha['multinivel']) && $ficha['multinivel'] == 1 && count($ficha['datosMultinivel']) > 0)
-
-                    <div id="carouselMapas" class="carousel slide w-100 h-100" data-bs-ride="carousel">
-                        <div class="carousel-inner h-100">
-
-                            @foreach($ficha['datosMultinivel'] as $index => $miembro)
-                                <div class="carousel-item h-100 {{ $index == 0 ? 'active' : '' }}">
-                                    <!-- Contenedor para el mapa -->
-                                    <div id="map-{{ $miembro->id_estacion }}" class="w-100 h-100"></div>
-
-                                    <!-- Información de la estación -->
-                                    <div class="img-cintillo-sharp-glass">
-                                        <div class="img-item">
-                                            <div class="img-data">
-                                                <span class="img-label">ESTACIÓN</span>
-                                                <span class="img-value">{{ $miembro->nombre_estacion }}</span>
-                                            </div>
-                                        </div>
-
-                                        @if(isset($miembro->profundidad_sma))
-                                        <div class="img-divider-glass"></div>
-                                        <div class="img-item">
-                                            <div class="img-data">
-                                                <span class="img-label">PROFUNDIDAD</span>
-                                                <span class="img-value">{{ $miembro->profundidad_sma }}<small>m</small></span>
-                                            </div>
-                                        </div>
-                                        @endif
-                                    </div>
-
-                                </div>
-                            @endforeach
-                        </div>
-
-                        <!-- Controles del carrusel -->
-                        <button class="carousel-control-prev" type="button"
-                                data-bs-target="#carouselMapas" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon"></span>
-                        </button>
-
-                        <button class="carousel-control-next" type="button"
-                                data-bs-target="#carouselMapas" data-bs-slide="next">
-                            <span class="carousel-control-next-icon"></span>
-                        </button>
-                    </div>
-
-                @else
-                    {{-- mapa normal --}}
-                    <div id="map-detail" class="w-100 h-100"></div>
-                @endif
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<!--<div class="col-md-4">
-   <div class="card h-100 border-0 shadow-sm rounded-3">
-      <div class="card-header border-0 py-3 d-flex align-items-center text-dark bg-white" style="border-radius: 8px 8px 0 0; border-bottom: 1px solid #f0f0f0 !important;">
-         <i class="fas fa-map-marked-alt me-2 text-primary opacity-75" style="color:#117588 !important;"></i>
-         <h6 class="mb-0 fw-bold" style="letter-spacing: 0.5px; font-size: 12px; color: #2c3e50;">Localización UTM</h6>
-      </div>
-      <div class="card-body p-2">
-         <div class="map-wrapper" style="position: relative; height: 300px; overflow: hidden; border-radius: 12px;">
-            <div class="utm-cintillo-sharp-glass">
-               <div class="utm-item">
-                  <span class="indicator-n"></span>
-                  <div class="utm-data">
-                     <span class="label">NORTE</span>
-                     <span class="value">{{ number_format($ficha['utm_norte'], 0, ',', '.') }}<small>m</small></span>
-                  </div>
-               </div>
-               <div class="utm-divider-glass"></div>
-               <div class="utm-item">
-                  <span class="indicator-e"></span>
-                  <div class="utm-data">
-                     <span class="label">ESTE</span>
-                     <span class="value">{{ number_format($ficha['utm_este'], 0, ',', '.') }}<small>m</small></span>
-                  </div>
-               </div>
-            </div>
-            <div id="map-detail" class="w-100 h-100 border-0"></div>
-         </div>
-      </div>
-   </div>
-</div>-->
-
-<pre>
-    @dump($ficha)
-</pre>
+@include('partials.mapa_estacion')

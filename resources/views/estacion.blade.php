@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/png">
+      @include('partials.fav')
       <title>  {{ $ficha['nombre_pdc'] ?? 'Punto de Control' }}</title>
       <!-- Bootstrap CSS -->
       <link href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.min.css" rel="stylesheet">
@@ -15,8 +13,7 @@
       <link rel="stylesheet" href="{{ asset('map/leaflet.css') }}">
       <link rel="stylesheet" href="{{ asset('map/leaflet-label.css') }}">
       <link rel="stylesheet" href="{{ asset('map/L.Control.ZoomBox.css')}}">
-      <link rel="stylesheet" href="{{ asset('css/styles_reload.css') }}">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.min.css" />
+      <link rel="stylesheet" href="{{ asset('css/styles_reload.css') }}">     
       <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
    </head>
@@ -67,60 +64,91 @@
       <script type="text/javascript" src="{{ asset('map/leaflet.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/leaflet-label.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/leaflet-river.js') }}"></script>
-      <script type="text/javascript" src="{{ asset('map/L.Control.ZoomBox.js') }}"></script> 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.min.js"></script>
+      <script type="text/javascript" src="{{ asset('map/L.Control.ZoomBox.js') }}"></script>       
       <script type="text/javascript" src="{{ asset('map/sectores.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/rios.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/quebradas.js') }}"></script>
-      <script type="text/javascript" src="{{ asset('map/multi_mapa.js') }}"></script>
-      <script>
-         /*document.addEventListener('DOMContentLoaded', function() {
-            // Los datos provienen del controlador que usa UtmHelper::ToLL
-           initMapEstacion({
-                  lat: {{ $ficha['latitud'] }},
-                  lon: {{ $ficha['longitud'] }},
-                  nombre: "{{ $ficha['nombre_estacion_unificado'] }}",
-                  color: "{{ $ficha['color'] ?? '#2ecc71' }}"
-            });*/
+<script>
+document.addEventListener('DOMContentLoaded', function () {
 
-            
+    const carousel = document.getElementById('carouselMapas');
 
+    // 🔹 Si existe carrusel → es multinivel
+    if (carousel) {
 
-            </script>
+        const estaciones = @json($ficha['datosMultinivel'] ?? []);
+        const colorPrincipal = @json($ficha['color'] ?? '#2ecc71');
 
-     <script>
- document.addEventListener('DOMContentLoaded', function() {
-        // Verificamos si la estación es multinivel
-        if ({{ isset($ficha['multinivel']) && $ficha['multinivel'] == 1 ? 'true' : 'false' }}) {
-            // Inicializamos cada mapa en el carrusel
-            @foreach($ficha['datosMultinivel'] as $miembro)
-                initMapEstacion({
-                    lat: {{ $miembro->latitud }},
-                    lon: {{ $miembro->longitud }},
-                    nombre: "{{ $miembro->nombre_estacion }}",
-                    color: "{{ $miembro->color ?? '#2ecc71' }}",
-                    mapId: 'map-{{ $miembro->id_estacion }}'
-                });
-            @endforeach
-        } else {
-            // Si no es multinivel, inicializamos el mapa único
-            initMapEstacion({
-                lat: {{ $ficha['latitud'] }},
-                lon: {{ $ficha['longitud'] }},
-                nombre: "{{ $ficha['nombre_estacion_unificado'] }}",
-                color: "{{ $ficha['color'] ?? '#2ecc71' }}",
-                mapId: 'map-detail'
-            });
-        }
-    });
+        estaciones.forEach(e => {
+
+            const mapData = {
+                lat: parseFloat(e.latitud),
+                lon: parseFloat(e.longitud),
+                nombre: e.nombre_estacion,
+                color: e.color ||  colorPrincipal
+            };
+
+            console.log('🗺️ Multinivel → initMapEstacion:', mapData);
+
+            initMapEstacion(mapData, 'map-' + e.id_estacion);
+        });
+
+    } 
+    // 🔹 Si no existe carrusel → mapa normal
+    else {
+
+        const mapDetail = document.getElementById('map-detail');
+        if (!mapDetail) return;
+
+        const mapData = {
+            lat: parseFloat(@json($ficha['latitud'] ?? 'null')),
+            lon: parseFloat(@json($ficha['longitud'] ?? 'null')),
+            nombre: @json($ficha['nombre_estacion_unificado'] ?? ''),
+            color: @json($ficha['color'] ?? '#2ecc71')
+        };
+
+        console.log('🗺️ Mapa Normal → initMapEstacion:', mapData);
+
+        initMapEstacion(mapData, 'map-detail');
+    }
+
+});
 </script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const carousel = document.getElementById('carouselMapas');
+    if (!carousel) return;
+
+    carousel.addEventListener('slid.bs.carousel', function (e) {
+        const activeSlide = e.relatedTarget;
+        if (!activeSlide) return;
+
+        const mapDiv = activeSlide.querySelector("[id^='map-']");
+        if (!mapDiv) return;
+
+        const mapId = mapDiv.id;
+
+        // Si el mapa ya está cargado, actualiza su tamaño para que se muestre correctamente
+        if (window._maps && window._maps[mapId]) {
+            requestAnimationFrame(() => {
+                window._maps[mapId].invalidateSize();
+            });
+        }
+    });
+
+});
+</script>
+
+   
+
          
 
 
-         
-      </script>
+      <script type="text/javascript" src="{{ asset('map/multi_mapa.js') }}"></script>
+      
       <script type="text/javascript" src="{{ asset('map/spin.min.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/leaflet.spin.min.js') }}"></script>
       <script>
@@ -129,10 +157,10 @@
              nombre: "{{ $ficha['nombre_estacion_unificado'] }}"
          };
       </script>
-      <script src="https://code.highcharts.com/stock/highstock.js"></script>
-      <script src="https://code.highcharts.com/modules/exporting.js"></script>
-      <script src="https://code.highcharts.com/modules/export-data.js"></script>
-      <script src="https://code.highcharts.com/modules/no-data-to-display.js"></script>
+      <script type="text/javascript"  src="{{ asset('stock/code/highstock.js') }}"></script>
+      <script type="text/javascript"  src="{{ asset('stock/code/modules/exporting.js') }}"></script>
+      <script type="text/javascript"  src="{{ asset('stock/code/modules/export-data.js') }}"></script>
+      <script type="text/javascript"  src="{{ asset('stock/code/modules/no-data-to-display.js') }}"></script>
       <script type="text/javascript" src="{{ asset('plots/plot.js') }}"></script>
    </body>
 </html>

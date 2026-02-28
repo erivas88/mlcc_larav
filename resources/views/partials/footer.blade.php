@@ -89,7 +89,7 @@
       <div class="row align-items-center py-5">
          <div class="col-lg-3 d-flex justify-content-center border-end-sublime">
             <a href="https://www.caserones.cl" target="_blank">
-               <img src="{{ asset('images/descarga_bw.png') }}" class="footer-logo-main" alt="Caserones">
+               <img src="{{ asset('images/descarga_white.png') }}" class="footer-logo-main" alt="Caserones">
             </a>
          </div>
 

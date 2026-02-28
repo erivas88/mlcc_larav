@@ -5,6 +5,13 @@ var map, r, SECTOR_ID, SUBSISTEMA_ID;
 var searchControl; // Control para el buscador
 var currentBaseLayer; // Variable global para almacenar la capa base actual
 
+const BASE_URL = window.location.origin + 
+                 window.location.pathname.split('/public')[0] + 
+                 '/public';
+
+console.log(BASE_URL);
+
+
 // --- 1. HERRAMIENTAS DE UNIFICACIÓN VISUAL ---
 
 /**
@@ -135,7 +142,7 @@ function actualizarBuscador() {
 
 function loadMarkersBySubsistema(idSub) {
     $.ajax({
-        url: "/api/get-sector-markers",
+        url: `${BASE_URL}/api/get-sector-markers`,
         type: "POST",
         data: { sector: SECTOR_ID, subsistema: idSub },
         dataType: "JSON",
@@ -156,7 +163,7 @@ function loadMarkersBySubsistema(idSub) {
 
 function loadMarkersGlobal(idSec) {
     $.ajax({
-        url: "/api/get-markers",
+        url: `${BASE_URL}/api/get-markers`,
         type: "POST",
         data: { sector: idSec },
         dataType: "JSON",

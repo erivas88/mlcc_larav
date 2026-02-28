@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      @include('partials.fav')
       <title>Sistema de Monitoreo</title>
-      <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/png">
+
       <!-- Bootstrap CSS -->
       <link href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.min.css" rel="stylesheet">
       <link rel="stylesheet" href="https://unpkg.com/maplibre-gl-minimap/dist/maplibre-gl-minimap.css">
@@ -16,7 +15,6 @@
       <link rel="stylesheet" href="{{ asset('map/leaflet-label.css') }}">
       <link rel="stylesheet" href="{{ asset('map/L.Control.ZoomBox.css')}}">
       <link rel="stylesheet" href="{{ asset('css/styles_reload.css') }}">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.min.css" />
       <link rel="stylesheet" href="https://unpkg.com/leaflet-search@3.0.2/dist/leaflet-search.min.css" />
    </head>
    <body>
@@ -351,16 +349,13 @@
       <link rel="stylesheet" href="{{ asset('map/leaflet.css') }}">
       <script type="text/javascript" src="{{ asset('map/leaflet.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/leaflet-label.js') }}"></script>
-      <script type="text/javascript" src="{{ asset('map/leaflet-river.js') }}"></script>
-      <script type="text/javascript" src="{{ asset('map/L.Control.ZoomBox.js') }}"></script> 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.min.js"></script>
+      <script type="text/javascript" src="{{ asset('map/leaflet-river.js') }}"></script>       
       <script type="text/javascript" src="{{ asset('map/sectores.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/rios.js') }}"></script>
       <script type="text/javascript" src="{{ asset('map/quebradas.js') }}"></script>
       <script src="https://unpkg.com/leaflet-search@3.0.2/dist/leaflet-search.min.js"></script>
       <script type="text/javascript" src="{{ asset('map/coreleaflet_1.js') }}"></script>
-      <script type="text/javascript" src="{{ asset('map/spin.min.js') }}"></script>
-      <script type="text/javascript" src="{{ asset('map/leaflet.spin.min.js') }}"></script>
+
       </script>
    </body>
 </html>

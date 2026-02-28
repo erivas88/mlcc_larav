@@ -67,8 +67,8 @@
                         </div>
                         <div class="info-body">
                            <h6>DESCARGO DE RESPONSABILIDAD</h6>
-                           <p>
-                              La información presentada ha sido levantada por sondas multiparamétricas instaladas en los puntos de medición, se trata de <strong>datos crudos</strong> sin un proceso de revisión. Se hace presente que se mantiene una adecuada mantención de los equipos y control metrológico; sin embargo, están sujetos a problemas de transmisión a distancia. Las mediciones en línea son solo referenciales.
+                           <p style="text-align: justify">
+                              La Información presentada ha sido levantada por sondas multiparamétricas instaladas en los puntos de medición, se trata de datos crudos sin un proceso de revisión. Se hace presente que se mantiene una adecuada mantención de los equipos y control metrológico (calibraciones, verificaciones, entre otros); sin embargo, ellos están sujetos a problemas propios de transmisión a distancia. Las Mediciones en línea de estos parámetros son solo referenciales. Las mediciones ETFA son las representativas del sistema.
                            </p>
                         </div>
                      </div>

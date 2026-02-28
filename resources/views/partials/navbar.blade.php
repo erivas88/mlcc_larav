@@ -198,12 +198,12 @@
 </style>
 
 <header class="main-header-sublime">
-   <div class="container-fluid d-flex justify-content-between align-items-center px-4">
+   <div class="container-fluid d-flex justify-content-between align-items-center px-4" >
       <a href="{{ url('/') }}" class="logo-wrapper">
     
-         <img 
-  src="{{ asset('images/logo.png') }}"
-  srcset="{{ asset('images/logo.png') }} 1x, {{ asset('images/logo@2x.png') }} 2x"
+         <img  style="padding-left: 20px !important"
+  src="{{ asset('images/lunding.png') }}"
+
   alt="Logo Caserones"
   class="img-logo"
 >
@@ -213,7 +213,7 @@
 
       
       
-      <nav class="nav-links-artistic">
+      <nav class="nav-links-artistic" >
     <a href="{{ url('/') }}" class="{{ Request::is('/') ? 'active' : '' }}">Inicio</a>
     <a href="{{ url('glosario') }}" class="{{ Request::is('glosario') ? 'active' : '' }}">Glosario</a>
     <a href="https://www.caserones.cl/contacto/" class="{{ Request::is('contacto') ? 'active' : '' }}">Contáctenos</a>
@@ -228,7 +228,7 @@
             Monitoreo en Línea
          </a>
          <span class="title-divider-gold"></span>
-         <span class="system-subtitle">Plataforma de Vigilancia Ambiental</span>
+         <span class="system-subtitle"></span>
       </div>
    </div>
 </nav>

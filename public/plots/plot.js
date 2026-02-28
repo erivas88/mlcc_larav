@@ -115,8 +115,8 @@ $(document).ready(function() {
             yAxis: {
                 opposite: false,
                 reversed: respuesta.reversed,
-                min: respuesta.limite_min !== null ? respuesta.limite_min : null,
-                max: respuesta.limite_max !== null ? respuesta.limite_max : null,
+                /*min: respuesta.limite_min !== null ? respuesta.limite_min : null,
+                max: respuesta.limite_max !== null ? respuesta.limite_max : null,*/
                 gridLineDashStyle: 'Dash',
                 gridLineColor: '#E6E6E6',
                 lineWidth: 1, // Esto hace visible la línea vertical del eje Y
@@ -183,9 +183,8 @@ $(document).ready(function() {
                 },
                 yAxis: {
             // Aquí aplicas tu lógica de límites
-            min: respuesta.limite_min !== null ? parseFloat(respuesta.limite_min) : null,
-            max: respuesta.limite_max !== null ? parseFloat(respuesta.limite_max) : null,
-            
+            //min: respuesta.limite_min !== null ? parseFloat(respuesta.limite_min) : null,
+            //max: respuesta.limite_max !== null ? parseFloat(respuesta.limite_max) : null,            
             // Opcional: Evita que el Navigator fuerce sus propios extremos
             startOnTick: false,
             endOnTick: false
