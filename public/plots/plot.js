@@ -6,7 +6,7 @@ Highcharts.setOptions({
         weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
         shortWeekdays: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
         noData: "No hay mediciones registradas para este periodo",
-        decimalPoint: ',', 
+        decimalPoint: ',',
         thousandsSep: '.'
     },
     // Esto obliga a que CUALQUER fecha del gráfico use este formato
@@ -46,23 +46,20 @@ $(document).ready(function() {
                 }
             },
             exporting: {
-        enabled: true, // Asegúrate de que esté habilitado
-        buttons: {
-            contextButton: {
-                // Definimos solo el ítem de descarga PNG
-                menuItems: ['downloadPNG']
-            }
-        },
-        // Opcional: Traducir el texto que aparece al pasar el mouse
-        buttons: {
-            contextButton: {
-                symbolStroke: '#7f8c8d', // Color del icono de hamburguesa
-                menuItems: ['downloadPNG']
-            }
-        }
-    },
-
-            // --- LEYENDA HABILITADA ---
+                enabled: true, 
+                buttons: {
+                    contextButton: {
+                      
+                        menuItems: ['downloadPNG']
+                    }
+                },        
+                buttons: {
+                    contextButton: {
+                        symbolStroke: '#7f8c8d', 
+                        menuItems: ['downloadPNG']
+                    }
+                }
+            },           
             legend: {
                 enabled: true,
                 align: 'center', // Mantiene la leyenda centrada horizontalmente
@@ -77,11 +74,11 @@ $(document).ready(function() {
                 itemHoverStyle: {
                     color: '#34495e'
                 },
-                 style: {
-                        color: '#7f8c8d',
-                        fontWeight: '700',
-                        fontSize: '11px'
-                    }
+                style: {
+                    color: '#7f8c8d',
+                    fontWeight: '700',
+                    fontSize: '11px'
+                }
             },
 
             xAxis: {
@@ -115,23 +112,32 @@ $(document).ready(function() {
             yAxis: {
                 opposite: false,
                 reversed: respuesta.reversed,
-                /*min: respuesta.limite_min !== null ? respuesta.limite_min : null,
-                max: respuesta.limite_max !== null ? respuesta.limite_max : null,*/
                 gridLineDashStyle: 'Dash',
                 gridLineColor: '#E6E6E6',
-                lineWidth: 1, // Esto hace visible la línea vertical del eje Y
-                lineColor: '#cccccc', // Color de la línea (ajusta según tu eje X)
-                gridLineWidth: 1, // Las líneas horizontales de fondo (opcional)
-                tickWidth: 1,              
+                gridLineWidth: 1,
+
+                lineWidth: 1,                 // Línea vertical eje Y
+                lineColor: '#95a5a6',          // Mismo color que labels
+                tickWidth: 1,
+                tickColor: '#95a5a6',
+
+                title: {
+                    text: respuesta.title_axis,
+                    style: {
+                        fontSize: '11px',
+                        fontWeight: '600',
+                        color: '#95a5a6'
+                    }
+                },
+
                 labels: {
-                    // Aplica los decimales dinámicos del API
                     format: '{value:.' + respuesta.decimales + 'f}',
                     style: {
-                        fontSize: '9px', // Etiquetas de valores más pequeñas
+                        fontSize: '9px',
                         color: '#95a5a6'
                     }
                 }
-            },
+        },
 
             tooltip: {
                 shared: true,
@@ -182,13 +188,13 @@ $(document).ready(function() {
                     fillOpacity: 0.2
                 },
                 yAxis: {
-            // Aquí aplicas tu lógica de límites
-            //min: respuesta.limite_min !== null ? parseFloat(respuesta.limite_min) : null,
-            //max: respuesta.limite_max !== null ? parseFloat(respuesta.limite_max) : null,            
-            // Opcional: Evita que el Navigator fuerce sus propios extremos
-            startOnTick: false,
-            endOnTick: false
-        },
+                    // Aquí aplicas tu lógica de límites
+                    //min: respuesta.limite_min !== null ? parseFloat(respuesta.limite_min) : null,
+                    //max: respuesta.limite_max !== null ? parseFloat(respuesta.limite_max) : null,            
+                    // Opcional: Evita que el Navigator fuerce sus propios extremos
+                    startOnTick: false,
+                    endOnTick: false
+                },
                 xAxis: {
                     labels: {
 
@@ -212,20 +218,20 @@ $(document).ready(function() {
                 enabled: false
             },
             noData: {
-        style: {
-            fontWeight: 'bold',
-            fontSize: '15px',
-            color: '#303030'
-        },
-        attr: {
-            // Opcional: puedes mover la posición del mensaje
-            // align: 'left'
-        }
-    },
+                style: {
+                    fontWeight: 'bold',
+                    fontSize: '15px',
+                    color: '#303030'
+                },
+                attr: {
+                    // Opcional: puedes mover la posición del mensaje
+                    // align: 'left'
+                }
+            },
             series: seriesData,
             lang: {
-        noData: "No hay mediciones registradas para este periodo" // Texto personalizado
-    }
+                noData: "No hay mediciones registradas para este periodo" // Texto personalizado
+            }
         });
     }
 
@@ -247,9 +253,9 @@ $(document).ready(function() {
     </div>
 `);*/
 
-if (idEstacion && !isNaN(idEstacion) && idParametro && idPeriodo) {
-    // Aplicamos el overlay con un contenedor de borde completo
-    $('#chart-container').html(`
+        if (idEstacion && !isNaN(idEstacion) && idParametro && idPeriodo) {
+            // Aplicamos el overlay con un contenedor de borde completo
+            $('#chart-container').html(`
         <div class="chart-loading-wrapper">
             <div class="chart-loading-overlay">
                 <div class="custom-loader"></div>
@@ -260,7 +266,7 @@ if (idEstacion && !isNaN(idEstacion) && idParametro && idPeriodo) {
         </div>
     `);
 
-    // Iniciar llamada AJAX...
+            // Iniciar llamada AJAX...
 
             $.ajax({
                 url: "https://7j63yn4jf9.execute-api.us-east-1.amazonaws.com/Prod/obtener-datos-grafico",

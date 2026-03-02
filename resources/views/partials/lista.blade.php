@@ -462,10 +462,13 @@
         <div id="sec-L" class="letra-seccion">
             <span class="letra-badge">L</span>
             <div class="terminos-wrapper">
-                <div class="termino-item destaque-tecnico">
-                    <h3 class="termino-titulo">Límite de Detección (LDD) o Concentración Neta Mínima Detectable</h3>
-                    <p class="termino-def">Se define habitualmente como la cantidad o concentración mínima de sustancia que puede ser detectada con fiabilidad por un método analítico determinado. Cada Laboratorio aplica sus métodos acreditados (INN) y autorizados (SMA). Al cambiar de laboratorio o de método analítico, es posible que se modifiquen los LDD informados.</p>
+                <div class="termino-item">
+                    <h3 class="termino-titulo">Limite de Detección (LDD) o Concentración Neta Mínima Detectable</h3>
+                    <p class="termino-def">Se define habitualmente como la cantidad o concentración mínima de sustancia que puede ser detectada con fiabilidad por un método analítico determinado. Cada Laboratorio aplica sus métodos acreditados (INN) y autorizados (SMA) y pueden tener más de un método para un mismo analito, con diferentes LDD. Los métodos a ser aplicados pueden ser diferentes entre un laboratorio y otro, métodos siempre acreditados y autorizados. Por lo anterior, al cambiar de laboratorio o de método analítico, es posible que se modifiquen los LDD informados.
+
+</p>
                 </div>
+             
             </div>
         </div>
 
@@ -474,11 +477,13 @@
             <div class="terminos-wrapper">
                 <div class="termino-item">
                     <h3 class="termino-titulo">Monitoreo Hidrogeológico</h3>
-                    <p class="termino-def">Medición de aguas subterráneas y toma de muestras en pozos ubicados en distintas partes de las cuencas en estudio para obtener parámetros fisicoquímicos.</p>
+                    <p class="termino-def">
+                        Medición de aguas subterráneas y toma de muestras en pozos ubicados en distintas partes de las cuencas en estudio. Las muestras son sometidas a análisis para obtener sus parámetros fisicoquímicos, como pH, Temperatura, Conductividad Eléctrica y concentración de metales, entre otros elementos
+                    </p>
                 </div>
                 <div class="termino-item">
                     <h3 class="termino-titulo">Monitoreo Hidrológico</h3>
-                    <p class="termino-def">Medición y muestreo de aguas superficiales en estaciones de monitoreo para obtener parámetros fisicoquímicos en laboratorio.</p>
+                    <p class="termino-def">Medición y muestreo de aguas superficiales en estaciones de monitoreo. Las muestras son análisadas en laboratorio para obtener sus parámetros fisicoquímicos, como pH, Temperatura, Conductividad Eléctrica y concentración de metales, entre otros elementos.</p>
                 </div>
             </div>
         </div>
@@ -487,16 +492,28 @@
             <span class="letra-badge">P</span>
             <div class="terminos-wrapper">
                 <div class="termino-item"><h3 class="termino-titulo">Planta concentradora</h3><p class="termino-def">Lugar donde se obtiene el concentrado de cobre y molibdeno por flotación.</p></div>
-                <div class="termino-item"><h3 class="termino-titulo">Porfídico</h3><p class="termino-def">Mosaico cristalino con fenocristales inmersos en una masa de fondo de tamaño inferior.</p></div>
-                <div class="termino-item destaque-tecnico"><h3 class="termino-titulo">Plan de Remediación</h3><p class="termino-def">Acciones para controlar situaciones anómalas y evitar efectos negativos en el acuífero.</p></div>
-                <div class="termino-item"><h3 class="termino-titulo">Pozo</h3><p class="termino-def">Perforación en suelo o roca para obtener agua subterránea desde el acuífero.</p></div>
-                <div class="termino-item"><h3 class="termino-titulo">Pozos de Observación</h3><p class="termino-def">Obras para medir la calidad de las aguas subterráneas.</p></div>
-                <div class="termino-item"><h3 class="termino-titulo">Pozos de Monitoreo Multinivel</h3><p class="termino-def">Habilitado a distintas profundidades para mayor capacidad de análisis químico.</p></div>
-                <div class="termino-item"><h3 class="termino-titulo">Pozos Aguas Arriba</h3><p class="termino-def">Miden la calidad de aguas subterráneas aguas arriba de una actividad industrial.</p></div>
-                <div class="termino-item"><h3 class="termino-titulo">Pozos Bajo Depósito</h3><p class="termino-def">Miden la calidad de aguas subterráneas aguas abajo del depósito.</p></div>
-                <div class="termino-item"><h3 class="termino-titulo">Pozos de Alerta Temprana</h3><p class="termino-def">Indicadores para activar o desactivar el Plan de Remediación.</p></div>
-                <div class="termino-item"><h3 class="termino-titulo">Pozos de Recuperación / Remediación</h3><p class="termino-def">Capturan y extraen del sistema acuífero posibles fugas de aguas industriales.</p></div>
-                <div class="termino-item"><h3 class="termino-titulo">Pozos Ramadillas</h3><p class="termino-def">Miden la calidad de aguas subterráneas aguas abajo de todas las instalaciones.</p></div>
+                <div class="termino-item"><h3 class="termino-titulo">Porfídico</h3><p class="termino-def">Mosaico cristalino en que existen cristales de mayor tamaño(Fenocristales) inmersos en una masa de fondo de tamaño cristalino inferio. se observa la existencia de poblaciones de tamaños bien diferenciadas, con el consecuente contraste.</p></div>
+                <div class="termino-item "><h3 class="termino-titulo">Plan de Remediación</h3><p class="termino-def">Corresponde a una secuencia de acciones que se pueden tomar para controlar una situación anomala y evitar que se produzcan efectos negativos en el acuifero que subyace a las distintas instalaciones industriales. Por ejemplo, activar el bombeo de los pozos de remediación/recuperación cuando se detecten fugas de aguas (industriales o de contacto) desde los depósitos de lamas o de arenas</p></div>
+                <div class="termino-item"><h3 class="termino-titulo">Pozo</h3><p class="termino-def">Perforación realizada en el suelo o roca que permite obtener agua subterránea desde el acuífero, de forma manual o por bombeo.</p></div>
+                <div class="termino-item"><h3 class="termino-titulo">Pozos de Observación</h3><p class="termino-def">OObras construidas para medir la calidad de las aguas subterráneas.
+
+</p></div>
+                <div class="termino-item"><h3 class="termino-titulo">Pozos de Monitoreo Multinivel</h3><p class="termino-def">Pozo habilitado con ranurado a distintas profundidades, para contar con una mayor capacidad de análisis ante eventuales alteraciones en la química del agua subterránea en profundidad.</p></div>
+                <div class="termino-item"><h3 class="termino-titulo">Pozos Aguas Arriba</h3><p class="termino-def">Obras construidas para medir la calidad de las aguas subterráneas, aguas arriba de una actividad industrial.
+
+</p></div>
+                <div class="termino-item"><h3 class="termino-titulo">Pozos Bajo Depósito (de Arenas, de Lamas, de Lastre)</h3><p class="termino-def">Obras construidas para medir la calidad de las aguas subterráneas, aguas abajo del depósito.
+
+</p></div>
+                <div class="termino-item"><h3 class="termino-titulo">Pozos de Alerta Temprana</h3><p class="termino-def">Corresponden a pozos ubicados inmediatamente aguas abajo de las instalaciones (depósito de lastre, arenas, lamas), cuya calidad fisicoquímica se utiliza como indicador para activar o desactivar el Plan de Remediación.</p></div>
+                <div class="termino-item"><h3 class="termino-titulo">Pozos de Recuperación </h3><p class="termino-def">
+                    Obras construidas próximas al depósito, para capturar y extraer del sistema acuífero las posibles fugas de aguas industriales o de contacto. El bombeo de estos pozos se realizara sólo cuando se haya activado el Plan de Remediación
+                </p></div>
+                <div class="termino-item"><h3 class="termino-titulo">Pozos de Remediación</h3><p class="termino-def">Obras construidas para capturar y extraer del sistema acuífero las posibles fugas de aguas (industriales o de contacto) desde el depósito. El bombeo de estos pozos se realizará sólo cuando se haya activado el Plan de Remediación</p></div>
+
+                <div class="termino-item"><h3 class="termino-titulo">Pozos de Medición de la Eficiencia de Remediación</h3><p class="termino-def">Estos pozos tienen el objetivo de permitir monitorear la calidad y el nivel del agua subterránea en el sector aguas abajo de los Pozos de Remediación, para verificar que la condición basal se mantiene aguas abajo de los depósitos de arenas y lamas y en la cuenca del río Ramadillas, aún con el Plan de Remediación en funcionamiento.
+
+</p></div>
             </div>
         </div>
 
@@ -505,7 +522,7 @@
             <div class="terminos-wrapper">
                 <div class="termino-item">
                     <h3 class="termino-titulo">Quebrada</h3>
-                    <p class="termino-def">Corriente natural de agua con escaso caudal que puede desaparecer en estación seca.</p>
+                    <p class="termino-def">Corriente natural de agua que normalmente fluye con continuidad, pero que a diferencia de un río, tiene escaso caudal, que incluso puede desaparecer en la estación seca, verano o invierno, dependiendo de la temporada de lluvia para su existencia.</p>
                 </div>
             </div>
         </div>
@@ -513,11 +530,15 @@
         <div id="sec-R" class="letra-seccion">
             <span class="letra-badge">R</span>
             <div class="terminos-wrapper">
-                <div class="termino-item"><h3 class="termino-titulo">Río</h3><p class="termino-def">Corriente de agua continua y caudalosa que desemboca en otra, lago o mar.</p></div>
-                <div class="termino-item"><h3 class="termino-titulo">Rajo Abierto</h3><p class="termino-def">Mina explotada en superficie mediante tronaduras y carguío de material.</p></div>
-                <div class="termino-item destaque-tecnico">
+                <div class="termino-item"><h3 class="termino-titulo">Río</h3><p class="termino-def">Corriente de agua continua y más o menos caudalosa que desemboca en otra, en un lago o en el mar.</p></div>
+                  <div class="termino-item"><h3 class="termino-titulo">Río Ramadillas</h3><p class="termino-def">Puntos de medición de la calidad de las aguas superficiales, aguas abajo de las instalaciones mineras, para apoyar el análisis de eventuales eventos de alteraciones de la calidad de las aguas.</p></div>
+                
+                <div class="termino-item"><h3 class="termino-titulo">Rajo Abierto</h3><p class="termino-def">Mina explotada en la superficie utilizando una línea de explosivos. Luego de la tronadura, que remueve el material mineralizado, se realiza el carguío en camiones o en cintas transportadoras. Para ello se usan cargadores frontales o palas mecánicas, que llevan las rocas hasta la planta de chancado para iniciar el proceso de concentración.</p></div>
+                <div class="termino-item">
                     <h3 class="termino-titulo">RCA (Resolución de Calificación Ambiental)</h3>
-                    <p class="termino-def">Autorización administrativa tras culminar favorablemente la evaluación de impacto ambiental de un proyecto.</p>
+                    <p class="termino-def">
+                        La Resolución de Calificación Ambiental o RCA es la autorización que entrega la Comisión de Evaluación Ambiental, que corresponde a un documento administrativo que se obtiene una vez culminado favorablemente el proceso de evaluación de impacto ambiental de un proyecto, conducido por el Servicio de Evaluación Ambiental (SEA), a partir de un Estudio de Impacto Ambiental (EIA) o de una Declaración de Impacto Ambiental (DIA)
+                    </p>
                 </div>
             </div>
         </div>

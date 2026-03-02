@@ -32,17 +32,7 @@
                      // Lógica de apertura dinámica para Sectores o Estaciones
                      $sistemaOpen = ($idSistema == $idActivo || $registrosSistema->contains('estado_seleccion', 'open'));
                      @endphp
-                     <div class="accordion-item border-0 mb-1">
-                       <!-- <h2 class="accordion-header d-flex bg-white" style="border-left: 4px solid {{ $primerRegistro->color_sistema }};">
-                           <a href="{{ url('/sector/' . $idSistema) }}" class="flex-grow-1 text-decoration-none">
-                           <button class="accordion-button {{ $sistemaOpen ? '' : 'collapsed' }} py-2 px-3 bg-transparent shadow-none" 
-                              type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $idSistema }}">
-                               <span class="icon-square" style="background: rgba(237, 142, 36, 0.1); border: 1px solid rgba(237, 142, 36, 0.2);">
-                           <i class="fas fa-layer-group me-2" style="color: {{ $primerRegistro->color_sistema }};"></i></span>
-                           <span class="fw-bold" style="color: white; font-size: 13px; font-weight: normal !important">{{ $primerRegistro->nombre_sistema }}</span>
-                           </button>
-                           </a>
-                        </h2>-->
+                     <div class="accordion-item border-0 mb-1">                     
 
                         <h2 class="accordion-header d-flex bg-white" style="border-left: 4px solid {{ $primerRegistro->color_sistema }};">
     <a href="{{ url('/sector/' . $idSistema) }}" class="flex-grow-1 text-decoration-none">
@@ -94,19 +84,33 @@
                                        <div class="accordion-body p-0">
                                           <div class="list-group list-group-flush">
                                              {{-- Opcional: También puedes ordenar las estaciones internamente si tienen un campo 'nombre' o 'orden_estacion' --}}
-                                             @foreach($estaciones->sortBy('nombre_estacion') as $estacion)
-                                             <a href="{{ url('/estacion/' . $estacion->id_estacion) }}" 
-                                                class="estacion-link d-flex align-items-center text-decoration-none py-2 ps-5 {{ ($estacion->estado_seleccion ?? '') == 'open' ? 'active-estacion' : '' }}">
-                                             <i class="fas fa-map-marker-alt me-3" 
-                                                style="font-size: 11px; 
-                                                color: {{ ($estacion->estado_seleccion ?? '') == 'open' ? '#2ecc71' : $estacion->color_subsistema }};">
-                                             </i>
-                                             <span class="nombre-estacion" 
-                                                style="font-weight: 500; font-size: 12px; color: {{ ($estacion->estado_seleccion ?? '') == 'open' ? '#2ecc71' : '#666' }};">
-                                             {{ $estacion->nombre_estacion }}
-                                             </span>
-                                             </a>
-                                             @endforeach
+
+
+@php
+    $coleccionOrdenada = (
+        ($idSistema ?? null) == 3 && ($idSub ?? null) == 9
+    )
+        ? $estaciones->sortBy('order_sub')
+        : $estaciones->sortBy('nombre_estacion');
+@endphp
+
+@foreach($coleccionOrdenada as $estacion)
+
+    <a href="{{ url('/estacion/' . $estacion->id_estacion) }}" 
+       class="estacion-link d-flex align-items-center text-decoration-none py-2 ps-5 {{ ($estacion->estado_seleccion ?? '') == 'open' ? 'active-estacion' : '' }}">
+       
+        <i class="fas fa-map-marker-alt me-3" 
+           style="font-size: 11px; 
+           color: {{ ($estacion->estado_seleccion ?? '') == 'open' ? '#2ecc71' : $estacion->color_subsistema }};">
+        </i>
+
+        <span class="nombre-estacion" 
+              style="font-weight: 500; font-size: 12px; color: {{ ($estacion->estado_seleccion ?? '') == 'open' ? '#2ecc71' : '#666' }};">
+            {{ $estacion->nombre_estacion }} 
+        </span> 
+    </a>
+
+@endforeach
                                           </div>
                                        </div>
                                     </div>
@@ -121,22 +125,7 @@
                </div>
                <div class="col-md-9">
                   <div class="panel">
-                     <!--<div class="tope"> 
-                        <span id="sistema"> 
-                        <i class="fas fa-layer-group" style="color: {{ $sistemaActivo->color_sistema ?? '#1abc9c' }};"></i> &nbsp;
-                        <span class="text-normal">
-                        {{ $sistemaActivo->nombre_sistema ?? 'Sistema...' }}
-                        </span>
-                        </span>
-                        @if($nombreSubActivo)
-                        <span id="subsistema-breadcrumb" style="color: #bdc3c7; font-weight: 400; font-size: 15px; text-transform: none !important;">
-                        &nbsp; <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.5;"></i> &nbsp; 
-                        <span id="nombre-sub-sistema" style="color: {{ $colorSubActivo }}; font-weight: 600;">
-                        {{ $nombreSubActivo }}
-                        </span>
-                        </span>
-                        @endif
-                     </div>-->
+                    
 
      <style>
     .tope-majestuoso {
@@ -237,7 +226,7 @@
         
         <div class="sistema-brand">
             <span class="brand-name" style="color: {{ $colorSubActivo ?? '#0f7c91' }}; font-weight: normal">
-                {{ $nombreSubActivo }}
+                {{ $nombreSubActivo }} 
             </span>
            
         </div>
@@ -343,6 +332,12 @@
          @include('partials.footer')
       </div>
       <!-- Bootstrap JS -->
+     <script>
+        const BASE_URL = "{{ config('app.url') }}";
+        console.log(BASE_URL,'from env');
+     </script>
+
+
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

@@ -5,9 +5,6 @@ var map, r, SECTOR_ID, SUBSISTEMA_ID;
 var searchControl; // Control para el buscador
 var currentBaseLayer; // Variable global para almacenar la capa base actual
 
-const BASE_URL = window.location.origin + 
-                 window.location.pathname.split('/public')[0] + 
-                 '/public';
 
 console.log(BASE_URL);
 
@@ -95,13 +92,13 @@ function createFullMarker(latlng, color, nombre, id) {
         iconSize: [0, 0]
     });
     
-    const popupContent = `
-        <div class="popup-action-container">
-            <a href="/estacion/${id}" class="btn-pro-detalles">
-                <i class="fas fa-satellite-dish"></i> Ver Estación
-            </a>
-        </div>
-    `;
+  const popupContent = `
+    <div class="popup-action-container">
+        <a href="${BASE_URL}/estacion/${id}" class="btn-pro-detalles">
+            <i class="fas fa-satellite-dish"></i> Ver Estación
+        </a>
+    </div>
+`;
 
     return L.marker(latlng, { 
         icon: icon,
@@ -295,14 +292,19 @@ document.addEventListener('click', function(e) {
     }
 });
 
+
+
 function cambiarSectorManual(nuevoId) {
-    const nuevaUrl = `/sector/${nuevoId}`;
+
+    const nuevaUrl = `${BASE_URL}/sector/${nuevoId}`;
+
     if (nuevoId !== SECTOR_ID) {
         window.location.href = nuevaUrl;
     } else {
         window.history.pushState({}, '', nuevaUrl);
         loadMarkersGlobal(nuevoId);
-    }  
+    }
+
 }
 
 // --- 6. INICIALIZACIÓN --- 

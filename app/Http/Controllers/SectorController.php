@@ -39,8 +39,10 @@ class SectorController extends Controller
                 $nombreSubActivo = $substemaEncontrado->nombre_subsistema;
                 $textoSubActivo  = $substemaEncontrado->texto ?? null; 
                 
+                
                 // Si existe la columna 'color' en tu SP, la usamos; si no, aplicamos un verde corporativo
                 $colorSubActivo  = $substemaEncontrado->color_subsistema ?? '#1abc9c'; 
+                $order_sub  = $substemaEncontrado->order_sub ?? 0; 
             }
         }
 
@@ -51,7 +53,7 @@ class SectorController extends Controller
             'idSubActivo'     => $id_subsistema,
             'sistemaActivo'   => $sistemaActivo,
             'nombreSubActivo' => $nombreSubActivo,
-            'textoSubActivo'  => $textoSubActivo,
+            'textoSubActivo'  => $textoSubActivo,           
             'colorSubActivo'  => $colorSubActivo // Variable clave para el estilo del breadcrumb
         ]);
     }

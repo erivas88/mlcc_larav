@@ -543,7 +543,9 @@
             <div class="card-body-content">
                <h3 class="card-title-institucional"></h3>
                <div class="title-divider"></div>
-               <p class="card-text-narrative">Su operación comenzó oficialmente el 30 de julio de 2014, procesando mineral porfídico de cobre y molibdeno de baja ley a rajo abierto.</p>
+               <p class="card-text-narrative">
+                Su operación comenzó oficialmente el 30 de julio de 2014, y entre sus principales características es ser un depósito de mineral porfídico de cobre y molibdeno de baja ley, que permite una explotación a rajo abierto.
+               </p>
             </div>
          </div>
          <div class="objetivo-card">
@@ -556,8 +558,8 @@
                <h3 class="card-title-institucional"></h3>
                <div class="title-divider"></div>
                <p class="card-text-narrative">
-                  Su faena tiene una planta concentradora para producir concentrados de cobre y molibdeno a partir de sulfuros primarios, y otra de extracción por solvente y electro-obtención (SX-EW) para producir cátodos de cobre mediante el procesamiento de minerales oxidados, mixtos y sulfuros secundarios
-               </p>
+            Su faena tiene una planta concentradora para producir concentrados de cobre y molibdeno a partir de sulfuros primarios, y otra de extracción por solvente y electro-obtención (SX-EW) para producir cátodos de cobre mediante el procesamiento de minerales oxidados, mixtos y sulfuros secundarios    
+            </p>
                <div class="card-action">
                   <a href="#" class="btn-ver-mas-premium" data-bs-toggle="modal" data-bs-target="#modalProceso">
                   <span>Ver detalles</span>
@@ -575,7 +577,8 @@
             <div class="card-body-content">
                <h3 class="card-title-institucional"></h3>
                <div class="title-divider"></div>
-               <p class="card-text-narrative">Los relaves son el producto del proceso de separación del mineral -cobre- de la roca, y cuya principal composición es piedra molida, agua, minerales y otros componentes. Este material es transportado a través de un ducto para ser depositado de manera segura en el lugar que la RCA aprobó para su depósito final.</p>
+               <p class="card-text-narrative">
+                Los relaves son el producto del proceso de separación del mineral -cobre- de la roca, y cuya principal composición es piedra molida, agua, minerales y otros componentes. Este material es transportado a través de un ducto para ser depositado de manera segura en el lugar que la RCA aprobó para su depósito final.</p>
                <div class="card-action">
                   <a href="#" class="btn-ver-mas-premium" data-bs-toggle="modal" data-bs-target="#modalRelaves">
                   <span>Ver detalles</span>
@@ -593,7 +596,8 @@
             <div class="card-body-content">
                <h3 class="card-title-institucional"></h3>
                <div class="title-divider"></div>
-               <p class="card-text-narrative">El sistema río Ramadillas considera el flujo de aguas superficiales y aguas subterráneas que escurren a través del valle del mismo nombre. Recibe aportes de aguas subterráneas provenientes de las quebradas Caserones y La Brea y finalmente se junta con el sistema río Vizcachas de Pulido para formar el sistema río Pulido.</p>
+               <p class="card-text-narrative">
+                El sistema río Ramadillas considera el flujo de aguas superficiales y aguas subterráneas que escurren a través del valle del mismo nombre. Recibe aportes de aguas subterráneas provenientes de las quebradas Caserones y La Brea y finalmente se junta con el sistema río Vizcachas de Pulido para formar el sistema río Pulido.</p>
                <div class="card-action">
                   <a href="{{ url('sector/3') }}" class="btn-ver-mas-premium" >
                   <span>Ver detalles</span>
@@ -611,7 +615,11 @@
             <div class="card-body-content">
                <h3 class="card-title-institucional"></h3>
                <div class="title-divider"></div>
-               <p class="card-text-narrative">Esta instalación, ubicada en el lado oeste del rajo minero, almacena principalmente material estéril (sin mineral) proveniente del sector mina, el cual estará ubicado en el lado oeste del rajo, en la cabecera de la quebrada La Brea. La cantidad total de lastre a ser depositado en la vida útil del proyecto alcanzará a 735 Millones de Toneladas, con un llenado del botadero mediante sistema de vaciado radial en terrazas.</p>
+               <p class="card-text-narrative">
+                Se encuentra ubicado junto a la ribera Este del Río Pulido a 162 kilómetros al sureste de Copiapó, a 9 km de la frontera con Argentina y a una altura máxima de 4.600 m.s.n.m.
+Personal propio: 930 personas
+Personal colaborador: 2.000 a 2.500 personas
+               </p>
                <div class="card-action">
                   <a href="{{ url('sector/4') }}" class="btn-ver-mas-premium">
                   <span>Ver detalles</span>

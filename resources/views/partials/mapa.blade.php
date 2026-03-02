@@ -398,10 +398,7 @@
             <span> MLCC</span>
          </div>
          <div class="map-legend-floating">
-            <div class="legend-item">
-               <i class="fas fa-circle indicator purple"></i>
-               <span class="label">Depósito  de Lamas La Brea</span>
-            </div>
+           
             <div class="legend-item">
                <i class="fas fa-circle indicator orange"></i>
                <span class="label">Depósito de Arenas Caserones</span>
@@ -409,6 +406,10 @@
             <div class="legend-item">
                <i class="fas fa-circle indicator yellow"></i>
                <span class="label">Depósito de Lastre</span>
+            </div>
+             <div class="legend-item">
+               <i class="fas fa-circle indicator purple"></i>
+               <span class="label">Depósito  de Lamas La Brea</span>
             </div>
             <div class="legend-item">
                <i class="fas fa-circle indicator green"></i>

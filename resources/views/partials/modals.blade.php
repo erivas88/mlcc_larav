@@ -289,7 +289,7 @@
             <div class="objective-header-premium" style="background-image: linear-gradient(rgba(19, 93, 102, 0.9), rgba(19, 93, 102, 0.9)), url('{{ asset('images/Minera-Caserones.jpg') }}');">
                 <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="header-content-box">
-                    <h2 class="h3 fw-bold text-white mb-1">Sistema de Mediciónes en Línea</h2>
+                    <h2 class="h3 fw-bold text-white mb-1">Sistema de Mediciones en Línea</h2>
                     <div class="header-divider"></div>                  
                 </div>
             </div>
@@ -299,18 +299,18 @@
 
                  <div class="mb-5">
                     <p class="fs-5 text-dark lh-lg" style="font-weight: 300; border-left: 3px solid #1a7b85; padding-left: 1.5rem; text-align: justify;">
-                           Como parte del <strong>Programa de Cumplimiento (PdC)</strong> aprobado por la Superintendencia del Medioambiente (SMA), Caserones de Minera Lumina Copper Chile ha implementado un sistema de monitoreo abierto a la comunidad.
+                           Como parte del <strong>Programa de Cumplimiento (PdC)</strong> aprobado por la Superintendencia del Medioambiente (SMA), Caserones de Minera Lumina Copper Chile  implementó un sistema de medición en linea abierto a la comunidad, orientado al seguimiento de variables ambientales en el área de la influencia de la operación.
                  </p>
                 </div>
 
                 <div class="row g-4 mb-5">
                     <div class="col-md-4">
                         <h6 class="fw-bold text-teal text-uppercase small mb-3">Cobertura</h6>
-                        <p class="text-muted small lh-base">56 puntos de monitoreo hidrogeológicos e hidrológicos.</p>
+                        <p class="text-muted small lh-base">Red de puntos de monitoreo ambientales en el area de influencia del proyecto </p>
                     </div>
                     <div class="col-md-4 border-start-pro">
-                        <h6 class="fw-bold text-teal text-uppercase small mb-3">Finalidad</h6>
-                        <p class="text-muted small lh-base">Seguimiento de variables ante efectos operativos o cambio climático.</p>
+                        <h6 class="fw-bold text-teal text-uppercase small mb-3">Objetivo</h6>
+                        <p class="text-muted small lh-base">Seguimiento transparente del comportamiento de variables ambientales</p>
                     </div>
                     <div class="col-md-4 border-start-pro">
                         <h6 class="fw-bold text-teal text-uppercase small mb-3">Tecnología</h6>
