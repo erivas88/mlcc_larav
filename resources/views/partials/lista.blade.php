@@ -377,6 +377,175 @@
         border-left: 3px solid #b08506;
         border-bottom: none;
     }
+
+    /* Contenedor general */
+.glosario-container {
+    position: relative;
+}
+
+/* Navegación sticky */
+.alfabeto-nav {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 10;
+    padding: 10px 0;
+    border-bottom: 1px solid #eaeaea;
+    text-align: center;
+}
+
+.alfabeto-nav a {
+    margin: 0 8px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #2c3e50;
+    transition: 0.2s ease;
+}
+
+.alfabeto-nav a:hover {
+    color: #007bff;
+}
+
+/* 🔥 Scroll interno */
+.glosario-scroll {
+    max-height: 600px; /* Ajusta a tu layout */
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding-right: 10px;
+}
+
+/* Scroll moderno */
+.glosario-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.glosario-scroll::-webkit-scrollbar-thumb {
+    background: #cfcfcf;
+    border-radius: 6px;
+}
+
+.glosario-scroll::-webkit-scrollbar-thumb:hover {
+    background: #9e9e9e;
+}
+
+/* Secciones */
+.letra-seccion {
+    padding: 25px 10px;
+    scroll-margin-top: 80px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+/* Badge de letra */
+.letra-badge {
+    display: inline-block;
+    font-size: 22px;
+    font-weight: bold;
+    background: #f4f6f9;
+    padding: 6px 14px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Términos */
+.termino-item {
+    margin-bottom: 15px;
+}
+
+.termino-item h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.termino-item p {
+    font-size: 14px;
+    color: #555;
+}
+
+
+/* Contenedor general */
+.glosario-container {
+    position: relative;
+}
+
+/* Navegación sticky */
+.alfabeto-nav {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 10;
+    padding: 10px 0;
+    border-bottom: 1px solid #eaeaea;
+    text-align: center;
+}
+
+.alfabeto-nav a {
+    margin: 0 8px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #2c3e50;
+    transition: 0.2s ease;
+}
+
+.alfabeto-nav a:hover {
+    color: #007bff;
+}
+
+/* 🔥 Scroll interno */
+.glosario-scroll {
+    max-height: 600px; /* Ajusta a tu layout */
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding-right: 10px;
+}
+
+/* Scroll moderno */
+.glosario-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.glosario-scroll::-webkit-scrollbar-thumb {
+    background: #cfcfcf;
+    border-radius: 6px;
+}
+
+.glosario-scroll::-webkit-scrollbar-thumb:hover {
+    background: #9e9e9e;
+}
+
+/* Secciones */
+.letra-seccion {
+    padding: 25px 10px;
+    scroll-margin-top: 80px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+/* Badge de letra */
+.letra-badge {
+    display: inline-block;
+    font-size: 22px;
+    font-weight: bold;
+    background: #f4f6f9;
+    padding: 6px 14px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Términos */
+.termino-item {
+    margin-bottom: 15px;
+}
+
+.termino-item h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.termino-item p {
+    font-size: 14px;
+    color: #555;
+}
 </style>
 
 <div class="col-md-9">
@@ -405,6 +574,7 @@
         <a href="#sec-F">F</a> <a href="#sec-L">L</a> <a href="#sec-M">M</a> 
         <a href="#sec-P">P</a> <a href="#sec-Q">Q</a> <a href="#sec-R">R</a>
     </div>
+<div class="glosario-scroll">
 
     <div class="glosario-list">
         <div id="sec-A" class="letra-seccion">
@@ -546,5 +716,6 @@
             </div>
         </div>
     </div>
+</div>  
 </div>
      

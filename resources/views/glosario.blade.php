@@ -2,7 +2,7 @@
 <html lang="en">
    <head>
       @include('partials.fav')
-      <title>Sistema de Monitoreo</title>
+      <title>Glosario</title>
       <!-- Bootstrap CSS -->
       <link href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.min.css" rel="stylesheet">
       <link rel="stylesheet" href="https://unpkg.com/maplibre-gl-minimap/dist/maplibre-gl-minimap.css">
