@@ -42,7 +42,16 @@
                               <div id="sub{{ $idSub }}" class="collapse {{ $subOpen ? 'show' : '' }}" data-bs-parent="#subAccordion{{ $idSistema }}">
                                  <div class="list-group list-group-flush">
                                     {{-- Ordenamos la colección alfabéticamente por el campo nombre_estacion --}}
-                                    @foreach($estaciones->sortBy('nombre_estacion') as $estacion)
+                                   
+@php
+    $coleccionOrdenada = (
+        ($idSistema ?? null) == 3 && ($idSub ?? null) == 9
+    )
+        ? $estaciones->sortBy('order_sub')
+        : $estaciones->sortBy('nombre_estacion');
+@endphp
+
+@foreach($coleccionOrdenada as $estacion)
                                     <a href="{{ url('/estacion/' . $estacion->id_estacion) }}" 
                                        class="estacion-link d-flex align-items-center text-decoration-none py-2 ps-5 position-relative {{ $estacion->estado_seleccion == 'open' ? 'active-estacion' : '' }}">
                                     <i class="fas fa-map-marker-alt me-3" 
