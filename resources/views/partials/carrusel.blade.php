@@ -616,9 +616,7 @@
                <h3 class="card-title-institucional"></h3>
                <div class="title-divider"></div>
                <p class="card-text-narrative">
-                Se encuentra ubicado junto a la ribera Este del Río Pulido a 162 kilómetros al sureste de Copiapó, a 9 km de la frontera con Argentina y a una altura máxima de 4.600 m.s.n.m.
-Personal propio: 930 personas
-Personal colaborador: 2.000 a 2.500 personas
+                     Esta instalación, ubicada en el lado oeste del rajo minero, almacena principalmente material estéril (sin mineral) proveniente del sector mina, el cual estará ubicado en el lado oeste del rajo, en la cabecera de la quebrada La Brea. La cantidad total de lastre a ser depositado en la vida útil del proyecto alcanzará a 735 Millones de Toneladas, con un llenado del botadero mediante sistema de vaciado radial en terrazas.
                </p>
                <div class="card-action">
                   <a href="{{ url('sector/4') }}" class="btn-ver-mas-premium">

@@ -491,7 +491,7 @@
         <div id="sec-P" class="letra-seccion">
             <span class="letra-badge">P</span>
             <div class="terminos-wrapper">
-                <div class="termino-item"><h3 class="termino-titulo">Planta concentradora</h3><p class="termino-def">Lugar donde se obtiene el concentrado de cobre y molibdeno por flotación.</p></div>
+                <div class="termino-item"><h3 class="termino-titulo">Planta concentradora</h3><p class="termino-def">Es el lugar donde a través de flotación se obtiene el concentrado de cobre y molibdeno a partir de material mineralizado proveniente del rajo.</p></div>
                 <div class="termino-item"><h3 class="termino-titulo">Porfídico</h3><p class="termino-def">Mosaico cristalino en que existen cristales de mayor tamaño(Fenocristales) inmersos en una masa de fondo de tamaño cristalino inferio. se observa la existencia de poblaciones de tamaños bien diferenciadas, con el consecuente contraste.</p></div>
                 <div class="termino-item "><h3 class="termino-titulo">Plan de Remediación</h3><p class="termino-def">Corresponde a una secuencia de acciones que se pueden tomar para controlar una situación anomala y evitar que se produzcan efectos negativos en el acuifero que subyace a las distintas instalaciones industriales. Por ejemplo, activar el bombeo de los pozos de remediación/recuperación cuando se detecten fugas de aguas (industriales o de contacto) desde los depósitos de lamas o de arenas</p></div>
                 <div class="termino-item"><h3 class="termino-titulo">Pozo</h3><p class="termino-def">Perforación realizada en el suelo o roca que permite obtener agua subterránea desde el acuífero, de forma manual o por bombeo.</p></div>
@@ -511,9 +511,12 @@
                 </p></div>
                 <div class="termino-item"><h3 class="termino-titulo">Pozos de Remediación</h3><p class="termino-def">Obras construidas para capturar y extraer del sistema acuífero las posibles fugas de aguas (industriales o de contacto) desde el depósito. El bombeo de estos pozos se realizará sólo cuando se haya activado el Plan de Remediación</p></div>
 
-                <div class="termino-item"><h3 class="termino-titulo">Pozos de Medición de la Eficiencia de Remediación</h3><p class="termino-def">Estos pozos tienen el objetivo de permitir monitorear la calidad y el nivel del agua subterránea en el sector aguas abajo de los Pozos de Remediación, para verificar que la condición basal se mantiene aguas abajo de los depósitos de arenas y lamas y en la cuenca del río Ramadillas, aún con el Plan de Remediación en funcionamiento.
+                <div class="termino-item"><h3 class="termino-titulo">Pozos de Medición de la Eficiencia de Remediación</h3><p class="termino-def">Estos pozos tienen el objetivo de permitir monitorear la calidad y el nivel del agua subterránea en el sector aguas abajo de los Pozos de Remediación, para verificar que la condición basal se mantiene aguas abajo de los depósitos de arenas y lamas y en la cuenca del río Ramadillas, aún con el Plan de Remediación en funcionamiento.</p>
+            </div>
 
-</p></div>
+            
+                <div class="termino-item"><h3 class="termino-titulo">Pozos Ramadillas</h3><p class="termino-def">Obras construidas para medir la calidad de las aguas subterráneas en el sistema acuifero del río Ramadillas, aguas abajo de todas las instalaciones mineras.</p>
+            </div>
             </div>
         </div>
 
@@ -531,7 +534,7 @@
             <span class="letra-badge">R</span>
             <div class="terminos-wrapper">
                 <div class="termino-item"><h3 class="termino-titulo">Río</h3><p class="termino-def">Corriente de agua continua y más o menos caudalosa que desemboca en otra, en un lago o en el mar.</p></div>
-                  <div class="termino-item"><h3 class="termino-titulo">Río Ramadillas</h3><p class="termino-def">Puntos de medición de la calidad de las aguas superficiales, aguas abajo de las instalaciones mineras, para apoyar el análisis de eventuales eventos de alteraciones de la calidad de las aguas.</p></div>
+                  <div class="termino-item"><h3 class="termino-titulo">Río Ramadillas, muestreo de aguas superficiales</h3><p class="termino-def">Puntos de medición de la calidad de las aguas superficiales, aguas abajo de las instalaciones mineras, para apoyar el análisis de eventuales eventos de alteraciones de la calidad de las aguas.</p></div>
                 
                 <div class="termino-item"><h3 class="termino-titulo">Rajo Abierto</h3><p class="termino-def">Mina explotada en la superficie utilizando una línea de explosivos. Luego de la tronadura, que remueve el material mineralizado, se realiza el carguío en camiones o en cintas transportadoras. Para ello se usan cargadores frontales o palas mecánicas, que llevan las rocas hasta la planta de chancado para iniciar el proceso de concentración.</p></div>
                 <div class="termino-item">
