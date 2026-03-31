@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
+      <meta name="api-base-url" content="{{ env('APP_API_URL') }}">
       @include('partials.fav')
       <title>  {{ $ficha['nombre_pdc'] ?? 'Punto de Control' }}</title>
       <!-- Bootstrap CSS -->

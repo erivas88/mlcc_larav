@@ -1,4 +1,7 @@
 // 1. CONFIGURACIÓN GLOBAL DE IDIOMA (Fuera del ready para máxima prioridad)
+
+
+
 Highcharts.setOptions({
     lang: {
         months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
@@ -17,7 +20,8 @@ Highcharts.setOptions({
 
 $(document).ready(function() {
     const colorCaserones = '#0f7c91';
-
+    const API_BASE_URL = $('meta[name="api-base-url"]').attr('content');
+    console.log("API Base URL:", API_BASE_URL); // Verifica que se esté leyendo correctamente
     function renderizarGrafico(respuesta) {
         // 1. Mapeo de series con colores dinámicos desde el API
         const seriesData = respuesta.series.map(s => ({
@@ -179,6 +183,7 @@ $(document).ready(function() {
                 enabled: false
             },
             navigator: {
+                type: 'line', 
                 enabled: true,
                 outlineColor: '#e0e6ed',
                 maskFill: 'rgba(15, 124, 145, 0.1)', // Tu colorPrincipal con mucha transparencia
@@ -242,16 +247,7 @@ $(document).ready(function() {
         const urlSegments = window.location.pathname.split('/');
         const idEstacion = urlSegments.pop() || urlSegments.pop();
 
-        /*if (idEstacion && !isNaN(idEstacion) && idParametro && idPeriodo) {
-            
-            $('#chart-container').html(`
-    <div class="chart-loading-overlay">
-        <div class="custom-loader"></div>
-        <p style="margin-top:15px; color:#555; font-family:'Poppins', sans-serif; font-weight:300; letter-spacing: 1px;">
-            Sincronizando registros...
-        </p>
-    </div>
-`);*/
+
 
         if (idEstacion && !isNaN(idEstacion) && idParametro && idPeriodo) {
             // Aplicamos el overlay con un contenedor de borde completo
@@ -269,7 +265,7 @@ $(document).ready(function() {
             // Iniciar llamada AJAX...
 
             $.ajax({
-                url: "https://7j63yn4jf9.execute-api.us-east-1.amazonaws.com/Prod/obtener-datos-grafico",
+                url: `${API_BASE_URL}/obtener-datos-grafico`,
                 method: "POST",
                 data: {
                     estacion: idEstacion,
