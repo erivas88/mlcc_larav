@@ -1,6 +1,3 @@
-// 1. CONFIGURACIÓN GLOBAL DE IDIOMA (Fuera del ready para máxima prioridad)
-
-
 
 Highcharts.setOptions({
     lang: {
@@ -21,7 +18,6 @@ Highcharts.setOptions({
 $(document).ready(function() {
     const colorCaserones = '#0f7c91';
     const API_BASE_URL = $('meta[name="api-base-url"]').attr('content');
-    console.log("API Base URL:", API_BASE_URL); // Verifica que se esté leyendo correctamente
     function renderizarGrafico(respuesta) {
         // 1. Mapeo de series con colores dinámicos desde el API
         const seriesData = respuesta.series.map(s => ({
