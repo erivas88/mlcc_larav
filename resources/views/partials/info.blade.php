@@ -1,3 +1,64 @@
+<style>
+.img-skeleton-shimmer {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #dde3ea 25%, #eef1f5 50%, #dde3ea 75%);
+    background-size: 200% 100%;
+    animation: shimmer-slide 1.5s ease-in-out infinite;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-skeleton-shimmer::after {
+    content: '';
+    width: 36px;
+    height: 36px;
+    border: 3px solid rgba(15, 124, 145, 0.2);
+    border-top-color: #0f7c91;
+    border-radius: 50%;
+    animation: spin-loader 0.8s linear infinite;
+}
+
+@keyframes shimmer-slide {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+@keyframes spin-loader {
+    to { transform: rotate(360deg); }
+}
+
+.img-visual {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.img-visual.img-loaded {
+    opacity: 1;
+}
+
+.carousel-item { position: relative; }
+</style>
+
+<script>
+function imgOnLoad(img) {
+    img.classList.add('img-loaded');
+    var sk = img.previousElementSibling;
+    if (sk && sk.classList.contains('img-skeleton-shimmer')) {
+        sk.style.opacity = '0';
+        setTimeout(function() { sk.style.display = 'none'; }, 400);
+    }
+}
+function imgOnError(img) {
+    imgOnLoad(img);
+}
+</script>
+
 <div class="col-md-4">
    <div class="card h-100 border-0 shadow-sm rounded-3">
       <div class="card-header border-0 py-3 d-flex align-items-center text-dark bg-white" style="border-radius: 8px 8px 0 0; border-bottom: 1px solid #f0f0f0 !important;">
@@ -65,6 +126,7 @@
       </div>
    </div>
 </div>
+
 <div class="col-md-4">
    <div class="card h-100 border-0 shadow-sm rounded-3">
       <div class="card-header border-0 py-3 d-flex align-items-center text-dark bg-white" style="border-radius: 8px 8px 0 0; border-bottom: 1px solid #f0f0f0 !important;">
@@ -73,6 +135,7 @@
       </div>
       <div class="card-body p-2">
          <div class="rounded-2 overflow-hidden border bg-light d-flex align-items-center justify-content-center" style="height: 300px; position: relative; border-radius: 12px !important;">
+
             @if( (isset($ficha['multinivel']) && $ficha['multinivel'] == 1 && isset($ficha['datosMultinivel']) && count($ficha['datosMultinivel']) > 0) || ($ficha['es_grupo'] && count($ficha['miembros_grupo']) > 1) )
             @php
             $itemsCarrusel = (isset($ficha['multinivel']) && $ficha['multinivel'] == 1) ? $ficha['datosMultinivel'] : $ficha['miembros_grupo'];
@@ -81,9 +144,12 @@
                <div class="carousel-inner h-100">
                   @foreach($itemsCarrusel as $index => $miembro)
                   <div class="carousel-item h-100 {{ $index == 0 ? 'active' : '' }}">
-                     <img src="{{ asset('storage/img_estaciones/estaciones/' . $miembro->img . '.jpg') }}" 
-                        class="d-block w-100 h-100" 
-                        style="object-fit: cover;" 
+                     <div class="img-skeleton-shimmer"></div>
+                     <img src="{{ asset('storage/img_estaciones/estaciones/' . $miembro->img . '.jpg') }}"
+                        class="img-visual d-block w-100 h-100"
+                        style="object-fit: cover;"
+                        onload="imgOnLoad(this)"
+                        onerror="imgOnError(this)"
                         alt="{{ $miembro->nombre_estacion }}">
                      <div class="img-cintillo-sharp-glass">
                         <div class="img-item">
@@ -101,7 +167,6 @@
                               @if(is_numeric($miembro->profundidad_sma))
                               @php
                               $valor = (float) $miembro->profundidad_sma;
-                              // Si es entero, no mostrar decimales
                               if (floor($valor) == $valor) {
                               $formateado = number_format($valor, 0, ',', '');
                               } else {
@@ -127,10 +192,14 @@
                <span class="carousel-control-next-icon" aria-hidden="true"></span>
                </button>
             </div>
+
             @else
-            <img src="{{ asset('storage/img_estaciones/estaciones/' . ($ficha['img'] ?? 'default') . '.jpg') }}" 
-               class="w-100 h-100" 
-               style="object-fit: cover;" 
+            <div class="img-skeleton-shimmer"></div>
+            <img src="{{ asset('storage/img_estaciones/estaciones/' . ($ficha['img'] ?? 'default') . '.jpg') }}"
+               class="img-visual w-100 h-100"
+               style="object-fit: cover;"
+               onload="imgOnLoad(this)"
+               onerror="imgOnError(this)"
                alt="{{ $ficha['nombre_estacion'] }}">
             <div class="img-cintillo-sharp-glass">
                <div class="img-item">
@@ -158,6 +227,7 @@
                </div>
             </div>
             @endif
+
          </div>
       </div>
    </div>
