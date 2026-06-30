@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\UtmHelper;
 
@@ -21,27 +22,26 @@ class MarkerController extends Controller
             return response()->json(['error' => 'El campo sector es requerido'], 400);
         }
 
-        // Ajustamos el SELECT para que coincida con la lógica de tu SP
-        $estaciones = DB::table('estaciones as Y')
-            ->join('sistemas_pdc as X', 'X.id_sistema', '=', 'Y.id_sistema_pdc')
-            ->join('subsistemas_pdc as Z', 'Z.id_subsistema', '=', 'Y.id_subsistema_pdc')
-            ->select(
-                'Y.id_estacion', 
-                'Y.nombre_pdc', 
-                'Y.set_parametros', 
-                'Y.utm_este', 
-                'Y.utm_norte',
-                'Y.id_subsistema_pdc',
-                'Z.color as color_subsistema', // Coincide con tu SP
-                'X.color as color_sistema'     // Coincide con tu SP
-            )
-            ->where('Y.id_sistema_pdc', $sector)
-            ->where('Y.map', '1')
-            ->get();
+        $resultado = Cache::remember("markers_sector_{$sector}", 600, function () use ($sector) {
+            $estaciones = DB::table('estaciones as Y')
+                ->join('sistemas_pdc as X', 'X.id_sistema', '=', 'Y.id_sistema_pdc')
+                ->join('subsistemas_pdc as Z', 'Z.id_subsistema', '=', 'Y.id_subsistema_pdc')
+                ->select(
+                    'Y.id_estacion',
+                    'Y.nombre_pdc',
+                    'Y.utm_este',
+                    'Y.utm_norte',
+                    'Y.id_subsistema_pdc',
+                    'Z.color as color_subsistema'
+                )
+                ->where('Y.id_sistema_pdc', $sector)
+                ->where('Y.map', '1')
+                ->get();
 
-        $resultado = $this->transformData($estaciones);
+            return $this->transformData($estaciones)->unique('estacion')->values();
+        });
 
-        return response()->json($resultado->unique('estacion')->values());
+        return response()->json($resultado);
     }
 
     /**
@@ -58,32 +58,33 @@ class MarkerController extends Controller
         $sectorId = $request->input('sector');
         $subsistemaId = $request->input('subsistema');
 
-        $estacionesRaw = DB::table('estaciones as Y')
-            ->join('sistemas_pdc as X', 'X.id_sistema', '=', 'Y.id_sistema_pdc')
-            ->join('subsistemas_pdc as Z', 'Z.id_subsistema', '=', 'Y.id_subsistema_pdc')
-            ->select(
-                'Y.id_estacion', 
-                'Y.nombre_pdc', 
-                'Y.set_parametros', 
-                'Y.utm_este', 
-                'Y.utm_norte',
-                'Y.id_subsistema_pdc',
-                'Z.color as color_subsistema'
-            )
-            ->where('Y.id_sistema_pdc', $sectorId)
-            ->where('Y.id_subsistema_pdc', $subsistemaId)
-            ->get();
+        $resultado = Cache::remember("markers_sector_{$sectorId}_sub_{$subsistemaId}", 600, function () use ($sectorId, $subsistemaId) {
+            $estacionesRaw = DB::table('estaciones as Y')
+                ->join('subsistemas_pdc as Z', 'Z.id_subsistema', '=', 'Y.id_subsistema_pdc')
+                ->select(
+                    'Y.id_estacion',
+                    'Y.nombre_pdc',
+                    'Y.utm_este',
+                    'Y.utm_norte',
+                    'Y.id_subsistema_pdc',
+                    'Z.color as color_subsistema',
+                    'Z.nombre_subsistema',
+                    'Z.texto'
+                )
+                ->where('Y.id_sistema_pdc', $sectorId)
+                ->where('Y.id_subsistema_pdc', $subsistemaId)
+                ->get();
 
-        $subInfo = DB::table('subsistemas_pdc')
-            ->select('nombre_subsistema', 'texto')
-            ->where('id_subsistema', $subsistemaId)
-            ->first();
+            $subInfo = $estacionesRaw->first();
 
-        return response()->json([
-            'subsistema' => $subInfo->nombre_subsistema ?? '',
-            'texto' => $subInfo->texto ?? '',
-            'data' => $this->transformData($estacionesRaw)->unique('estacion')->values()
-        ]);
+            return [
+                'subsistema' => $subInfo->nombre_subsistema ?? '',
+                'texto'      => $subInfo->texto ?? '',
+                'data'       => $this->transformData($estacionesRaw)->unique('estacion')->values(),
+            ];
+        });
+
+        return response()->json($resultado);
     }
 
     /**
@@ -101,21 +102,8 @@ class MarkerController extends Controller
                 'estacion'   => $item->nombre_pdc,
                 'latitud'    => $coords['lat'],
                 'longitud'   => $coords['lon'],
-                // Mapeamos color_subsistema de la DB a la clave 'color' que espera tu JS
-                'color'      => $item->color_subsistema ?? '#ffd700', 
-                'parametros' => $this->getParametrosHtml($item->set_parametros)
+                'color'      => $item->color_subsistema ?? '#ffd700',
             ];
         });
-    }
-
-    private function getParametrosHtml($setId)
-    {
-        if (!$setId) return "";
-        $parametros = DB::table('parametros_online as a')
-            ->join('parametros as b', 'b.id_parametro', '=', 'a.id_parametro')
-            ->where('a.id_group', $setId)
-            ->pluck('b.nombre_largo');
-
-        return $parametros->map(fn($n) => '<i class="fe fe-pocket"></i> '.$n.'<br>')->implode('');
     }
 }

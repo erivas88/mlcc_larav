@@ -340,7 +340,7 @@ document.querySelectorAll('input[name="map-style"]').forEach(function(radio) {
 });
 
 // Inicialización del mapa y carga de capas
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
     const segments = window.location.pathname.split('/').filter(s => s !== "");
     const sIdx = segments.indexOf('sector');
     if (sIdx !== -1) {
