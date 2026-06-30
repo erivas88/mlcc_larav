@@ -179,11 +179,11 @@ $(document).ready(function() {
                 enabled: false
             },
             navigator: {
-                type: 'line', 
                 enabled: true,
                 outlineColor: '#e0e6ed',
-                maskFill: 'rgba(15, 124, 145, 0.1)', // Tu colorPrincipal con mucha transparencia
+                maskFill: 'rgba(15, 124, 145, 0.1)',
                 series: {
+                    type: 'line',
                     color: '#0f7c91',
                     lineWidth: 1,
                     fillOpacity: 0.2
